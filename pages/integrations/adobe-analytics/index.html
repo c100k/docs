@@ -2569,7 +2569,7 @@
 <li>Analytics Custom Visitor ID - <em>$analytics_visitor_id</em></li>
 </ol>
 <p>Here's a sample snippet showing this. <strong>NOTE</strong> you must set the correct key before calling <em>initSession</em>. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.</p>
-<p><strong>iOS</strong></p>
+<p><strong>Objective-C</strong></p>
 <p>Inside <em>didFinishLaunchingWithOptions</em></p>
 <div class="codehilite"><pre><span></span><span class="n">Branch</span> <span class="o">*</span><span class="n">branch</span> <span class="o">=</span> <span class="p">[</span><span class="n">Branch</span> <span class="n">getInstance</span><span class="p">];</span>
 <span class="p">[[</span><span class="n">Branch</span> <span class="n">getInstance</span><span class="p">]</span> <span class="nl">setRequestMetadataKey</span><span class="p">:</span><span class="s">@&quot;$adobe_visitor_id&quot;</span> <span class="nl">value</span><span class="p">:[</span><span class="n">ADBMobile</span> <span class="n">trackingIdentifier</span><span class="p">]];</span>
