@@ -2414,13 +2414,60 @@
 <p>For a high level overview of identities in Mixpanel, see <a href="https://mixpanel.com/help/questions/articles/how-do-i-use-alias-and-identify">Identity Management in Mixpanel</a>. If you experience any issues regarding tracking identities or have general questions about the <code>.alias()</code> and <code>.identify()</code> methods, please take a look at <a href="https://mixpanel.com/help/questions/articles/how-should-i-handle-my-user-identity-with-the-mixpanel-javascript-library">Mixpanel's documentation</a> first. Additionally, reach out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#120;&#112;&#97;&#110;&#101;&#108;&#46;&#99;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#120;&#112;&#97;&#110;&#101;&#108;&#46;&#99;&#111;&#109;</a> if the problem persists.</p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="what-branch-sends-to-mixpanel">What Branch Sends to Mixpanel<a class="headerlink" href="#what-branch-sends-to-mixpanel" title="Permanent link">&para;</a></h3>
-<p>| Property Name | Value | Sourced from | Example | Req
-| --- | --- | --- | --- | --- | ---
-| event | Branch event | event name | [Branch] install | Y
-| properties.distinct_id | Unique ID for device/user | <a href="#why-we-recommend-passing-mixpanel-distinct-id">see section below</a> | AEBE52E7-03EE-455A-B3C4-E57283966239 | N
-| properties.token | Mixpanel Token | Branch Dashboard | eed14a8aaa8c8ef777b8e9cb30826399 | Y
-| properties.time | Event creation date | event | 1461878903 | N
-| properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Value</th>
+<th>Sourced from</th>
+<th>Example</th>
+<th>Req</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event</td>
+<td>Branch event</td>
+<td>event name</td>
+<td>[Branch] install</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>properties.distinct_id</td>
+<td>Unique ID for device/user</td>
+<td><a href="#why-we-recommend-passing-mixpanel-distinct-id">see section below</a></td>
+<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td>properties.token</td>
+<td>Mixpanel Token</td>
+<td>Branch Dashboard</td>
+<td>eed14a8aaa8c8ef777b8e9cb30826399</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>properties.time</td>
+<td>Event creation date</td>
+<td>event</td>
+<td>1461878903</td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td>properties.ANY-KEY (many)</td>
+<td>The value associated with the key</td>
+<td>event metadata or referring link data</td>
+<td>~channel: facebook</td>
+<td>N</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="why-we-recommend-passing-mixpanel-distinct-id">Why We Recommend Passing Mixpanel Distinct ID<a class="headerlink" href="#why-we-recommend-passing-mixpanel-distinct-id" title="Permanent link">&para;</a></h3>
 <p>Branch will automatically specify the Distinct ID requested by Mixpanel, if any of the IDentifiers that Mixpanel uses are available. On iOS, Branch will send the IDFA if present, or the identifierForVendor (IDFV) if present, otherwise it will omit Distinct ID. On Android Branch will send the Google Advertising ID if present, or the Android ID (hardware ID) if present, otherwise it will omit Distinct ID.</p>
 <p>On iOS, the Mixpanel SDK by default will use the IDFA if present, otherwise it will use the identifierForVendor (IDFV) (also known as the vendor ID or identifierForVendor). In rare cases where the identifierForVendor (IDFV) is not available, it will generate a random UUID. In order for IDFA to be available, please be sure you have included AdSupport.framework.</p>
