@@ -22,7 +22,7 @@
     
     
       
-        <title>Appboy - Branch documentation</title>
+        <title>Braze - Branch documentation</title>
       
     
     
@@ -137,7 +137,7 @@
                   </span>
                 
               
-              Appboy
+              Braze
             
           </span>
         </div>
@@ -1784,11 +1784,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Appboy
+        Braze
       </label>
     
-    <a href="./" title="Appboy" class="md-nav__link md-nav__link--active">
-      Appboy
+    <a href="./" title="Braze" class="md-nav__link md-nav__link--active">
+      Braze
     </a>
     
       
@@ -1835,8 +1835,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-the-appboy-api-key" title="Get the Appboy API key" class="md-nav__link">
-    Get the Appboy API key
+  <a href="#get-the-braze-api-key" title="Get the Braze API key" class="md-nav__link">
+    Get the Braze API key
   </a>
   
 </li>
@@ -1862,8 +1862,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-branch-sends-to-appboy" title="What Branch sends to Appboy" class="md-nav__link">
-    What Branch sends to Appboy
+  <a href="#what-branch-sends-to-braze" title="What Branch sends to Braze" class="md-nav__link">
+    What Branch sends to Braze
   </a>
   
 </li>
@@ -1982,6 +1982,34 @@
   <li class="md-nav__item">
     <a href="../mixpanel/" title="Mixpanel" class="md-nav__link">
       Mixpanel
+    </a>
+  </li>
+
+          
+        
+          
+            
+            
+            
+
+
+  <li class="md-nav__item">
+    <a href="../mparticle/" title="mParticle" class="md-nav__link">
+      mParticle
+    </a>
+  </li>
+
+          
+        
+          
+            
+            
+            
+
+
+  <li class="md-nav__item">
+    <a href="../segment/" title="Segment" class="md-nav__link">
+      Segment
     </a>
   </li>
 
@@ -2191,8 +2219,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-the-appboy-api-key" title="Get the Appboy API key" class="md-nav__link">
-    Get the Appboy API key
+  <a href="#get-the-braze-api-key" title="Get the Braze API key" class="md-nav__link">
+    Get the Braze API key
   </a>
   
 </li>
@@ -2218,8 +2246,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-branch-sends-to-appboy" title="What Branch sends to Appboy" class="md-nav__link">
-    What Branch sends to Appboy
+  <a href="#what-branch-sends-to-braze" title="What Branch sends to Braze" class="md-nav__link">
+    What Branch sends to Braze
   </a>
   
 </li>
@@ -2252,44 +2280,44 @@
                   <a href="https://github.com/branchmetrics/docs/edit/master/src/pages/integrations/appboy.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Appboy</h1>
+                  <h1>Braze</h1>
                 
                 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The Branch partnership with <a href="https://www.appboy.com">Appboy</a> provides a push-button way to deliver Branch installs and attributions to your Appboy dashboard. This allows you to analyze your users coming in from Branch deep linked campaigns.</p>
+<p>The Branch partnership with <a href="https://www.braze.com">Braze</a> provides a push-button way to deliver Branch installs and attributions to your Braze dashboard. This allows you to analyze your users coming in from Branch deep linked campaigns.</p>
 <p><strong>At this time, our integration only applies to the iOS platform.</strong></p>
 <h3 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
-<p>We have built a custom integration to automatically send all Branch install data to Appboy without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!</p>
+<p>We have built a custom integration to automatically send all Branch install data to Braze without any extra work on your side (besides integrating both SDKs). Simply click a button, and you'll be good to go!</p>
 <div class="admonition protip">
-<p class="admonition-title">How do we differentiate Appboy and Branch installs?</p>
+<p class="admonition-title">How do we differentiate Braze and Branch installs?</p>
 <p>We rely on a Branch link being clicked, which leads to an install. This sets an internal boolean that an install came from Branch.</p>
 </div>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
 <li>This guide requires you to have already integrated the Branch mobile SDKs into your app.</li>
-<li>You also need to <a href="https://dashboard.appboy.com/developers/sign_up">sign up for an Appboy account</a> and <a href="https://documentation.appboy.com/">install the Appboy SDK</a>.</li>
-<li>Ensure Appboy's SDK is <a href="https://documentation.appboy.com/iOS/#optional-idfa-collection">collecting the IDFA</a>.</li>
+<li>You also need to <a href="https://dashboard.braze.com/developers/sign_up">sign up for an Braze account</a> and <a href="https://documentation.braze.com/">install the Braze SDK</a>.</li>
+<li>Ensure Braze's SDK is <a href="https://documentation.braze.com/iOS/#optional-idfa-collection">collecting the IDFA</a>.</li>
 </ul>
-<h3 id="get-the-appboy-api-key">Get the Appboy API key<a class="headerlink" href="#get-the-appboy-api-key" title="Permanent link">&para;</a></h3>
+<h3 id="get-the-braze-api-key">Get the Braze API key<a class="headerlink" href="#get-the-braze-api-key" title="Permanent link">&para;</a></h3>
 <ol>
-<li>On the Appboy dashboard, navigate to the <strong>App Settings</strong> section, and click <strong>3rd Party Integrations</strong>.</li>
+<li>On the Braze dashboard, navigate to the <strong>App Settings</strong> section, and click <strong>3rd Party Integrations</strong>.</li>
 <li>From there, grab your API key (this will be the same for all attribution partners listed on the page).</li>
 </ol>
 <h3 id="configure-the-branch-dashboard">Configure the Branch Dashboard<a class="headerlink" href="#configure-the-branch-dashboard" title="Permanent link">&para;</a></h3>
 <ol>
 <li>On the Branch Dashboard (dashboard.branch.io), navigate to the <a href="https://dashboard.branch.io/integrations">Integrations page</a>.</li>
-<li>Locate Appboy and choose <strong>Enable</strong>.</li>
+<li>Locate Braze and choose <strong>Enable</strong>.</li>
 <li>If you have not yet entered billing information, please do so now.</li>
-<li>Enter your Appboy iOS API Key and hit <strong>Save</strong>.</li>
+<li>Enter your Braze iOS API Key and hit <strong>Save</strong>.</li>
 </ol>
-<p><img alt="image" src="../../../img/pages/integrations/appboy/enable-appboy-integration.png" /></p>
+<p><img alt="image" src="../../../img/pages/integrations/braze/enable-braze-integration.png" /></p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
-<h3 id="what-branch-sends-to-appboy">What Branch sends to Appboy<a class="headerlink" href="#what-branch-sends-to-appboy" title="Permanent link">&para;</a></h3>
+<h3 id="what-branch-sends-to-braze">What Branch sends to Braze<a class="headerlink" href="#what-branch-sends-to-braze" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>Branch Analytics Tag</th>
-<th>Appboy Data Placeholder Tag</th>
+<th>Braze Data Placeholder Tag</th>
 </tr>
 </thead>
 <tbody>
