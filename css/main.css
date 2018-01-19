@@ -433,3 +433,6 @@ body.modal {
 .vanish {
   visibility: hidden;
 }
+.vglnk {
+  word-break: break-word;
+}

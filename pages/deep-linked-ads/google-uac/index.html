@@ -2061,24 +2061,11 @@
     Overview
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#os-support-and-major-differences" title="OS Support and Major Differences" class="md-nav__link">
-    OS Support and Major Differences
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup" title="Setup" class="md-nav__link">
-    Setup
+  <a href="#setup-old-adwords-ui" title="Setup (Old AdWords UI)" class="md-nav__link">
+    Setup (Old AdWords UI)
   </a>
   
     <nav class="md-nav">
@@ -2139,6 +2126,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setup-new-adwords-ui" title="Setup (New AdWords UI)" class="md-nav__link">
+    Setup (New AdWords UI)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" title="Data" class="md-nav__link">
+    Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshooting" title="Troubleshooting" class="md-nav__link">
     Troubleshooting
   </a>
@@ -2189,57 +2196,13 @@
                 
                 <h1 id="google-universal-app-campaigns">Google Universal App Campaigns<a class="headerlink" href="#google-universal-app-campaigns" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>If you're running Google's new Universal App Campaign, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.</p>
+<p>If you're running Universal App Campaigns, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.</p>
 <p>Branch uses Google Adwords' server to server <a href="https://developers.google.com/app-conversion-tracking/api/legacy/confirm">App Conversion Confirmation</a> for attribution data which reports on conversion events. Therefore, we only collect <strong>install (conversion) data</strong>. Click data is not supported for this campaign type.</p>
 <div class="admonition warning">
-<p class="admonition-title">Newer AdWords user interface not supported</p>
-<p>If you're using the new AdWords experience, you will need to switch back to the old experience to create Universal App Campaigns. Once the campaign is created, you can switch back to the new AdWords experience. We're currently building support for our new style of AdWords integration.</p>
+<p class="admonition-title">Two different Setup Methods</p>
+<p>AdWords has rolled out a new user interface and functionality. If you are on the new experience, please go to the Setup steps for the new AdWords UI.</p>
 </div>
-<table>
-<thead>
-<tr>
-<th>Google Campaign</th>
-<th>Campaign Type/Objective</th>
-<th>Branch Ad Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Universal App Campaign</td>
-<td>Mobile App Install</td>
-<td>App Only: Install</td>
-</tr>
-</tbody>
-</table>
-<h4 id="os-support-and-major-differences">OS Support and Major Differences<a class="headerlink" href="#os-support-and-major-differences" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Operating System</th>
-<th>Supported by Universal App Campaigns?</th>
-<th>Key Differences</th>
-<th>Documentation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>iOS</td>
-<td>Yes</td>
-<td>Conversion and Postback setup, no tracking template</td>
-<td><a href="../../../pages/deep-linked-ads/google-uac/#setup">link</a></td>
-</tr>
-<tr>
-<td>Android</td>
-<td>Yes</td>
-<td>Conversion and Postback setup, no tracking template</td>
-<td><a href="../../../pages/deep-linked-ads/google-uac/#setup">link</a></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p>Looking for other Google Ad campaign types? Please check out our <a href="../../../pages/deep-linked-ads/google-ads-overview">Google Ads Overview guide</a>.</p>
-</div>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h2 id="setup-old-adwords-ui">Setup (Old AdWords UI)<a class="headerlink" href="#setup-old-adwords-ui" title="Permanent link">&para;</a></h2>
 <p>Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your Apple App Store or Google Play Store Applications.</p>
 <div class="admonition warning">
 <p class="admonition-title">Prerequisites</p>
@@ -2334,6 +2297,50 @@
 <p>Breakdown and compare aspects of your Ad campaigns' performance by using the <code>Compare by +</code> button to add a parameter to split the data displayed data by.</p>
 <p>Then use the <code>and +</code> button to refine the data displayed to gain deeper insight into the performance of your Ad campaigns.</p>
 </div>
+<h2 id="setup-new-adwords-ui">Setup (New AdWords UI)<a class="headerlink" href="#setup-new-adwords-ui" title="Permanent link">&para;</a></h2>
+<p>Follow the instructions list <a href="../../../pages/deep-linked-ads/google-ads-overview/#latest-method-oauth-method">here</a>. Once this is complete, you can run Universal App Campaigns using the new interface.</p>
+<div class="admonition warning">
+<p class="admonition-title">Deep linking not supported with new integration</p>
+<p>Unfortunately, because the new integration with Univeral App Campaigns is truly linkless, Branch cannot support deep linking from this campaign style.</p>
+</div>
+<h3 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h3>
+<p>With the new set up, here's how the data is mapped.</p>
+<table>
+<thead>
+<tr>
+<th>Google Data</th>
+<th>Branch Data</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Campaign ID</td>
+<td>~campaign_id</td>
+<td></td>
+</tr>
+<tr>
+<td>Campaign Name</td>
+<td>~campaign</td>
+<td></td>
+</tr>
+<tr>
+<td>ad_type</td>
+<td>~ad_type</td>
+<td></td>
+</tr>
+<tr>
+<td>network_type</td>
+<td>~channel</td>
+<td></td>
+</tr>
+<tr>
+<td>network_subtype</td>
+<td>~secondary_publisher</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h4 id="faq-debugging">FAQ / Debugging<a class="headerlink" href="#faq-debugging" title="Permanent link">&para;</a></h4>
 <p><strong>Q: I'm not seeing any click data for my campaign.</strong></p>
