@@ -2104,6 +2104,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rate-limits" title="Rate Limits" class="md-nav__link">
+    Rate Limits
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -2133,10 +2140,12 @@
 <p>For newcomers to this API, we strongly suggest you check out our <a href="../query-recipe-book/">Query Recipe Book</a>. It has screenshots of Dashboard visualizations, accompanied by what queries you need to make to pull the same data. It's a quick way to get up and running with this API.</p>
 </div>
 <p>An HTTP API usable for programmatically querying pre-aggregated analytics. It can be used to fetch any of the same information displayed on nearly any the Branch dashboard, without accessing the Dashboard itself.</p>
-<p>An individual query is constructed from three types of parameters:
- - Authentication parameters that control the access to the data
- - Data selection keys which define which events are eligible to be counted in the results (eg, filters)
- - Result format specifiers that define which results are included in the HTTP response, and how the result is returned (eg, sorting)</p>
+<p>An individual query is constructed from three types of parameters:</p>
+<ul>
+<li>Authentication parameters that control the access to the data</li>
+<li>Data selection keys which define which events are eligible to be counted in the results (eg, filters)</li>
+<li>Result format specifiers that define which results are included in the HTTP response, and how the result is returned (eg, sorting)</li>
+</ul>
 <p>An example query could look like:
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="c1">// Authentication</span>
@@ -2547,6 +2556,13 @@ ordered_by value sort choices:
   }
 }
 </pre></div>
+
+<h2 id="rate-limits">Rate Limits<a class="headerlink" href="#rate-limits" title="Permanent link">&para;</a></h2>
+<ul>
+<li>5 requests per second</li>
+<li>20 requests per minute</li>
+<li>150 requests per hour</li>
+</ul>
                 
                   
                 
