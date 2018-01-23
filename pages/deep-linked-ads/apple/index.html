@@ -957,6 +957,13 @@
     Setup
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-iad-and-adsupport" title="Import iAd and AdSupport" class="md-nav__link">
+    Import iAd and AdSupport
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -2160,6 +2167,13 @@
     Setup
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-iad-and-adsupport" title="Import iAd and AdSupport" class="md-nav__link">
+    Import iAd and AdSupport
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -2243,7 +2257,9 @@
 </ul>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>In order to check if the user came from an Apple Search Ad, you must make the attribution call before Branch initializes. As a warning, Apple's API is extremely slow often taking more than 1 second round trip. This means that your call to Branch's initSession to the execution of the callback block will be delayed by this additional 1 second.</p>
-<p>You must add Apple's iAd.framework to your project to enable Apple Search Ad checking.</p>
+<h2 id="import-iad-and-adsupport">Import iAd and AdSupport<a class="headerlink" href="#import-iad-and-adsupport" title="Permanent link">&para;</a></h2>
+<p>You must add Apple's <strong>iAd.framework</strong> and <strong>AdSupport.framework</strong> to your <strong>Linked Frameworks</strong> in your Xcode project to enable Apple Search Ad checking.</p>
+<p><img alt="image" src="../../../img/pages/apps/ios-frameworks.png" /></p>
 <h3 id="enable-apple-search-ads-check">Enable Apple Search Ads Check<a class="headerlink" href="#enable-apple-search-ads-check" title="Permanent link">&para;</a></h3>
 <p>To enable this check, add a <code>delayInitToCheckForSearchAds</code> call to your <strong>AppDelegate.m</strong> (or <strong>AppDelegate.swift</strong>) file after you create the Branch singleton, but <em>before</em> you call <code>initSession</code>. Your code will end up looking something like this:</p>
 <div class="codehilite"><pre><span></span><span class="n">Branch</span> <span class="o">*</span><span class="n">branch</span> <span class="o">=</span> <span class="p">[</span><span class="n">Branch</span> <span class="n">getInstance</span><span class="p">];</span>

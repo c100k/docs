@@ -645,6 +645,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#handle-links-in-your-own-app" title="Handle links in your own app" class="md-nav__link">
+    Handle links in your own app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-push-notifications" title="Handle push notifications" class="md-nav__link">
+    Handle push notifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#track-apple-search-ads" title="Track Apple Search Ads" class="md-nav__link">
     Track Apple Search Ads
   </a>
@@ -2564,6 +2578,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#handle-links-in-your-own-app" title="Handle links in your own app" class="md-nav__link">
+    Handle links in your own app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-push-notifications" title="Handle push notifications" class="md-nav__link">
+    Handle push notifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#track-apple-search-ads" title="Track Apple Search Ads" class="md-nav__link">
     Track Apple Search Ads
   </a>
@@ -3528,6 +3556,39 @@ react-native-git-upgrade
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nx">creditHistory</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">branch</span><span class="p">.</span><span class="nx">getCreditHistory</span><span class="p">()</span>
 </pre></div>
 
+</li>
+</ul>
+</li>
+<li>
+<h3 id="handle-links-in-your-own-app">Handle links in your own app<a class="headerlink" href="#handle-links-in-your-own-app" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Allows you to deep link into your own from your app itself</p>
+<div class="codehilite"><pre><span></span><span class="nx">branch</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s2">&quot;https://example.app.link/u3fzDwyyjF&quot;</span><span class="p">)</span>
+<span class="nx">branch</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s2">&quot;https://example.app.link/u3fzDwyyjF&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">newActivity</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span> <span class="c1">// Finish the Android current activity before opening the link. Results in a new activity window. Ignored on iOS.</span>
+</pre></div>
+
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you aren't using the <code>newActivity</code> option, it is necessary to move the call to the <code>RNBranch.initSession method</code> to the main activity's <code>onResume</code> method instead of <code>onStart</code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Handling a new deep link in your app will clear the current session data and a new referred "open" will be attributed.</p>
+</div>
+<ul>
+<li>
+<h3 id="handle-push-notifications">Handle push notifications<a class="headerlink" href="#handle-push-notifications" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Allows you to track Branch deep links in your push notifications</p>
+</li>
+<li>
+<p>Use <a href="../handle-links-in-your-own-app">openURL</a> to handle the deep links</p>
 </li>
 </ul>
 </li>
