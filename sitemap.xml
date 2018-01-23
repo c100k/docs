@@ -609,18 +609,6 @@
      <changefreq>daily</changefreq>
     </url>
         
-    <url>
-     <loc>https://docs.branch.io/pages/exports/query-api/</loc>
-     <lastmod>2018-01-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://docs.branch.io/pages/exports/query-recipe-book/</loc>
-     <lastmod>2018-01-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
     
 
 </urlset>
