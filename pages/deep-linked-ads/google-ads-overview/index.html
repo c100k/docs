@@ -2408,10 +2408,16 @@
 <h3 id="latest-method-oauth-method">Latest Method (OAuth method)<a class="headerlink" href="#latest-method-oauth-method" title="Permanent link">&para;</a></h3>
 <p>If you are on the new AdWords integration through Branch, read these instructions. Do <strong>not</strong> follow the steps of the legacy instructions. If you would like to try the latest method, send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#97;&#104;&#105;&#108;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;">&#115;&#97;&#104;&#105;&#108;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;</a>. Benefits of the new integration include tracking all Universal App Campaigns automatically (no links required), and sending all conversion events back to AdWords for optimized spend.</p>
 <h4 id="adwords-setup">AdWords Setup<a class="headerlink" href="#adwords-setup" title="Permanent link">&para;</a></h4>
-<p>Start by logging into your AdWords account that has the highest level of access. You will have the ability to connect all your AdWords accounts with Branch. You will generate a Link ID for your mobile apps.</p>
-<p>Start by going to Linked Accounts in AdWords, and select Third Party App Analytics. Once on the Third Party App Analytics page, hit the plus sign.</p>
-<p>From here, you will add a new provider. Select "other" in the drop down. Input the following ID: <code>3404357870</code>. Select iOS or Android. Create Link IDs for all platforms you run campaigns on.</p>
-<p><img alt="Create Link IDs" src="../../../img/pages/deep-linked-ads/google/link-id.png" /></p>
+<ol>
+<li>Log in to your <a href="https://adwords.google.com/aw/overview" target="_blank">AdWords dashboard</a> account that has the highest level of access. You will have the ability to connect all your AdWords accounts with Branch.</li>
+<li>Go to <code>Settings &gt; Linked Accounts</code>.
+<img src="/img/pages/deep-linked-ads/google/linked-accounts.png" alt="Linked Accounts" class="three-quarters center"></li>
+<li>Create a new link ID: Go to <code>Third Party App Analytics &gt; +</code>.</li>
+<li>Add a new provider: Select "other" in the drop down. Input the following ID: <code>3404357870</code>.</li>
+<li>Select iOS or Android.</li>
+<li>Create Link IDs for all platforms you run campaigns on.
+<img src="/img/pages/deep-linked-ads/google/link-id.png" alt="Link IDs" class="three-quarters center"></li>
+</ol>
 <p><strong>Note</strong> you must be an admin in your AdWords account in order to generate Link IDs!</p>
 <h4 id="branch-setup">Branch Setup<a class="headerlink" href="#branch-setup" title="Permanent link">&para;</a></h4>
 <p>Navigate to the <a href="https://dashboard.branch.io/ads/partner-management" target="_blank">partner management</a> tab and click <code>Connect with Google</code>. Choose the email address that is tied to the AdWords accounts you want to connect.</p>
@@ -2421,8 +2427,15 @@
 <p>Finally, paste the Link IDs from earlier.</p>
 <p><img alt="Create Link IDs" src="../../../img/pages/deep-linked-ads/google/link-ids.png" /></p>
 <h4 id="import-events">Import Events<a class="headerlink" href="#import-events" title="Permanent link">&para;</a></h4>
-<p>All that remains is importing Branch events into AdWords. After you have set this up, wait ~ 20 minutes, and go back to the AdWords dashboard. Go to conversions -&gt; Add -&gt; App -&gt; Third Party App Analytics, and import Branch specific events.</p>
-<p>Once they are imported, go back to the conversions page, and edit the conversion event. Be sure to mark "Include In Conversions" as a YES. This will let your Branch conversions appear in your tracked campaigns. </p>
+<p>All that remains is importing Branch events into AdWords. After you have set this up, wait ~ 20 minutes, and go back to the AdWords dashboard.</p>
+<ol>
+<li>Go to <code>Conversions</code>.
+<img src="/img/pages/deep-linked-ads/google/conversions.png" alt="Linked Accounts" class="three-quarters center"></li>
+<li>Add a new conversion: <code>+ &gt; App &gt; Third Party App Analytics</code>.
+<img src="/img/pages/deep-linked-ads/google/create-conversion.png" alt="Linked Accounts" class="three-quarters center"></li>
+<li>Import your Branch specific events. Click <code>Import and Continue</code>.</li>
+<li>Mark <code>Include in Conversions</code> to <code>YES</code>.</li>
+</ol>
 <p>That's it! All of your campaigns with mobile conversions will be tracked in Branch's dashboard.</p>
 <h3 id="legacy-no-oauth-option">Legacy (no OAuth option)<a class="headerlink" href="#legacy-no-oauth-option" title="Permanent link">&para;</a></h3>
 <p>If you do not have the option in your Branch dashboard to connect via oauth, you are on the old style of AdWords. If you'd like to use the new option, please see above.</p>

@@ -3007,6 +3007,10 @@
 <p class="admonition-title">Only initialize Branch in the Launcher activity</p>
 <p>The app will open through the Launcher activity, where Branch will initialize and retrieve the deep link data from the link click.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Always intialize Branch in <code>onStart()</code></p>
+<p>Initializing Branch in other Android lifecyle methods, like <code>onResume()</code>, will lead to unintended behavior. <code>onStart()</code> is what makes the activity visible to the user, as the app prepares for the activity to enter the foreground and become interactive. Learn more <a href="https://developer.android.com/guide/components/activities/activity-lifecycle.html">here</a>.</p>
+</div>
 </li>
 <li>
 <h3 id="load-branch">Load Branch<a class="headerlink" href="#load-branch" title="Permanent link">&para;</a></h3>
