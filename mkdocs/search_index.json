@@ -2667,7 +2667,7 @@
         }, 
         {
             "location": "/pages/dashboard/timezone/", 
-            "text": "Dashboard Analytics Time Zone\n\n\nThe dashboard's time zone ensures that data in the Branch dashboard is always presented consistently, no matter where in the world you may be when viewing your data. International teams can settle upon a fixed time zone and see Branch data in that time zone.\n\n\nThe time zone setting also allows you to import data from third parties, like Facebook and Google, and ensure that Branch data matches up with external sources.\n\n\nSetting or changing time zone\n\n\nThe time zone can be set in \nAccount Settings\n. \n\n\n\n\nSelect your time zone from the dropdown\n\n\nScroll down until you see the \nSave Settings\n button. Click \nSave Settings\n to save your time zone.\n\n\n\n\n\n\nChanging time zone\n\n\nBranch allows you to change your time zone. Changing your time zone will take effect after a page refresh, and will set your dashboard to use your new time zone. \nHowever\n we do not recommend changing time zone unless you have to, as it can cause discrepancies between previously exported data and the data in your dashboard. In the future, changing time zone may not be possible as we may store data in your specified time zone.\n\n\n\n\nFAQs\n\n\nHow does daylight savings impact my time zone?\n\n\nYour Branch data won't adjust with daylight savings. Daylight savings is actually independent of time zone. When your city follows a daylight savings change, they also change time zone. You can update your time zone if you'd like, or leave it to be a consistent time zone all year round.", 
+            "text": "Dashboard Analytics Time Zone\n\n\nThe dashboard's time zone ensures that data in the Branch dashboard is always presented consistently, no matter where in the world you may be when viewing your data. International teams can settle upon a fixed time zone and see Branch data in that time zone.\n\n\nThe time zone setting also allows you to import data from third parties, like Facebook and Google, and ensure that Branch data matches up with external sources.\n\n\nSetting or changing time zone\n\n\nThe time zone can be set in \nAccount Settings\n. \n\n\n\n\nSelect your time zone from the dropdown\n\n\nScroll down until you see the \nSave Settings\n button. Click \nSave Settings\n to save your time zone.\n\n\n\n\n\n\nChanging time zone\n\n\nBranch allows you to change your time zone. Changing your time zone will take effect after a page refresh, and will set your dashboard to use your new time zone. \nHowever\n we do not recommend changing time zone unless you have to, as it can cause discrepancies between previously exported data and the data in your dashboard. In the future, changing time zone may not be possible as we may store data in your specified time zone.", 
             "title": "Time zone support"
         }, 
         {
@@ -2679,16 +2679,6 @@
             "location": "/pages/dashboard/timezone/#setting-or-changing-time-zone", 
             "text": "The time zone can be set in  Account Settings .    Select your time zone from the dropdown  Scroll down until you see the  Save Settings  button. Click  Save Settings  to save your time zone.    Changing time zone  Branch allows you to change your time zone. Changing your time zone will take effect after a page refresh, and will set your dashboard to use your new time zone.  However  we do not recommend changing time zone unless you have to, as it can cause discrepancies between previously exported data and the data in your dashboard. In the future, changing time zone may not be possible as we may store data in your specified time zone.", 
             "title": "Setting or changing time zone"
-        }, 
-        {
-            "location": "/pages/dashboard/timezone/#faqs", 
-            "text": "", 
-            "title": "FAQs"
-        }, 
-        {
-            "location": "/pages/dashboard/timezone/#how-does-daylight-savings-impact-my-time-zone", 
-            "text": "Your Branch data won't adjust with daylight savings. Daylight savings is actually independent of time zone. When your city follows a daylight savings change, they also change time zone. You can update your time zone if you'd like, or leave it to be a consistent time zone all year round.", 
-            "title": "How does daylight savings impact my time zone?"
         }, 
         {
             "location": "/pages/web/deep-views/", 
