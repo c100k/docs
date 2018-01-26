@@ -985,6 +985,19 @@
     View your data with People-Based Attribution
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-through-attribution" title="View-Through Attribution" class="md-nav__link">
+    View-Through Attribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2304,6 +2317,19 @@
     View your data with People-Based Attribution
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-through-attribution" title="View-Through Attribution" class="md-nav__link">
+    View-Through Attribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2444,25 +2470,31 @@
 <h3 id="create-an-ad-link">Create an ad link<a class="headerlink" href="#create-an-ad-link" title="Permanent link">&para;</a></h3>
 <p>Once you've enabled an ad partner, it's time to create a tracking link.</p>
 <ol>
-<li>First, select an ad format. For App Install or App Engagement campaigns you'll want to select the <strong>App Only</strong> format. For Search or Display campaigns where the user should go to web if they don't have the app, then you should select <strong>Cross-Platform Search</strong> or <strong>Cross-Platform Display</strong>. <strong>Product Links</strong> are for shopping or dynamic remarketing campaigns and will take you to create a Deep Linked Product Feed.</li>
-</ol>
+<li>
+<p>First, select an ad format. For App Install or App Engagement campaigns you'll want to select the <strong>App Only</strong> format. For Search or Display campaigns where the user should go to web if they don't have the app, then you should select <strong>Cross-Platform Search</strong> or <strong>Cross-Platform Display</strong>. <strong>Product Links</strong> are for shopping or dynamic remarketing campaigns and will take you to create a Deep Linked Product Feed.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/choose-ad-format.png" /></p>
-<ol>
-<li>At this point you need to name your link. Select something that will make it easy to find if you need it later. Your Ad Format and Ad Partner should be selected already, but feel free to choose one if they aren't. It's important that you select the right Ad Partner for analytics later on. Click <strong>Configure Options</strong> to continue.</li>
-</ol>
+</li>
+<li>
+<p>At this point you need to name your link. Select something that will make it easy to find if you need it later. Your Ad Format and Ad Partner should be selected already, but feel free to choose one if they aren't. It's important that you select the right Ad Partner for analytics later on. Click <strong>Configure Options</strong> to continue.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/name-ad-link.png" /></p>
-<ol>
-<li>This is your chance to add deep link data and analytics tags. Analytics tags are important for later segmentation, so click the <strong>Analytics</strong> sub tab to add a Channel and Campaign value.</li>
-</ol>
+</li>
+<li>
+<p>This is your chance to add deep link data and analytics tags. Analytics tags are important for later segmentation, so click the <strong>Analytics</strong> sub tab to add a Channel and Campaign value.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/add-analytics-tags.png" /></p>
-<ol>
-<li>Click <strong>Create Link Now</strong>, and you have your tracking link! Take this link and give it to your Ad Partner's Account Manager or paste it into the tracking section of your campaign yourself.</li>
-</ol>
-<p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/finished-ad-link.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Set Analytics tags</p>
 <p>It's easier to slice your data in our analytics platform if you properly assign analytics parameters to your link. <em>Channels</em> generally correspond to ad networks, and <em>Campaigns</em> correspond to marketing initiatives that you're launching. For example: <em>Channel</em>: "YouTube", <em>Campaign</em>: "Summer 2017 Shoe Discounts."</p>
 </div>
+</li>
+<li>
+<p>Click <strong>Create Link Now</strong>, and you have your tracking link! Take this link and give it to your Ad Partner's Account Manager or paste it into the tracking section of your campaign yourself. If you'd like to try our view-through attribution beta, please contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;</a>.</p>
+<p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/finished-ad-link.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">View through attribution</p>
+<p>To try our view-through attribution beta, please contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;</a>. Once it's been enabled, you'll be able to create impression pixels. Currently, impression pixels are only supported with server to server impression tracking, so be sure that the impression pixel that's returned by the dashboard has <code>%24s2s=true</code> and an <code>%24idfa</code> or <code>%24aaid</code> macro. If you have questions, just contact support and we'll get it sorted out.</p>
+</div>
+</li>
+</ol>
 <h3 id="view-your-data-with-people-based-attribution">View your data with People-Based Attribution<a class="headerlink" href="#view-your-data-with-people-based-attribution" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://dashboard.branch.io/ads/analytics">Ads Analytics Page</a> on the Branch dashboard shows the performance of your ad campaigns <em>across both web and app</em>. You can view performance over time, including purchase and other custom events.</p>
 <p>Events are attributed using Branch's unified last-click attribution model. This means that Branch will attribute to the last click across channels, and across platforms.</p>
@@ -2470,18 +2502,30 @@
 <p>If the customer then goes on to purchase an item on web within the attribution window, Branch will also attribute the web purchase to the same ad link, connecting the web and app actions taken by a single user for a more accurate view of your marketing channels and customer behavior.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/install-by-secondary-pub.png" /></p>
 <p>You can read more about <a href="../../../pages/dashboard/people-based-attribution/">People-Based Attribution here</a>.</p>
+<h4 id="view-through-attribution">View-Through Attribution<a class="headerlink" href="#view-through-attribution" title="Permanent link">&para;</a></h4>
+<p><em>If you'd like to try our view-through attribution beta, please contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#98;&#114;&#97;&#110;&#99;&#104;&#46;&#105;&#111;</a>.</em></p>
+<p>View-through attribution allows you to track installs, session starts and conversion events back to an ad, even if the ad was never clicked on. </p>
+<p>Our view-through attribution logic is currently as follows for any given event.</p>
+<ul>
+<li>If there's a click within a valid attribution window, give credit to the click.</li>
+<li>If there's no click within a valid attribution window, give credit to the last impression that was within a valid attribution window.</li>
+</ul>
+<p>Currently, impression pixels are only supported with server to server tracking, so server to server macros and device IDs are required when using impression pixels.</p>
+<p>To create a pixel, simply <a href="#create-an-ad-link">create an ad link</a>, and grab the pixel from the final step of link creation.</p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="add-more-postbacks">Add more postbacks<a class="headerlink" href="#add-more-postbacks" title="Permanent link">&para;</a></h3>
 <p>When you enable an ad partner, your ad partner postbacks can be found under the <strong>Postbacks</strong> tab for that ad partner. It's easy to add additional postbacks.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/postbacks-tab.png" /></p>
 <ol>
-<li>Click the <strong>Add New Postback</strong> button at the bottom of the screen.</li>
-</ol>
+<li>
+<p>Click the <strong>Add New Postback</strong> button at the bottom of the screen.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/add-new-postback-button.png" /></p>
-<ol>
-<li>A modal will appear with Branch default events, as well as any commerce or custom events you've set up. Select an event, enter a postback URL if you're asked to, and click <strong>Save</strong>. This will be the event that triggers your new postback.</li>
-</ol>
+</li>
+<li>
+<p>A modal will appear with Branch default events, as well as any commerce or custom events you've set up. Select an event, enter a postback URL if you're asked to, and click <strong>Save</strong>. This will be the event that triggers your new postback.</p>
 <p><img alt="image" src="../../../img/pages/deep-linked-ads/branch-universal-ads/add-new-postback-modal.png" /></p>
+</li>
+</ol>
 <h3 id="edit-postbacks">Edit postbacks<a class="headerlink" href="#edit-postbacks" title="Permanent link">&para;</a></h3>
 <p>For advanced integrations, you may want to provide additional information in your postback that isn't there by default. You can edit postbacks by adding data into the textbox, then clicking save. When the postback is saved, it is then validated - if you enter an invalid postback, you'll get an error at the top of your screen.</p>
 <div class="admonition tip">
@@ -2493,7 +2537,10 @@
 <p>For customer experience and data accuracy, please do not set your deep linking window longer than the other attribution windows.</p>
 <h4 id="account-level-attribution-windows">Account Level Attribution Windows<a class="headerlink" href="#account-level-attribution-windows" title="Permanent link">&para;</a></h4>
 <p>You can edit your attribution windows under Link Settings &gt; Attribution Windows. View through attribution is not yet available, but will be coming soon.</p>
-<p><img alt="image" src="../../../img/pages/dashboard/people-based-attribution/attribution-windows.png" /></p>
+<div class="codehilite"><pre><span></span>![image](/img/pages/dashboard/people-based-attribution/attribution-windows.png)
+</pre></div>
+
+
 <p>Learn more about account level attribution windows in <a href="../../../pages/dashboard/people-based-attribution/#attribution-windows">People-Based Attribution</a>.</p>
 <h4 id="link-level-attribution-windows">Link Level Attribution Windows<a class="headerlink" href="#link-level-attribution-windows" title="Permanent link">&para;</a></h4>
 <p>To set attribution windows on a link level, you can append the following parameters to your generated Branch link.</p>
@@ -2523,11 +2570,11 @@
 </tr>
 <tr>
 <td>$impression_session_start_window_days</td>
-<td><a href="https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=1">https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=1</a></td>
+<td><a href="https://branchster.app.link/hpNVE52gxE?$impression_session_start_window_days=1">https://branchster.app.link/hpNVE52gxE?$impression_session_start_window_days=1</a></td>
 </tr>
 <tr>
 <td>$impression_conversion_window_days</td>
-<td><a href="https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=7">https://branchster.app.link/hpNVE52gxE?$click_session_start_window_days=7</a></td>
+<td><a href="https://branchster.app.link/hpNVE52gxE?$impression_session_start_window_days=7">https://branchster.app.link/hpNVE52gxE?$impression_session_start_window_days=7</a></td>
 </tr>
 </tbody>
 </table>
