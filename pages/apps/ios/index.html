@@ -2987,18 +2987,51 @@ target <span class="s1">&#39;APP_NAME&#39;</span> <span class="k">do</span>
 </li>
 <li>
 <p><em>Swift 3</em></p>
-<div class="codehilite"><pre><span></span><span class="c1">// only canonicalIdentifier is required</span>
+<div class="codehilite"><pre><span></span><span class="c1">// required: canonicalIdentifier or title</span>
+<span class="c1">// recommended: title, contentDescription, imageUrl for social media cards</span>
 <span class="kd">let</span> <span class="nv">buo</span> <span class="p">=</span> <span class="n">BranchUniversalObject</span><span class="p">(</span><span class="n">canonicalIdentifier</span><span class="p">:</span> <span class="s">&quot;content/123&quot;</span><span class="p">)</span>
 <span class="n">buo</span><span class="p">.</span><span class="n">canonicalUrl</span> <span class="p">=</span> <span class="s">&quot;https://example.com/content/123&quot;</span>
 <span class="n">buo</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&quot;Content 123 Title&quot;</span>
 <span class="n">buo</span><span class="p">.</span><span class="n">contentDescription</span> <span class="p">=</span> <span class="s">&quot;Content 123 Description </span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">&quot;</span>
 <span class="n">buo</span><span class="p">.</span><span class="n">imageUrl</span> <span class="p">=</span> <span class="s">&quot;http://lorempixel.com/400/400/&quot;</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">price</span> <span class="p">=</span> <span class="mf">12.12</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">currency</span> <span class="p">=</span> <span class="s">&quot;USD&quot;</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">contentIndexMode</span> <span class="p">=</span> <span class="p">.</span><span class="kd">public</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">automaticallyListOnSpotlight</span> <span class="p">=</span> <span class="kc">true</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">addMetadataKey</span><span class="p">(</span><span class="s">&quot;custom&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">)</span>
-<span class="n">buo</span><span class="p">.</span><span class="n">addMetadataKey</span><span class="p">(</span><span class="s">&quot;anything&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&quot;everything&quot;</span><span class="p">)</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">keywords</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;awesome&quot;</span><span class="p">,</span> <span class="s">&quot;things&quot;</span><span class="p">]</span>
+
+<span class="c1">// index on Apple Spotlight</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">locallyIndex</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c1">// index on Google, Branch, etc</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">publiclyIndex</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c1">// additional object details</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">contentSchema</span> <span class="p">=</span> <span class="p">.</span><span class="n">commerceRestaurant</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">quantity</span> <span class="p">=</span> <span class="mi">12</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">price</span> <span class="p">=</span> <span class="mf">33.44</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">currency</span> <span class="p">=</span> <span class="p">.</span><span class="n">USD</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">sku</span> <span class="p">=</span> <span class="s">&quot;123&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">productName</span> <span class="p">=</span> <span class="s">&quot;grapes&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">productBrand</span> <span class="p">=</span> <span class="s">&quot;welch&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">productCategory</span> <span class="p">=</span> <span class="n">BNCProductCategory</span><span class="p">.</span><span class="n">foodBeverageTobacco</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">productVariant</span> <span class="p">=</span> <span class="s">&quot;bulk&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">condition</span> <span class="p">=</span> <span class="p">.</span><span class="n">good</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">ratingAverage</span> <span class="p">=</span> <span class="mf">4.5</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">ratingCount</span> <span class="p">=</span> <span class="mi">78</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">ratingMax</span> <span class="p">=</span> <span class="mi">5</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">addressStreet</span> <span class="p">=</span> <span class="s">&quot;123 Over Here&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">addressCity</span> <span class="p">=</span> <span class="s">&quot;Austin&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">addressRegion</span> <span class="p">=</span> <span class="s">&quot;Texas&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">addressCountry</span> <span class="p">=</span> <span class="s">&quot;USA&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">addressPostalCode</span> <span class="p">=</span> <span class="s">&quot;76035&quot;</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">latitude</span> <span class="p">=</span> <span class="mf">30.267153</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">longitude</span> <span class="p">=</span> <span class="o">-</span><span class="mf">97.743061</span>
+
+<span class="c1">// custom key-value pairs</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">imageCaptions</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;awesome&quot;</span><span class="p">,</span> <span class="s">&quot;things&quot;</span><span class="p">]</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">customMetadata</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;custom&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">]</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">contentMetadata</span><span class="p">.</span><span class="n">customMetadata</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;anything&quot;</span><span class="p">:</span> <span class="s">&quot;everything&quot;</span><span class="p">]</span>
+
+<span class="c1">// user actions with the object</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">userCompletedAction</span><span class="p">(</span><span class="n">BranchStandardEvent</span><span class="p">.</span><span class="n">addToCart</span><span class="p">.</span><span class="n">rawValue</span><span class="p">)</span>
+<span class="n">buo</span><span class="p">.</span><span class="n">userCompletedAction</span><span class="p">(</span><span class="s">&quot;Viewed&quot;</span><span class="p">)</span>
 </pre></div>
 
 </li>

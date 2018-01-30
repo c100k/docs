@@ -2548,7 +2548,7 @@
                 
                 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
-<li>You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.</li>
+<li>To use the Branch Link Conversion SDK, you'll need an EMD (Email Message Designer) enabled account. If you're using the Classic dashboard, or if you’re not sure, please talk to your Responsys Account Manager.</li>
 </ul>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>This guide will walk you through how to integrate your email service provider with Branch. If you have not completed the getting started steps, please follow <a href="../../../pages/emails/get-started">this documentation</a> first.</p>
@@ -2605,7 +2605,7 @@
 </ol>
 <p><strong>Responsys uses the shortcode <code>e_rs</code> for links in emails</strong> - please use this in place of <code>e_xx</code> in the guide below.</p>
 <h4 id="use-the-branch-responsys-sdk">Use the Branch Responsys SDK<a class="headerlink" href="#use-the-branch-responsys-sdk" title="Permanent link">&para;</a></h4>
-<p>In this step, we'll upload an SDK that makes it very easy to create deep links in your emails.</p>
+<p>In this step, we'll upload an SDK that makes it very easy to create deep links in your emails.  Please remember that this will require an EMD (Email Message Designer) enabled account.</p>
 <div class="admonition protip">
 <p class="admonition-title">Watch how to do this instead</p>
 <p>There is also a <a href="https://www.youtube.com/watch?v=u8h8KlqFvo4" target="_blank">tutorial video</a> that walks through these steps.</p>
@@ -2701,7 +2701,7 @@
 </ol>
 <p><strong>Note</strong> that these are simplified examples, not actual demo links.</p>
 <h3 id="handle-links-for-web-only-content">Handle links for web-only content<a class="headerlink" href="#handle-links-for-web-only-content" title="Permanent link">&para;</a></h3>
-<p>In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: <code>LINK_URL</code>, <code>IOS_LINK_URL</code>, and <code>ANDROID_LINK_URL</code>. If you only enter the link in the <code>LINK_URL</code> field, the path of the final click-wrapped url will begin with <code>/pub/cc</code>, whereas if you input an <code>IOS_LINK_URL</code>, then the path of the final click-wrapped url will begin with <code>pub/acc</code>. You should set up your AASA file to whitelist only the path <code>/pub/acc*</code> in order to not launch the app from web-only links.</p>
+<p>In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: <code>LINK_URL</code>, <code>IOS_LINK_URL</code>, and <code>ANDROID_LINK_URL</code>. If you only enter the link in the <code>LINK_URL</code> field, the path of the final click-wrapped url will begin with <code>/pub/cc</code>.  However, if you also input the same link in <code>IOS_LINK_URL</code>, then the path of the final click-wrapped url will begin with <code>pub/acc</code>. You should set up your AASA file to whitelist only the path <code>/pub/acc*</code> in order to not launch the app from web-only links.</p>
 <p><img alt="image" src="../../../img/pages/email/responsys/branch_responsys_webonly.png" /></p>
 <p><img alt="image" src="../../../img/pages/email/responsys/branch_responsys_deeplink.png" /></p>
 <h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
