@@ -174,7 +174,6 @@
     - Whenever you change your `NS` or `CNAME` records of a domain, you are making Branch the authoritative registrar for your domain. This will grant Branch control of your domain and you will lose all access to that `custom root domain` or `custom sub domain`. The web page will become blank, and the control of the domain will change to Branch
     - Branch will use your domain to route all deep linked traffic. Branch will also host your AASA file and SSL certificates
     - If you have content on your `custom root domain` (e.g. https://example.com/), Branch recommends using an unused `custom sub domain` instead (e.g. https://link.example.com/)
-    - Once the domain is setup, newly created links will also have a 4 character prefix, i.e. `/A1DE/`. We use this code to identify the app. 
 
 - ### Custom domain debugging
     - Used for [Change link domain](#change-link-domain)
