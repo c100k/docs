@@ -3799,18 +3799,18 @@
 </li>
 <li>
 <p><em>Java</em></p>
-<div class="codehilite"><pre><span></span><span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_VIEW</span><span class="o">,</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">((</span><span class="n">String</span><span class="o">)</span> <span class="s">&quot;https://example.app.link/u3fzDwyyjF&quot;</span><span class="o">));</span>
-<span class="n">intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_ACTIVITY_NEW_TASK</span><span class="o">);</span>
-<span class="n">intent</span><span class="o">.</span><span class="na">setPackage</span><span class="o">(</span><span class="s">&quot;com.android.chrome&quot;</span><span class="o">);</span>
+<div class="codehilite"><pre><span></span><span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">ActivityToLaunch</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&quot;branch&quot;</span><span class="o">,</span><span class="s">&quot;http://xxxx.app.link/testlink&quot;</span><span class="o">);</span>
+<span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&quot;branch_force_new_session&quot;</span><span class="o">,</span><span class="kc">true</span><span class="o">);</span>
 <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
 </pre></div>
 
 </li>
 <li>
 <p><em>Kotlin</em></p>
-<div class="codehilite"><pre><span></span><span class="n">val</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_VIEW</span><span class="o">,</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;https://9wlb.app.link/hRXAHkUlxH&quot;</span><span class="o">))</span>
-<span class="n">intent</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">FLAG_ACTIVITY_NEW_TASK</span><span class="o">)</span>
-<span class="n">intent</span><span class="o">.</span><span class="err">`</span><span class="n">package</span><span class="err">`</span> <span class="o">=</span> <span class="s">&quot;com.android.chrome&quot;</span>
+<div class="codehilite"><pre><span></span><span class="n">val</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">ActivityToLaunch</span><span class="o">::</span><span class="n">class</span><span class="o">.</span><span class="na">java</span><span class="o">)</span>
+<span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&quot;branch&quot;</span><span class="o">,</span> <span class="s">&quot;http://xxxx.app.link/testlink&quot;</span><span class="o">)</span>
+<span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&quot;branch_force_new_session&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
 <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">)</span>
 </pre></div>
 
