@@ -218,12 +218,12 @@ If the `link.data.author` information isn't found, the tag will just be replaced
 
 We enforce the following rate limits when sending SMS through Branch:
 
-    1. 5 texts to the same number within an hour.
-    1. 100 texts from the same IP within an hour.
+1. 5 texts to the same number within an hour.
+1. 100 texts from the same IP within an hour.
 
 ### Can I use this service for international phone numbers?
 
-Yes. Branch uses Twilio to send SMS messages, which means SMS will be delivered all around the world. However, please note that the number the SMS has to be delivered must be in the same country the SMS is being sent from.
+Yes. Branch uses Twilio to send SMS messages, which means SMS will be delivered all around the world. However, please note that the number the SMS has to be delivered to, must be in the same country the SMS is being sent from.
 
 
 ### I've sent myself multiple texts just now and only received the first few, what's going on?

@@ -1,11 +1,3 @@
-### Flag your deep links
-
-In order for your email service provider to know that the email link should open the app, add `deeplink="true"` to the HTML, for example:
-
-```html
-<a href="links.example.com" deeplink="true">Link to your app!</a>
-```
-
 This will also ensure that your links are converted to Branch links that will open the app on Android as well, with full tracking and attribution.
 
 !!! protip "What happens to your links behind the scenes?"
@@ -22,3 +14,7 @@ This will also ensure that your links are converted to Branch links that will op
     ```
 
     Where `vza3.app.link` is your Branch domain.
+
+The conversion to Branch links will only work when your links are wrapped in your click tracking domain. To test links without wrapping, please generate a test link on step 3 of email onboarding, also accessible by clicking the gear icon for your ESP on the [email page](https://dashboard.branch.io/email){:target="\_blank"}.
+
+![image](/img/pages/email/test-link.png)

@@ -123,7 +123,7 @@
   color: #24292e;
 }
 .codehilite .hll {
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(231,255,238,1);
   display: inline;
   padding: 0 0 0 1.2rem;
 }
@@ -259,6 +259,7 @@ body.modal {
 .modal.active.dialog.code button.disabled:hover {
   opacity: 1.0;
 }
+
 
 
 
@@ -429,6 +430,14 @@ body.modal {
 .modal.active.dialog.code button.disabled {
   background-color: rgba(0,0,0,0.25) !important;
 }
+.vanish {
+  visibility: hidden;
+}
+.vglnk {
+  word-break: break-word;
+}
+
+
 
 /* ////////////////////////////// */
 /* BRANCH GUIDE STYLE */
@@ -485,3 +494,4 @@ body.modal {
 .question-select:focus {
     outline: none;
 }
+

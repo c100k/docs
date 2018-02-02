@@ -5,7 +5,7 @@ With a push of a button you can send your Branch data to your AppMetrica dashboa
 
 ### What events does Branch send to AppMetrica?
 
-Branch will send all **Branch link clicks** to AppMetrica. Branch also sends all the data that is attached to the link. AppMetrica then matches all downstream actions (installs, opens, custom events, payouts) back to the referring link. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to AppMetrica [here](/third-party-integrations/appmetrica/advanced/#what-branch-sends-to-appmetrica).
+Branch will send all **Branch link clicks** to AppMetrica. Branch also sends all the data that is attached to the link. AppMetrica then matches all downstream actions (installs, opens, custom events, payouts) back to the referring link. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to AppMetrica [here](#what-branch-sends-to-appmetrica).
 
 ### What does it look like?
 

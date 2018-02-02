@@ -11,7 +11,7 @@ Once the Branch SDK is integrated into an app, Branch can detect which links are
 
 ### What events does Branch send?
 
-Branch will send *referred* **installs** and **opens**, as well as any **custom events and commerce events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to CleverTap [here](/third-party-integrations/clevertap/advanced/#what-branch-sends-to-clevertap).
+Branch will send *referred* **installs** and **opens**, as well as any **custom events and commerce events** you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the data that is attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.
 
 ## Setup
 
@@ -37,7 +37,7 @@ Find your CleverTap Account Credentials. Later, you'll enter them into the Branc
 
 ### Configure the Branch Dashboard
 
-1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://branch.dashboard.branch.io/data-import-export/integrations).
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/data-import-export/integrations).
 1. Search for CleverTap. If you don't see CleverTap, please contact your Branch Account Manager or [integrations@branch.io](mailto:integrations@branch.io) to enable the CleverTap Data Integration.
     
     ![image](/img/pages/integrations/clevertap/search-clevertap.png)

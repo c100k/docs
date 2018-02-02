@@ -8,22 +8,24 @@ You can retrieve your click tracking domains from your Sendgrid settings:
 1. Log in to your SendGrid account.
 1. Go to Settings > Whitelabels > Email Links.
 1. Find your email link whitelabeled domain, click on the gear icon and click "View" (or create a new whitelabel).
-   
 
-   ![image](/img/pages/email/sendgrid/sendgrid-view-domain.png)
-   
+    ![image](/img/pages/email/sendgrid/sendgrid-view-domain.png)
+
 1. Note the "Host" email click tracking domain (e.g. email.mydomain.com) and the SendGrid domain under "Data".
-   
 
-   ![image](/img/pages/email/sendgrid/sendgrid-whitelabel.png)
+    ![image](/img/pages/email/sendgrid/sendgrid-whitelabel.png)
+
 1. Enter both the click tracking domain and the SendGrid domain in item 1 of this step:
+
+    ![image](/img/pages/email/sendgrid/configure-sendgrid-1.png)
    
-
-   ![image](/img/pages/email/sendgrid/configure-sendgrid-1.png)
-
 On **Done** click, an AASA file - required for Universal Links - specific to that domain will be generated.
 
 {! ingredients/email/email-technical-setup.md !}
+
+#### Validate your click tracking domain in SendGrid
+
+Before you CNAME to Branch, you must CNAME your click tracking domain to sendgrid.net and validate the domain in Whitelabel > Email Links within SendGrid. Once there is a green checkmark indicating that the domain is valid, then you can proceed to the next step.
 
 {! ingredients/email/email-cname.md !}
 
@@ -33,16 +35,19 @@ On **Done** click, an AASA file - required for Universal Links - specific to tha
 
 {! ingredients/email/email-usage.md !}
 
-{! ingredients/email/email-link-options-menu.md !}
+{! ingredients/email/email-usage-auto-universal.md !}
 
-{! ingredients/email/email-link-options.md !}
+{! ingredients/email/email-usage-auto.md !}
 
-### Flag your deep links
+## Troubleshoot issues
 
-In order for Sendgrid to know that the email link should open the app, add `universal="true"` to the template HTML, for example:
+- ### Error validating whitelabel: Expect CNAME record
+    If you are seeing this [error message](/img/pages/email/sendgrid/sendgrid_error.png), the reason is that SendGrid will only consider the CNAME sendgrid.net valid. To get rid of this error, please:
 
-```
-<a href="https://vza3.app.link/3p?%243p=e_sg&%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar" universal="true">Link to your app!</a>
-```
+    1. CNAME your subdomain to sendgrid.net
+    1. Validate records on SendGrid dashboard
+    1. CNAME your subdomain to thirdparty.bnc.lt
+    1. Do not validate records on SendGrid after Step 3
+
 
 {! ingredients/email/email-support.md !}

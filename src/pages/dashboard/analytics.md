@@ -49,7 +49,7 @@
         - Measuring influencers
         The [Analytics](https://dashboard.branch.io/referrals/analytics) page on the dashboard will show you who is driving the most new signups.
 
-            ![image](http://i.imgur.com/SYppuDL.png)
+            ![image](/img/pages/dashboard/referrals.png)
 
 
 ## Dashboard pages
@@ -81,7 +81,7 @@
 
 - ### Emails
     - [Dashboard Emails](https://dashboard.branch.io/email) allows you to easily integrate Branch deep links with your email providers
-    - Find more information in [Emails](/pages/emails/appboy/)
+    - Find more information in [Emails](/pages/emails/braze/)
 
 - ### Organic Search
 
@@ -118,7 +118,7 @@
     - ##### Tracking
         - Use the [Referral analytics](https://dashboard.branch.io/referrals/analytics)
         - Use the [LiveView export](https://dashboard.branch.io/liveview/link_clicks) to get data as a `.csv`
-        - Create a [Webhook](/pages/exports/webhooks) to send data to your server
+        - Create a [Webhook](/pages/exports/webhooks/) to send data to your server
 
     - ##### Querying
         - Query the events export the custom referral event that triggered the referral rule
@@ -129,8 +129,8 @@
     - [Dashboard Quick Links](https://dashboard.branch.io/quick-links) allows you to quickly create deep links and track their analytics in the dashboard
     - Use the `Click Link` button in the header to generate a quick link
     - Use the `Event` dropdown to see a funnel of your analytics to a [custom event](#dialog-code?ios=track-events&android=track-events&adobe=track-events&cordova=track-events&mparticleAndroid=track-events&mparticleIos=track-events&titanium=track-events&reactNative=track-events&unity=track-events&xamarin=track-events) inside your app
-    - Use the `Export` button to get a email with a `.cvs` of your quick link data
-    - Use the `Bulk Create Links` to upload a `.cvs` file with deep link to be created
+    - Use the `Export` button to get a email with a `.csv` of your quick link data
+    - Use the `Bulk Create Links` to upload a `.csv` file with deep link to be created
     - Use the `...` button to `Edit`, `View stats`, `Debug`, `Duplicate`, or `Archive` quick links
 
 - ### Link Settings
@@ -141,7 +141,7 @@
     - [Dashboard Sources](https://dashboard.branch.io/sources) display `clicks`, `installs`, `sessions`, and `custom events` per [analytical label](/pages/links/integrate/#analytical-labels)
     - Updates every 1.5 hours
     - Use the `Event` dropdown to see a funnel of your analytics to a [custom event](#dialog-code?ios=track-events&android=track-events&adobe=track-events&cordova=track-events&mparticleAndroid=track-events&mparticleIos=track-events&titanium=track-events&reactNative=track-events&unity=track-events&xamarin=track-events) inside your app
-    - Use the `Export` button to get a email with a `.cvs` of your source data
+    - Use the `Export` button to get a email with a `.csv` of your source data
     - Use the `Slice by platform` to remove robot traffic from your analytics
     - Use the `filter` dropdowns to limit data 
 
@@ -172,3 +172,4 @@
 - ### Account settings
     - [Dashboard Account Setting](https://dashboard.branch.io/account-settings/app) is where you find your `Branch Keys`, `User information`, `Billing`, and `Team`
     - Find more information in [Configure your dashboard](/pages/dashboard/integrate/#advance-integration)
+

@@ -51,7 +51,7 @@ Go directly to [Ads > Links > Feed Sources section](https://dashboard.branch.io/
 
     ![image](/img/pages/deep-linked-ads/dynamic-product-ads/name-and-upload-feed-source.png)
 
-You can see all of the **Feed Sources** you've uploaded by going to the [Feed Sources](http://dashboard.branch.io/ads/feedsources) tab.
+You can see all of the **Feed Sources** you've uploaded by going to the [Feed Sources](https://dashboard.branch.io/ads/links/feed-sources) tab.
 
 ### Create a New Deep Linked Feed
 
@@ -93,13 +93,13 @@ If you used a Feed Source hosted on a URL (recommended), you will see two option
 
 ![image](/img/pages/deep-linked-ads/dynamic-product-ads/hosted-dlf.png)
 
-You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](https://branch.dashboard.branch.io/ads/links/deep-linked-feeds) tab.
+You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](https://dashboard.branch.io/ads/links/deep-linked-feeds) tab.
 
 ### Download CSV
 
 Click "Download CSV" if you just need a one-time file with your Deep Linked Feed.
 
-You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](https://branch.dashboard.branch.io/ads/links/deep-linked-feeds) tab.
+You can see all of the **Deep Linked Feeds** you've created by going to the [Deep Linked Feeds](https://dashboard.branch.io/ads/links/deep-linked-feeds) tab.
 
 ### Use your Deep Linked Feed
 
@@ -110,7 +110,7 @@ After you've downloaded your feed, it's time to use it!
 
 
 !!! tip "Ad Network Integrations"
-    Branch Deep Linked Feeds are accepted by top remarketing companies like [Criteo](/ads/criteo-dynamic-ads/guide/), Remerge and AppNexus. Ask your Account Manager about launching your campaign with Branch deep links.
+    Branch Deep Linked Feeds are accepted by top remarketing companies like Criteo, Remerge and AppNexus. Ask your Account Manager about launching your campaign with Branch deep links.
 
 
 !!! tip "Drive Installs With Your Content"
@@ -168,13 +168,13 @@ We look for the presence of the following columns, and for each one we either mo
 ### Links don't open the app
 
 - First, understand what the [intended behavior](/pages/links/integrate/#default-link-behavior) of your link should be.
-- Links created by the Deep Linked Feeds tool currently fall back to the Web URL you originally specified in the `link` column by default. You can override this behavior by including a column called `branch_query_params` and including `$fallback_method=app_wide` as the value for every row. This will make each link fall back to the platform fallback you have specified in your [Link Settings](https://dashboard.branch.io/settings/link), which is usually the App Store.
+- Links created by the Deep Linked Feeds tool currently fall back to the Web URL you originally specified in the `link` column by default. You can override this behavior by including a column called `branch_query_params` and including `$fallback_method=app_wide` as the value for every row. This will make each link fall back to the platform fallback you have specified in your [Link Settings](https://dashboard.branch.io/link-settings), which is usually the App Store.
 - Facebook requires certain ["applink treatment"](https://developers.facebook.com/docs/marketing-api/dynamic-product-ads/mobile-app-events#deeplinksetup) values to be present to change fallback behavior. We're working on adding these to our interface, but for the moment, include them in your feed source.
 
 ### Deep links aren't working
 
 - Ensure you've included your deep link data. Branch will scrape any [Hosted Deep Link Data](/pages/web/hosted-data/) corresponding to the Web URL in your Feed Source's `link` column for every link. Alternatively, you can include deep link data as a column in your Feed Source and then select the relevant data in Step 2 of Deep Linked creation.
-- To see which data is getting through to your app, click the link and then view the link click in [Live View](https://dashboard.branch.io/liveview/link_clicks) to see the data going through to your app.
+- To see which data is getting through to your app, click the link and then view the link click in [Live View](https://dashboard.branch.io/liveview/clicks) to see the data going through to your app.
 -  If you don't know what deep link data you need to include, ask a technical teammate to show you which data is included in a working Branch link.
 
 ### Feed Source won't upload

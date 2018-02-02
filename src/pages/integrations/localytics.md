@@ -51,7 +51,7 @@ Campaign | campaign
 Channel | adgroup
 Feature | creative_name
 
-Branch will also send any arbitrary parameters you attach to a link on to Localytics.
+Branch will also send any arbitrary parameters you attach to a link on to Localytics.  All Branch data will appear in the Localytics "Attribution" dashboard, but not the "Events" dashboard.
 
 ## Support
 

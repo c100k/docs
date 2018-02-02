@@ -1,5 +1,8 @@
 ## Integrate Branch
 
+!!! warning "Inconsistent Universal links behavior on iOS 11.2"
+    After updating a device to iOS 11.2, we found that the app's AASA file is no longer downloaded reliably onto your user’s device after an app install. As a result, clicking on Universal links will no longer open the app consistenly. You can set [forced uri redirect mode](/pages/links/integrate/#forced-redirections) on your Branch links to open the app with URI schemes. View details of the issue on the [Apple Bug report](http://www.openradar.me/radar?id=4999496467480576).
+
 - ### Configure Branch
 
     - Complete the `Basic integration` within [Configure your dashboard](/pages/dashboard/integrate/)
@@ -12,7 +15,7 @@
 
     - Make sure Bundle Id matches your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](http://i.imgur.com/BHAQIQf.png)
+        ![image](/img/pages/apps/ios-bundle-id.png)
 
 - ### Configure associated domains
 
@@ -21,13 +24,13 @@
     - `test-` is needed if you need use a [test key](#use-test-key)
     - If you use a [custom link domain](/pages/dashboard/integrate/#change-link-domain), you will need to include your old link domain, your `-alternate` link domain, and your new link domain
 
-        ![image](http://i.imgur.com/67t6hSY.png)
+        ![image](/img/pages/apps/ios-entitlements.png)
 
 - ### Configure entitlements
 
     - Confirm entitlements are within target
 
-        ![image](http://i.imgur.com/vhwis7f.png)
+        ![image](/img/pages/apps/ios-package.png)
 
 - ### Configure info.pList
 
@@ -37,13 +40,13 @@
         - Add `branch_key` with your current Branch key
         - Add your URI scheme as `URL Types` -> `Item 0` -> `URL Schemes`
 
-        ![image](http://i.imgur.com/PwXnHWz.png)
+        ![image](/img/pages/apps/ios-plist.png)
 
 - ### Confirm app prefix
 
     - From your [Apple Developer Account](https://developer.apple.com/account/ios/identifier/bundle)
 
-        ![image](http://i.imgur.com/2EoN1i0.png)
+        ![image](/img/pages/apps/ios-team-id.png)
 
 - ### Install Branch
 
@@ -75,7 +78,7 @@
         - Drag and drop `Branch.framework` into `Embedded Binaries` (select `Copy items if needed`)
         - Import `AdSupport`, `SafariServices`, `MobileCoreServices`, `CoreSpotlight`, and `iAd` into `Linked Frameworks`
 
-        ![image](http://i.imgur.com/YY0enst.png)
+        ![image](/img/pages/apps/ios-frameworks.png)
 
 - ### Initialize Branch
 
@@ -169,7 +172,10 @@
     - Compile and test on a device
     - Paste deep link in `Apple Notes`
     - Long press on the deep link (not 3D Touch)
-    - Click `Open in "APP_NAME"` to open your app ([example](http://i.imgur.com/VJVICXd.png))
+    - Click `Open in "APP_NAME"` to open your app ([example](/img/pages/apps/ios-notes.png))
+
+    !!! tip "Testing deferred deep linking"
+        Deferred deep linking is simply deep linking into an app that is not yet installed. Once the app is installed, the context is preserved and the user's first app-open will have the deep link data from the original Branch link. To test this, uninstall the app from your device, click the Branch link, and manually launch the app from Xcode. You should be routed to the correct content within your app.
 
 ## Implement features
 
@@ -182,18 +188,51 @@
     - *Swift 3*
 
         ```swift
-        // only canonicalIdentifier is required
+        // required: canonicalIdentifier or title
+        // recommended: title, contentDescription, imageUrl for social media cards
         let buo = BranchUniversalObject(canonicalIdentifier: "content/123")
         buo.canonicalUrl = "https://example.com/content/123"
         buo.title = "Content 123 Title"
         buo.contentDescription = "Content 123 Description \(Date())"
         buo.imageUrl = "http://lorempixel.com/400/400/"
-        buo.price = 12.12
-        buo.currency = "USD"
-        buo.contentIndexMode = .public
-        buo.automaticallyListOnSpotlight = true
-        buo.addMetadataKey("custom", value: "123")
-        buo.addMetadataKey("anything", value: "everything")
+        buo.keywords = ["awesome", "things"]
+
+        // index on Apple Spotlight
+        buo.locallyIndex = true
+
+        // index on Google, Branch, etc
+        buo.publiclyIndex = true
+
+        // additional object details
+        buo.contentMetadata.contentSchema = .commerceRestaurant
+        buo.contentMetadata.quantity = 12
+        buo.contentMetadata.price = 33.44
+        buo.contentMetadata.currency = .USD
+        buo.contentMetadata.sku = "123"
+        buo.contentMetadata.productName = "grapes"
+        buo.contentMetadata.productBrand = "welch"
+        buo.contentMetadata.productCategory = BNCProductCategory.foodBeverageTobacco
+        buo.contentMetadata.productVariant = "bulk"
+        buo.contentMetadata.condition = .good
+        buo.contentMetadata.ratingAverage = 4.5
+        buo.contentMetadata.ratingCount = 78
+        buo.contentMetadata.ratingMax = 5
+        buo.contentMetadata.addressStreet = "123 Over Here"
+        buo.contentMetadata.addressCity = "Austin"
+        buo.contentMetadata.addressRegion = "Texas"
+        buo.contentMetadata.addressCountry = "USA"
+        buo.contentMetadata.addressPostalCode = "76035"
+        buo.contentMetadata.latitude = 30.267153
+        buo.contentMetadata.longitude = -97.743061
+
+        // custom key-value pairs
+        buo.contentMetadata.imageCaptions = ["awesome", "things"]
+        buo.contentMetadata.customMetadata = ["custom": "123"]
+        buo.contentMetadata.customMetadata = ["anything": "everything"]
+
+        // user actions with the object
+        buo.userCompletedAction(BranchStandardEvent.addToCart.rawValue)
+        buo.userCompletedAction("Viewed")
         ```
 
     - *Objective-C*
@@ -421,7 +460,7 @@
         }];
         ```
 
-- ### Display content
+- ### Display 
 
     - List content on `iOS Spotlight`
 
@@ -450,7 +489,7 @@
     - *Swift 3*
 
         ```swift
-        buo.userCompletedAction(BNCRegisterViewEvent)
+        buo.registerView()
         ```
 
     - *Objective-C*
@@ -726,7 +765,26 @@
 
         - Replace `https://example.app.link/u3fzDwyyjF` with your deep link
 
-    - Read deep link data from `initSession` [Initialize Branch](#initialize-branch) ([example](http://i.imgur.com/5QHWDX9.gif))
+    - Read deep link data from `initSession` [Initialize Branch](#initialize-branch)
+
+- ### Handle links in your own app
+
+    - Allows you to deep link into your own from your app itself
+
+    - *Swift 3*
+
+        ```swift
+        Branch.getInstance().handleDeepLink(withNewSession: URL(string: "https://example.app.link/u3fzDwyyjF"))
+        ```
+
+    - *Objective C*
+
+        ```objc
+        [[Branch getInstance] handleDeepLinkWithNewSession:[NSURL URLWithString:@"https://example.app.link/u3fzDwyyjF"]];
+        ```
+
+!!! warning
+    Handling a new deep link in your app will clear the current session data and a new referred "open" will be attributed.
 
 - ### Track Apple Search Ads
 
@@ -934,7 +992,7 @@
     - Use only if you have a custom link domain
     - Add `branch_universal_link_domains` to your `info.plist` with an array of your link domain from your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](https://i.imgur.com/ECNnpyS.png)
+        ![image](/img/pages/apps/ios-link-domains.png)
 
 - ### Share to email options
 

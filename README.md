@@ -1,6 +1,5 @@
-# Branch Docs
-
-> Repository for Branch's public documentation [https://docs.branch.io](https://docs.branch.io)
+<h1 align="center">Branch Docs</h1>
+<h6 align="center">Repository for Branch's public documentation https://docs.branch.io</h6>
 
 ## Goal
 
@@ -28,12 +27,6 @@
 
 ## Environment
 
-- #### Dependencies
-
-    ```bash
-    sudo chmod -R 755 /usr/local/bin
-    ```
-
 - #### Code
 
     ```bash
@@ -41,12 +34,12 @@
     cd docs
     ```
 
-- #### Extensions
+- #### Dependencies
 
     ```bash
-    pip install --upgrade pip
-    pip install --editable lib/mkdocs
-    pip install pygments pymdown-extensions markdown-include mkdocs-material
+    sudo pip install --upgrade pip
+    sudo pip install --editable lib/mkdocs
+    sudo pip install pygments pymdown-extensions markdown-include mkdocs-material
     ```
 
 - #### Develop
@@ -94,6 +87,14 @@
 
     - Tabbed sections `*title*`, `code`, `*title*`, `code`
 
+- #### Navigation
+    
+    - Different page `click [here](/pages/apps/ios/)` (must have trailing slash)
+
+    - Different page anchor `click [here](/pages/apps/ios/#configure-bundle-identifier)`
+
+    - Same page anchor `click [here](#configure-bundle-identifier)`
+
 - #### Tips, notes, warnings etc.
 
     - Syntax for tips and other highlighted blocks can be found here: http://squidfunk.github.io/mkdocs-material/extensions/admonition/
@@ -104,7 +105,7 @@
 
     - `Complete [Integrate your app](#dialog-code)`
 
-    - `ios`, `android`, `adobe`, `cordova`, `mparticleAndroid`, `mparticleIos`, `titanium`, `reactNative`, `unity`, `xamarin`
+    - `ios`, `android`, `cordova`, `mparticleAndroid`, `mparticleIos`, `titanium`, `reactNative`, `unity`, `xamarin`
 
 - #### Images
 

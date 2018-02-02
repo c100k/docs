@@ -22,7 +22,6 @@ Additionally, individual events, such as those seen in Live View or visible when
 
 Branch events are similar to Mixpanel events in that they can be used in your existing funnels and tracked on the various pages and dashboards. However, unlike normal events, Branch events contain invaluable information about how users ended up in your app in the first place.
 
-
 ## Setup
 
 ### Prerequisites
@@ -35,20 +34,20 @@ For the basic, codeless integration: find your Mixpanel Token and enter it into 
 
 1. Navigate to [https://mixpanel.com](https://mixpanel.com) and log into the Dashboard.
 1. Click on **Account** in the navigation bar at the top of the page.
-1. Choose **Projects** in the modal that appears, then copy your app’s Token: ![image](img/pages/integrations/mixpanel/mixpanel-token.png)
+1. Choose **Projects** in the modal that appears, then copy your app’s Token: ![image](/img/pages/integrations/mixpanel/mixpanel-token.png)
 
 ### Configure Branch Dashboard
 
-1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
-1. Locate Mixpanel and choose **Enable**.
-  * If you have not yet entered billing information, please do so now.
-1. Enter your Mixpanel Token and hit **Save**.
+{! ingredients/data-integrations/enable-data-integrations.md !}
 
-![image](/img/pages/third-party-integrations/mixpanel/enable-mixpanel-integration.png)
+1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
+1. Search for Mixpanel and click on the tile.
+1. Enter your Mixpanel Token and hit **Enable**.
+
+![image](/img/pages/integrations/mixpanel/enable-mixpanel-integration.png)
 
 !!! warning "Please test integration!"
     Branch is not responsible for inaccurate API keys.
-
 
 ### Pass Mixpanel Distinct ID
 
@@ -73,7 +72,7 @@ MixpanelAPI mp = MixpanelAPI.getInstance(this, "<your project token>");
 Branch.getInstance().setRequestMetadata("$mixpanel_distinct_id", mp.getDistinctId());
 ```
 
-For more information, see [Why We Recommend Passing Mixpanel Distinct ID](/third-party-integrations/mixpanel/advanced/#why-we-recommend-passing-mixpanel-distinct-id).
+For more information, see [Why We Recommend Passing Mixpanel Distinct ID](#what-branch-sends-to-mixpanel).
 
 !!! warning "Changes in Mixpanel Distinct ID"
     If you at any point change the Mixpanel Distinct ID for a user as she’s using your app, you should invoke the same one line of code as above. This way, future calls from Branch to Mixpanel use the updated distinct id.
@@ -132,7 +131,7 @@ The User then gets placed into a drip email campaign, targeted for re-engagement
 
 The referred event associated with 5678 is not associated with 1234 / "User A".
 
-In order for any additional events on this device to be associated with "User A", the app should invoke the one line of code as recommended in the section [Pass Mixpanel Distinct ID](/third-party-integrations/mixpanel/guide/#pass-mixpanel-distinct-id-recommended). Example:
+In order for any additional events on this device to be associated with "User A", the app should invoke the one line of code as recommended in the section [Pass Mixpanel Distinct ID](#why-we-recommend-passing-mixpanel-distinct-id). Example:
 
 ```objc
 [[Branch getInstance] setRequestMetadataKey:@"$mixpanel_distinct_id" value:@"User A"];

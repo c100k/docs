@@ -15,6 +15,8 @@ You can retrieve your click tracking domains from your Kahuna settings. On **Don
 
 {! ingredients/email/email-usage.md !}
 
+{! ingredients/email/email-usage-auto-deeplink.md !}
+
 {! ingredients/email/email-usage-auto.md !}
 
 {! ingredients/email/email-support.md !}

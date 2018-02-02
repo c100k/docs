@@ -1,6 +1,6 @@
 ## Overview
 
-There are several mechanisms Branch uses to pass data through to the app and attribute app sessions back to the source. We always use the method with the highest match confidence rate.
+There are several mechanisms Branch uses to pass data through to the app and attribute app sessions back to the source. We always use the method with the highest match confidence rate. When we are 100% confident, the deep link data will contain the variable `+match_guaranteed=true`.
 
 ### Methods with 100% match accuracy
 

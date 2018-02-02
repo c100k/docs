@@ -1,11 +1,14 @@
 ## Integrate Branch
 
+!!! warning "Inconsistent Universal links behavior on iOS 11.2"
+    After updating a device to iOS 11.2, we found that the app's AASA file is no longer downloaded reliably onto your user’s device after an app install. As a result, clicking on Universal links will no longer open the app consistenly. You can set [forced uri redirect mode](/pages/links/integrate/#forced-redirections) on your Branch links to open the app with URI schemes. View details of the issue on the [Apple Bug report](http://www.openradar.me/radar?id=4999496467480576).
+
 - ### Configure Branch
 
     - Complete your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](http://i.imgur.com/wazVu3U.png)
-        ![image](http://i.imgur.com/9PEylbS.png)
+        ![image](/img/pages/apps/cordova-configure.png)
+        ![image](/img/pages/apps/cordova-link-domain.png)
 
 - ### Configure app
 
@@ -175,7 +178,7 @@
 
     - Long press on the deep link *(not 3D Touch)*
 
-    - Click `Open in "APP_NAME"` to open your app *([example](http://i.imgur.com/VJVICXd.png))*
+    - Click `Open in "APP_NAME"` to open your app *([example](/img/pages/apps/ios-notes.png))*
 
 - ### Test deep link Android
 
@@ -207,10 +210,6 @@
             // read deep link data on click
             alert('Deep Link Data: ' + JSON.stringify(data))
           }
-        }).then(function(res) {
-          alert('Response: ' + JSON.stringify(res))
-        }).catch(function(err) {
-          alert('Error: ' + JSON.stringify(err))
         })
         ```
 
@@ -277,9 +276,7 @@
           $match_duration: 2000,
           custom_string: 'data',
           custom_integer: Date.now(),
-          custom_boolean: true,
-          custom_array: [1, 2, 3, 4, 5],
-          custom_object: { 'random': 'dictionary' }
+          custom_boolean: true
         }
 
         branchUniversalObj.generateShortUrl(analytics, properties).then(function (res) {
@@ -312,9 +309,7 @@
           $desktop_url: 'http://www.example.com/desktop',
           custom_string: 'data',
           custom_integer: Date.now(),
-          custom_boolean: true,
-          custom_array: [1, 2, 3, 4, 5],
-          custom_object: { 'random': 'dictionary' }
+          custom_boolean: true
         }
 
         var message = 'Check out this link'
@@ -630,6 +625,16 @@
         <widget ios-CFBundleIdentifier="com.eneff.branch.cordovatestbedios" android-packageName="com.eneff.branch.cordovatestbedandroid" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
         ```
 
+- ### Sync with Mixpanel
+
+    - Sync Branch withh Mixpanel if the plugin is installed 
+    
+    - Add before `Branch.initSession();` ([Initialize Branch Features](#initialize-branch-features))
+ 
+        ```js
+        Branch.setRequestMetadata("$mixpanel_distinct_id", "123")
+        ```
+
 - ### Simulate an install
 
     - Delete your app
@@ -873,6 +878,9 @@
         <!-- config.xml -->
         <plugin name="branch-cordova-sdk" spec="^2.5.0" />
         ```
+        
+    - [Test Deep Link iOS](#test-deep-link-ios)
+    - [Test Deep Link Android](#test-deep-link-android)
 
 - ### Incompatibilities
 

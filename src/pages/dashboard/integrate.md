@@ -36,6 +36,8 @@
             - Navigate to your `keystore file` (used to build the debug and production version of your APK file before it gets deployed)
             - Run `keytool -list -v -keystore my-release-key.keystore` to generate a fingerprint
 
+            - Example fingerprint `AA:C9:D9:A5:E9:76:3E:51:1B:FB:35:00:06:9B:56:AC:FB:A6:28:CE:F3:D6:65:38:18:E3:9C:63:94:FB:D2:C1` to add to your [Branch Dashboard](https://dashboard.branch.io/link-settings)
+
     - ##### Desktop
         - Use these settings to control the default behavior of your deep links on Desktop browsers
 
@@ -61,7 +63,7 @@
         - Set the default image preview for your deep links when shared on social media
         - These values are typically overridden by [Custom link behavior](/pages/links/integrate/#custom-link-behavior) which differentiate your deep links between one another
 
-            ![image](https://i.imgur.com/QjbORqg.png)
+            ![image](/img/pages/dashboard/social-media.png)
 
     - ##### Save
         - Make sure you commit any changes
@@ -172,6 +174,7 @@
     - Whenever you change your `NS` or `CNAME` records of a domain, you are making Branch the authoritative registrar for your domain. This will grant Branch control of your domain and you will lose all access to that `custom root domain` or `custom sub domain`. The web page will become blank, and the control of the domain will change to Branch
     - Branch will use your domain to route all deep linked traffic. Branch will also host your AASA file and SSL certificates
     - If you have content on your `custom root domain` (e.g. https://example.com/), Branch recommends using an unused `custom sub domain` instead (e.g. https://link.example.com/)
+    - Once the domain is setup, newly created links will also have a 4 character prefix, i.e. `/A1DE/`. We use this code to identify the app. 
 
 - ### Custom domain debugging
     - Used for [Change link domain](#change-link-domain)
@@ -180,3 +183,4 @@
     - If you are configuring the domain through AWS's Route 53, make sure you are editing the nameservers under the `Registered Domains` tab, and not the `Hosted zones` section
     - You cannot use your main website domain for hosting Branch links
     - Do not include `www` when adding your custom link domain
+    - If you have CAA records set for your domain, add letsencrypt.org to the list

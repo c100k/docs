@@ -29,4 +29,6 @@ Enabling Click Through Link Tracking allows you to see which links your users ar
 
 {! ingredients/email/email-usage-auto-bounce.md !}
 
+{! ingredients/email/email-usage-auto.md !}
+
 {! ingredients/email/email-support.md !}

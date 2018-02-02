@@ -10,7 +10,11 @@ Branch can help track your Apple Search Ad campaigns by fetching the search ad a
 
 In order to check if the user came from an Apple Search Ad, you must make the attribution call before Branch initializes. As a warning, Apple's API is extremely slow often taking more than 1 second round trip. This means that your call to Branch's initSession to the execution of the callback block will be delayed by this additional 1 second.
 
-You must add Apple's iAd.framework to your project to enable Apple Search Ad checking.
+## Import iAd and AdSupport
+
+You must add Apple's **iAd.framework** and **AdSupport.framework** to your **Linked Frameworks** in your Xcode project to enable Apple Search Ad checking.
+
+![image](/img/pages/apps/ios-frameworks.png)
 
 ### Enable Apple Search Ads Check
 
@@ -51,6 +55,9 @@ branch.initSession.....
 ### View Attribution on Dashboard
 
 All the attribution can be visible on the [Branch dashboard summary page](https://dashboard.branch.io/). All installs and opens registered from this channel will automatically be tagged with the `channel`: `Apple App Store` and the `feature`: `Search Ads`. The `campaign` will be set to the Campaign Name you've configured in the Apple Search Ads dashboard.
+
+- Installs might not be accurate, but installs + open events should match what Apple reports
+- Due to API limitations, it may take up to 30 days for full attribution of a device
 
 Note that these stats are **limited to the date range** at the top of the page. You can expand the range if you'd like.
 

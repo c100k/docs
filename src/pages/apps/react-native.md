@@ -1,52 +1,52 @@
 ## Integrate Branch
 
+!!! warning "Inconsistent Universal links behavior on iOS 11.2"
+    After updating a device to iOS 11.2, we found that the app's AASA file is no longer downloaded reliably onto your user’s device after an app install. As a result, clicking on Universal links will no longer open the app consistenly. You can set [forced uri redirect mode](/pages/links/integrate/#forced-redirections) on your Branch links to open the app with URI schemes. View details of the issue on the [Apple Bug report](http://www.openradar.me/radar?id=4999496467480576).
+
 - ### Configure Branch
 
     - Complete your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](http://i.imgur.com/wazVu3U.png)
-        ![image](http://i.imgur.com/9PEylbS.png)
+        ![image](/img/pages/apps/cordova-configure.png)
+        ![image](/img/pages/apps/cordova-link-domain.png)
 
 - ### Install Branch
 
-    - Install the module
+    - Option 1: Pure React Native App
 
-        - *Yarn*
-            ```bash
-            yarn add react-native-branch
+        - Install the module
+
+            - *Yarn*
+                ```bash
+                yarn add react-native-branch
+                ```
+
+            - *NPM*
+                ```bash
+                npm install --save react-native-branch
+                ```
+
+        - (Optional) Add a branch.json file to the root of your app (next to package.json).
+            You can configure the contents at any time, but it must be present when you
+            run `react-native link` in order to be automatically included in your native
+            projects. This allows you to configure certain behaviors that otherwise require
+            native code changes. See https://rnbranch.app.link/branch-json for full details
+            on the branch.json file.
+
+        - Run `react-native link react-native-branch`
+
+    - Option 2: Native iOS app with React pod
+
+        - Add these lines to your `Podfile`
+
+            ```ruby
+            pod 'react-native-branch', path: '../node_modules/react-native-branch'
+            pod 'Branch-SDK', path: '../node_modules/react-native-branch/ios'
             ```
 
-        - *NPM*
-            ```bash
-            npm install --save react-native-branch
-            ```
+        - Run `pod install` to regenerate the `Pods` project with the new dependencies. Note that the location of `node_modules` relative to your `Podfile` may vary.
 
-    - (Optional) Add a branch.json file to the root of your app (next to package.json).
-        You can configure the contents at any time, but it must be present when you
-        run `react-native link` in order to be automatically included in your native
-        projects. This allows you to configure certain behaviors that otherwise require
-        native code changes. See https://rnbranch.app.link/branch-json for full details
-        on the branch.json file.
-
-    - In a pure React Native app using `react-native link`
-
-        ```bash
-        react-native link react-native-branch
-        ```
-
-    - In a native iOS app using the `React` pod
-
-        This configuration is for native apps that include a React Native component as
-        described in the [React Native docs](https://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies).
-
-        Add these lines to your `Podfile`:
-        ```ruby
-        pod 'react-native-branch', path: '../node_modules/react-native-branch'
-        pod 'Branch-SDK', path: '../node_modules/react-native-branch/ios'
-        ```
-
-        Then run `pod install` to regenerate the `Pods` project with the new dependencies.
-        Note that the location of `node_modules` relative to your `Podfile` may vary.
+        - (Optional) Add a branch.json file to the root of your app (next to package.json). See https://rnbranch.app.link/branch-json.
 
 - ### Update from < 2.0.0
 
@@ -114,13 +114,13 @@
 
 - ### Configure app
 
-    - iOS
+    - #### iOS
 
         - Configure bundle identifier
 
             - Bundle Id matches [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-                ![image](http://i.imgur.com/BHAQIQf.png)
+                ![image](/img/pages/apps/ios-bundle-id.png)
 
         - Configure associated domains
 
@@ -129,13 +129,13 @@
             - `test-` is needed if you need use a [test key](#use-test-key)
             - If you use a [custom link domain](/pages/dashboard/integrate/#change-link-domain), you will need to include your old link domain, your `-alternate` link domain, and your new link domain
 
-                ![image](http://i.imgur.com/67t6hSY.png)
+                ![image](/img/pages/apps/ios-entitlements.png)
 
         - Configure entitlements
 
             - Confirm entitlements are within target
 
-                ![image](http://i.imgur.com/vhwis7f.png)
+                ![image](/img/pages/apps/ios-package.png)
 
         - Configure info.pList
 
@@ -145,15 +145,15 @@
                 - Add `branch_key` with your current Branch key
                 - Add your URI scheme as `URL Types` -> `Item 0` -> `URL Schemes`
 
-            ![image](http://i.imgur.com/PwXnHWz.png)
+                ![image](/img/pages/apps/ios-plist.png)
 
         - Confirm app prefix
 
             - From your [Apple Developer Account](https://developer.apple.com/account/ios/identifier/bundle)
 
-                ![image](http://i.imgur.com/2EoN1i0.png)
+                ![image](/img/pages/apps/ios-team-id.png)
 
-    - Android
+    - #### Android
 
         - `AndroidManifest.xml`
 
@@ -230,7 +230,7 @@
 
 - ### Initialize Branch
 
-    - iOS
+    - #### iOS
 
         If you are using Swift, add `#import <react-native-branch/RNBranch.h>` to your Bridging header if you have one.
 
@@ -285,7 +285,7 @@
             }
             ```
 
-    - Android
+    - #### Android
 
         - `MainApplication.java`
 
@@ -355,7 +355,7 @@
 
     - Long press on the deep link *(not 3D Touch)*
 
-    - Click `Open in "APP_NAME"` to open your app *([example](http://i.imgur.com/VJVICXd.png))*
+    - Click `Open in "APP_NAME"` to open your app *([example](/img/pages/apps/ios-notes.png))*
 
 - ### Test deep link Android
 
@@ -374,19 +374,10 @@
 
 - ### Import Branch
 
-    - In any React Native source file that uses the Branch SDK. You can import
-    only the symbols you are using.
+    - In any React Native source file that uses the Branch SDK.
 
         ```js
-        import branch, {
-          AddToCartEvent,
-          AddToWishlistEvent,
-          PurchasedEvent,
-          PurchaseInitiatedEvent,
-          RegisterViewEvent,
-          ShareCompletedEvent,
-          ShareInitiatedEvent
-        } from 'react-native-branch'
+        import branch, { BranchEvent } from 'react-native-branch'
         ```
 
 - ### Create content reference
@@ -398,10 +389,17 @@
     ```js
     // only canonicalIdentifier is required
     let branchUniversalObject = await branch.createBranchUniversalObject('canonicalIdentifier', {
-        automaticallyListOnSpotlight: true,
-        metadata: {prop1: 'test', prop2: 'abc'},
-        title: 'Cool Content!',
-        contentDescription: 'Cool Content Description'})
+      locallyIndex: true,
+      title: 'Cool Content!',
+      contentDescription: 'Cool Content Description'}),
+      contentMetadata: {
+        ratingAverage: 4.2,
+        customMetadata: {
+          prop1: 'test',
+          prop2: 'abc'
+        }
+      }
+    })
     ```
 
 - ### Create deep link
@@ -529,21 +527,14 @@
 
     - Listing on Spotlight requires adding `CoreSpotlight.framework` to your Xcode project.
 
-    - Recommended
-
     ```js
+    import branch, { BranchEvent } from 'react-native-branch'
     let branchUniversalObject = await branch.createBranchUniversalObject('canonicalIdentifier', {
-      automaticallyListOnSpotlight: true,
+      locallyIndex: true,
       // other properties
     })
 
-    branchUniversalObject.userCompletedAction(RegisterViewEvent)
-    ```
-
-    - Alternate method
-
-    ```js
-    branchUniversalObject.listOnSpotlight()
+    branchUniversalObject.logEvent(BranchEvent.ViewItem)
     ```
 
 - ### Track content
@@ -557,8 +548,8 @@
     - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/content)
 
     ```js
-    import branch, { RegisterViewEvent } from 'react-native-branch'
-    branchUniversalObject.userCompletedAction(RegisterViewEvent)
+    import { BranchEvent } from 'react-native-branch'
+    branchUniversalObject.logEvent(BranchEvent.ViewItem)
     ```
 
 - ### Track users
@@ -574,7 +565,7 @@
 
 - ### Track events
 
-    - Track custom events
+    - Track standard and custom events
 
     - Events named `open`, `close`, `install`, and `referred session` are Branch restricted
 
@@ -585,30 +576,56 @@
     - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/events)
 
     ```js
-    branchUniversalObject.userCompletedAction('Custom Action', { key: 'value' })
+    import { BranchEvent } from 'react-native-branch'
+
+    // Associate one or more content items with an event
+    new BranchEvent(BranchEvent.ViewItems, [buo1, buo2]).logEvent()
+
+    // Log a standard event with parameters
+    new BranchEvent(BranchEvent.Purchase, buo, {
+      revenue: 20,
+      shipping: 2,
+      tax: 1.6,
+      currency: 'USD'
+    }).logEvent()
+
+    // Set parameters after initialization
+    let event = new BranchEvent(BranchEvent.Search)
+    event.searchQuery = "tennis rackets"
+    event.logEvent()
+
+    // Log a custom event
+    new BranchEvent("UserScannedItem", buo).logEvent()
     ```
 
-- ### Track content properties
-
-    | Event | Description |
-    | ----- | --- |
-    | RegisterViewEvent | User viewed the object |
-    | AddToWishlistEvent | User added the object to their wishlist |
-    | AddToCartEvent | User added object to cart |
-    | PurchaseInitiatedEvent | User started to check out |
-    | PurchasedEvent | User purchased the item |
-    | ShareInitiatedEvent | User started to share the object |
-    | ShareCompletedEvent | User completed a share |
-
-
-- ### Track commerce
-
-    - Use the `branch.sendCommerceEvent` method to record commerce events
+    - When logging an event with a single Branch Universal Object, use the
+        convenient logEvent method
 
     ```js
-    branch.sendCommerceEvent("20.00")
-    branch.sendCommerceEvent(50, {key1: "value1", key2: "value2"})
+    buo.logEvent(BranchEvent.ViewItem)
+    buo.logEvent(BranchEvent.Purchase, { revenue: 20 })
     ```
+
+- ### Standard events
+
+|Event constant|Description|
+|--------------|-----------|
+|BranchEvent.AddToCart|Standard Add to Cart event|
+|BranchEvent.AddToWishlist|Standard Add to Wishlist event|
+|BranchEvent.ViewCart|Standard View Cart event|
+|BranchEvent.InitiatePurchase|Standard Initiate Purchase event|
+|BranchEvent.AddPaymentInfo|Standard Add Payment Info event|
+|BranchEvent.Purchase|Standard Purchase event|
+|BranchEvent.SpendCredits|Standard Spend Credits event|
+|BranchEvent.Search|Standard Search event|
+|BranchEvent.ViewItem|Standard View Item event for a single Branch Universal Object|
+|BranchEvent.ViewItems|Standard View Items event for multiple Branch Universal Objects|
+|BranchEvent.Rate|Standard Rate event|
+|BranchEvent.Share|Standard Share event|
+|BranchEvent.CompleteRegistration|Standard Complete Registration event|
+|BranchEvent.CompleteTutorial|Standard Complete Tutorial event|
+|BranchEvent.AchieveLevel|Standard Achieve Level event|
+|BranchEvent.AchievementUnlocked|Standard Unlock Achievement event|
 
 - ### Handle referrals
 
@@ -637,6 +654,27 @@
         ```js
         let creditHistory = await branch.getCreditHistory()
         ```
+
+- ### Handle links in your own app
+
+    - Allows you to deep link into your own from your app itself
+
+        ```js
+        branch.openURL("https://example.app.link/u3fzDwyyjF")
+        branch.openURL("https://example.app.link/u3fzDwyyjF", {newActivity: true}) // Finish the Android current activity before opening the link. Results in a new activity window. Ignored on iOS.
+        ```
+
+!!! note
+    If you aren't using the `newActivity` option, it is necessary to move the call to the `RNBranch.initSession method` to the main activity's `onResume` method instead of `onStart`.
+
+!!! warning
+    Handling a new deep link in your app will clear the current session data and a new referred "open" will be attributed.
+
+- ### Handle push notifications
+
+    - Allows you to track Branch deep links in your push notifications
+
+    - Use [openURL](handle-links-in-your-own-app) to handle the deep links
 
 - ### Track Apple Search Ads
 
@@ -800,8 +838,7 @@
         **Android**
 
         Simulated installs may be enabled on Android by adding `<meta-data android:name="io.branch.sdk.TestMode" android:value="true"/>` to the `application` element of your Android manifest. Use this in a build type
-        such as `debug` or a product flavor, or be sure to remove it from your manifest before releasing to prod.
-        See https://docs.branch.io/pages/apps/android/#simulate-an-install for full details.
+        such as `debug` or a product flavor, or be sure to remove it from your manifest before releasing to prod. [Click here](/pages/apps/android/#simulate-an-install) for more details.
 
         Alternately, add `RNBranchModule.setDebug();` in your MainActivity before the call to `initSession`. Be sure to remove it
         before releasing to prod.
@@ -883,8 +920,8 @@
 
     See the troubleshooting guide for each native SDK:
 
-    - [iOS](https://docs.branch.io/pages/apps/ios/#troubleshoot-issues)
-    - [Android](https://docs.branch.io/pages/apps/android/#troubleshoot-issues)
+    - [iOS](/pages/apps/ios/#troubleshoot-issues)
+    - [Android](/pages/apps/android/#troubleshoot-issues)
 
 - ### Sample apps
 

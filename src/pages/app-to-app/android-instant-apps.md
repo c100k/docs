@@ -76,7 +76,7 @@ Instant Apps can be rather confusing as there are many different manifests, but 
 
 ### Configure your Branch links as Android App Links
 
-This guide presumes that you've already configured Branch for Android App Links in the past. If you haven't configured your full native app to use Branch as Android App Links, [please complete this guide](/pages/apps/universal-app-links) which will correctly configure the dashboard and manifest.
+This guide presumes that you've already configured Branch for Android App Links in the past. If you haven't configured your full native app to use Branch as Android App Links, [please complete this guide](/pages/apps/universal-app-links/) which will correctly configure the dashboard and manifest.
 
 Now, you simply need to edit the above manifest and paste in the following snippet _inside_ the desired `activity.` Then you'll need to replace the `xxxx` with your own custom subdomain which will be visible on [the Branch link settings dashboard](https://dashboard.branch.io/link-settings){:target="\_blank"} at the bottom of the page. If you're using a custom subdomain, you can find the advanced instructions in the above link regarding configuring Android App Links.
 

@@ -23,7 +23,7 @@ To view referred **installs** and **opens**, as well as any custom events you tr
 ## Setup
 
 ### Prerequisites
-- This guide requires you to have already integrated the Branch mobile SDKsand the Google Analytics SDK into your app.
+- This guide requires you to have already integrated the Branch mobile SDKs and the Google Analytics SDK into your app.
 
 ### Enter your Google Analytics Tracking ID
 
@@ -33,7 +33,6 @@ For the basic, codeless integration: find your Google Analytics Tracking ID (tid
 1. Click on **Home** in the navigation bar at the top of the page. You should see your app(s), with accompanying Tracking ID.
 1. Copy the Tracking ID of whichever app you’re going to use with Branch. This is also known as the Property ID, and it is of the form UA-XXXXXX-YY (e.g. UA-000000-01). Here’s an example: ![image](/img/pages/integrations/google-analytics/tid.png)
 
-
 ### Configure the Branch Dashboard
 
 1. On the Branch Dashboard (dashboard.branch.io), navigate to the [Integrations page](https://dashboard.branch.io/integrations).
@@ -41,55 +40,17 @@ For the basic, codeless integration: find your Google Analytics Tracking ID (tid
   * If you have not yet entered billing information, please do so now.
 1. Enter your Google Analytics Tracking ID and hit **Save**
 
-![image](/img/pages/integrations/google-analytics/enable-google-analytics-integration.png)
+![image](/img/pages/integrations/google-analytics/enable-ga.png)
 
 !!! warning "Please test your integration!"
     Branch is not responsible for inaccurate API keys.
+    
+### Mandatory: pass Client ID to Branch
 
-### Set up Google Analytics to use standard hardware or advertising identifiers (recommended)
+!!! warning "Required for integration"
+    If you don't include the below code snippet, events will be sent to Google but Google Analytics will not ingest them and they will not be visible on the Google Analytics dashboard.
 
-Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.
-
-In addition to the basic integration, you should add a tiny amount of code to your app. This will ensure that Google Analytics uses the correct device-specific identifier for client ID (cid) with the logic Branch uses. As a result, the CIDs for SDK and integration should match up and result in unified user data on the GA Dashboard.
-
-**iOS:**
-
-On iOS, please add the following when tracking events, screen views, etc. It will ensure that the GA SDK uses the IDFA when available, and uses the IDFV if not.
-
-Please add the following to your Google Analytics code when the app first starts
-
-```obj-c
-#import <AdSupport/AdSupport.h>
-
-// before tracking screen, event, etc.
-Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
-if (ASIdentifierManagerClass && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-	NSUUID *idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
-    [tracker set:kGAIClientId value:[idfa UUIDString]];
-}
-else if (NSClassFromString(@"UIDevice")) {
-    [tracker set:kGAIClientId value:[[UIDevice currentDevice].identifierForVendor UUIDString]];
-}
-```
-
-In order for IDFA to be available, please be sure you have included `AdSupport.framework`.
-
-!!! protip "iOS 10 and Ad Tracking Limited"
-    If ad tracking is limited, the IDFA will be set to "00000000-0000-0000-0000-000000000000" [documentation](https://developer.apple.com/reference/adsupport/asidentifiermanager). The alternative approach below allows you to specify a `cid` manually, which avoids this issue.
-
-
-**Android:**
-
-On Android, please add the following when tracking events, screen views, etc. It will ensure that the GA SDK uses the GAID when available, and uses the Android ID (hardware ID) if not.
-
-```java
-// Enable Advertising Features.
-mTracker.enableAdvertisingIdCollection(true);
-```
-
-### Alternative approach to Client ID - pass to Branch directly
-
-If you specify `$google_analytics_client_id`, we can pass that to Google (as *cid*).
+Please specify `$google_analytics_client_id`. We will pass that to Google (as *cid*) so Google can match the events we send them to a specific user.
 
 **iOS:**
 

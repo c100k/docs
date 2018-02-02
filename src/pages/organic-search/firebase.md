@@ -62,7 +62,7 @@ The first step to listing your app content in Google is to tell Branch what the 
                     .setContentImageUrl("https://example.com/mycontent-12345.png")
 
     // Add any additional custom OG tags here
-                    .addContentMetadata("$og_video", "http://mysite/video.mpg");
+                    .setContentMetadata(new ContentMetadata().addCustomMetadata("$og_video", "http://mysite/video.mpg"));
     ```
 
 ### Enable App Indexing

@@ -2,33 +2,27 @@
 
 - ### Default link behavior
 
-    - Your app is not installed
+    - #### Your app is not installed
 
         - User `clicks` on a Branch deep link
 
-        - Device `navigates` to the [fallback](#fallback-to-a-specific-url) (e.g. an app store or website)
+        - Device `navigates` to the [fallback](#custom-link-behavior) (e.g. an app store or website)
 
-        - User `installs` and `opens` app
+        - User `installs` and `opens` your app
 
-        - Branch passes deep link `data` into app
+        - Branch passes deep link `data` into your app
 
-    - Your app is installed
+    - #### Your app is installed
 
         -  User `clicks` on a Branch deep link
 
-        -  Device `opens` app
+        -  Device `opens` your app or navigates to [expected link behavior](#expected-link-behavior)
 
-        -  Branch passes deep link `data` into app
+        -  Branch passes deep link `data` into your app
 
-- #### Expected redirect behavior
-
-    - Your app is not installed
-
-        - Device `navigates` to the [fallback](#fallback-to-a-specific-url) (e.g. an app store or website)
-
-    - Your app is installed
-
-        - If the app supports deep linking, then your app will open or navigate to the [fallback](#fallback-to-a-specific-url)
+    - #### Expected link behavior
+    
+        - Expected link behavior is dependent on whether or not the app supports deep linking
 
         - `*Able to force app open` using [`$uri_redirect_mode`](#forced-redirections) or enabling a [Deepview](/pages/web/deep-views/)
 
@@ -39,7 +33,7 @@
             | Facebook Messenger | Fallback | *Able to force app open | App |
             | Facebook Messenger browser | App | | App |
             | Instagram | Fallback | *Able to force app open | App |
-            | Snapchat | Fallback | | App |
+            | Snapchat | Fallback | *Able to force app open | App |
             | Twitter | Fallback | *Able to force app open | App |
             | Pinterest | Fallback | | Fallback |
             | Chrome browser | App | | App |
@@ -49,23 +43,23 @@
             | Naver browser | | | App |
             | Kakao browser | | | App |
             | Opera browser | App | | App |
+            | Ghostery browser | App | | Fallback | Query strings must be encoded ($ = %24)
             | Safari address bar | Fallback | [App open blocked by Apple](https://blog.branch.io/the-problem-with-safari-app-redirects/)
             | Chrome address bar | Fallback | | Fallback | Deep link data will not pass into the app
             | Firefox address bar | Fallback | | App
             | Hangouts | App | | App |
             | iMessage | App |
-            | Slack | App | Must configure Slack to open links with Safari | App | Must configure Slack to open links with Safari
+            | Slack | App | Must configure Slack to open links with Safari | App |
             | WeChat | Fallback | Customize [WeChat fallback urls](#redirections) | Fallback | Customize [WeChat fallback urls](#redirections)
             | WhatsApp | App | `app.link` require https/http to be clickable | App | `app.link` require https/http to be clickable
+            | LINE | Fallback | *Able to force app open | App |
             | Apple Mail | App |
             | Gmail | App | | App
-
-
-
+            | Yahoo Mail | Fallback | *Able to force app open | App
 
 - ### Custom link behavior
 
-    - ##### Pass data from link to app
+    - #### Pass data from link to app
 
         - Add [link data](#configure-deep-links) to each deep link
 
@@ -73,7 +67,7 @@
 
         - Append query strings `https://example.app.link/fzmLEhobLD?$custom_data=123&hello=world`
 
-    - ##### Fallback to a specific URL
+    - #### Fallback to a specific URL
 
         - Determine where a deep link will navigate to if either
 
@@ -90,9 +84,9 @@
             - Add `iOS/Android Custom URL` on the [Branch Dashboard](https://dashboard.branch.io/link-settings)
             - Add `Default URL` (`$fallback_url`) on the [Branch Dashboard](https://dashboard.branch.io/link-settings)
 
-    - ##### Open web instead of app
+    - #### Open web instead of app
         - Your app is not installed
-            - Device `navigates` to the [fallback](#fallback-to-a-specific-url) (e.g. an app store or website)
+            - Device `navigates` to the [fallback](#custom-link-behavior) (e.g. an app store or website)
         - Your app is installed
             - *iOS:* need to override `Universal Links`
                 - Add `$web_only = true` ([docs](/pages/links/integrate/#redirections))
@@ -100,8 +94,7 @@
                 - *[or]* Append `/e/` to the deep link
                     - e.g. `https://example.app.link/fzmLEhobLD` -> `https://example.app.link/e/fzmLEhobLD`
             - *Android:* need to override `App Links`
-                - TODO: validate. may need `Always open app` unchecked
-                - Uncheck `Enable App Links` and `Save` the [Branch Dashboard](https://dashboard.branch.io/link-settings)
+                - Uncheck `Always Open App`, `Enable App Links` and then hit `Save` the [Branch Dashboard](https://dashboard.branch.io/link-settings)
                 - Add redirect `$android_url = 'https://google.com'` ([docs](/pages/links/integrate/#redirections))
                 - Add a broken URI Scheme with `$android_deeplink_path = 'random'` ([docs](/pages/links/integrate/#deep-linking))
 
@@ -110,7 +103,7 @@
         - Basics are `$og_title`, `$og_description`, and `$og_image_url`
     - Use [Deep Views]() to display content as a website
         - Increases [install attribution](https://branch.io/deepview/)
-        - Completes deep linking experience in [certain apps](#expected-redirect-behavior)
+        - Completes deep linking experience in [certain apps](#default-link-behavior)
 
 ## Create deep links
 
@@ -125,18 +118,19 @@
         - Use our [App SDK](#dialog-code?ios=create-deep-link&android=create-deep-link&adobe=create-deep-link&cordova=create-deep-link&mparticleAndroid=create-deep-link&mparticleIos=create-deep-link&titanium=create-deep-link&reactNative=create-deep-link&unity=create-deep-link&xamarin=create-deep-link) to create and share links within your app
         - Use our [Web SDK](/pages/web/integrate/#create-deep-link) to create to links convert web to app users
         - Use our [HTTP API](/pages/apps/api/#link-create) to programmatically create links from your server
+        - Use our [Chrome Extension](https://chrome.google.com/webstore/detail/branch-link-creator/pekdpppibljpmpbcjelehhnldnfbglgf) to generate links from your browser
 
 - ### Long links
     - Long links can be created without a network call to Branch
-    - Long links need [link data](#configure-deep-links) to be URI encoded as a query string
-        - e.g. existing link `https://example.app.link/fzmLEhobLD?foo=bar&baz=456`
-        - e.g. dynamic link `https://example.app.link/?foo=bar&baz=456`
+    - Long links need [link data](#configure-deep-links) to be added as a query string. Be sure to URI encode any urls in the link.
+        - e.g. existing link `https://example.app.link/fzmLEhobLD?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
+        - e.g. dynamic link `https://example.app.link/?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
     - Long links need a `/a/` and a [Branch Key](/pages/dashboard/integrate/#understand-the-branch-key) if you use a `custom link domain`
-        - e.g. existing link `https://link.example.com/5NPh/p4M09KRLrD?foo=bar&baz=456`
-        - e.g. dynamic link `https://link.example.com/a/key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Swt?foo=bar&baz=456`
+        - e.g. existing link `https://link.example.com/5NPh/p4M09KRLrD?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
+        - e.g. dynamic link `https://link.example.com/a/key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Swt?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
     - Long links need a `/a/` and a [Branch Key](/pages/dashboard/integrate/#understand-the-branch-key) if you use a `bnc.lt`
-        - e.g. existing link `https://bnc.lt/5NPh/p4M09KRLrD?foo=bar&baz=456`
-        - e.g. dynamic link `https://bnc.lt/a/key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Swt?foo=bar&baz=456`
+        - e.g. existing link `https://bnc.lt/5NPh/p4M09KRLrD?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
+        - e.g. dynamic link `https://bnc.lt/a/key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Swt?foo=bar&baz=456&$fallback_url=https%3A%2F%2Fbranch.io%2F`
 
 ## Configure deep links
 
@@ -151,7 +145,7 @@
         | campaign | | Use this field to organize the links by actual campaign. For example, if you launched a new feature or product and want to run a campaign around that
         | stage | | Use this to categorize the progress or category of a user when the link was generated. For example, if you had an invite system accessible on level 1, level 3 and 5, you could differentiate links generated at each level with this parameter
         | tags | | This is a free form entry with unlimited values `['string']`. Use it to organize your link data with labels that don't fit within the bounds of the above
-        | alias | | Specify a link alias in place of the standard encoded short URL e.g. `yourdomain.com/youralias`. Link aliases are unique, immutable objects that cannot be deleted. You cannot change the alias of existing links. Aliases on the legacy `bnc.lt` domain are incompatible with Universal Links and Spotlight
+        | alias | | Specify a link alias to replace of the standard encoded short URL (e.g. `https://example.app.link/aQXXDHaxKF` -> `https://example.app.link/youralias`). Link aliases must be unique (a `409 error` will occur if you create an alias already taken). Appending a `/` will break the alias. `bnc.lt` link domain alias links are incompatible with Universal Links and Spotlight.
         | type | `0` | Must be an `int`. Set to `1` to limit deep link to a single use. Set to `2` to make the link show up under [Quick Links](https://dashboard.branch.io/marketing) while adding `$marketing_title` to `data`. Does not work with the Native SDKs.
 
 - ### Custom data
@@ -178,7 +172,8 @@
         | $desktop_url | | Change the redirect endpoint on desktops Text-Me-The-App page (set in Link Settings)
         | $ios_url | | Change the redirect endpoint for iOS  App Store page for your app (set in Link Settings)
         | $ipad_url | | Change the redirect endpoint for iPads `$ios_url` value
-        | $android_url  | | Change the redirect endpoint for Android  Play Store page for your app (set in Link Settings)
+        | $android_url  | | Change the redirect endpoint for Android Play Store page for your app (set in Link Settings)
+        | $samsung_url  | | Redirect to Samsung Galaxy Store on Samsung devices. Only link level control. Format should be `http://www.samsungapps.com/appquery/appDetail.as?appId=YOUR.PACKAGE.NAME`
         | $windows_phone_url  | | Change the redirect endpoint for Windows OS Windows Phone default URL (set in Link Settings)
         | $blackberry_url | | Change the redirect endpoint for Blackberry OS  BlackBerry default URL (set in Link Settings)
         | $fire_url | | Change the redirect endpoint for Amazon Fire OS Fire default URL (set in Link Settings)
@@ -188,15 +183,13 @@
 
 - ### Forced redirections
 
-    - Override
-
     - Prevent error messages from other apps when Branch deep links are clicked
 
         | Key | Value | Usage
         | --- | --- | ---
         | $uri_redirect_mode | **0** | This is the default value that yields the standard behavior where we don't try to open the app if the user can see an error.
         | $uri_redirect_mode | **1** | Smart redirect mode. Same behavior as 0 until we know the user has the app installed through Branch persona data. In that case, force URI schemes to open the app.
-        | $uri_redirect_mode | **2** | Forceful redirect mode. Always try to force open the app, even if it risks showing an error message when the app is not installed.
+        | $uri_redirect_mode | **2** | Forceful redirect mode. Always try to force open the app, even if it risks showing an [error message](/img/pages/links/uri-error-message.png) when the app is not installed.
 
     - Supported Apps
 
@@ -231,7 +224,7 @@
         | $publicly_indexable | `1` | Cannot modify here. Needs to be set by the Branch Universal Object
         | $keywords | | Keywords for which this content should be discovered by. Just assign an array of strings with the keywords you'd like to use
         | $canonical_identifier | | This is the unique identifier for content that will help Branch dedupe across many instances of the same thing. Suitable options: a website with pathing, or a database with identifiers for entities
-        | $exp_date | `0` | The date when the content will not longer be available or valid. Cannot modify here. Needs to be set by the Branch Universal Object. Must be epoch timestamp with milliseconds
+        | $exp_date | `0` | The date when the content will not longer be available or valid. The value must be an epoch timestamp in milliseconds (e.g. `1512000420`) within the Branch Universal Object. The click will be attributed, but the install/open will not be
         | $content_type | | This is a label for the type of content present. Apple recommends that you use uniform type identifier as described here
 
 - ### Deepview
@@ -264,7 +257,7 @@
         | $og_image_height | | Set the image's height in pixels for social media displays
         | $og_video | | Set a video as it will be seen in social media displays
         | $og_url | | Set the base URL of the link as it will be seen in social media displays
-        | $og_type | | Set the type of custom card format link as it will be seen in social media displays
+        | $og_type | | Set the type of custom card format link as it will be seen in social media displays. Don't set this property when sharing deep links on Facebook
         | $og_redirect | | (Advanced, not recommended) Set a custom URL that we redirect the social media robots to in order to retrieve all the appropriate tags
         | $og_app_id | Set on dashboard | (Rarely used) Sets the app id tag
 
@@ -283,6 +276,18 @@
         | $twitter_player | | Set the video player's URL. Defaults to the value of `$og_video`.
         | $twitter_player_width | | Set the player's width in pixels
         | $twitter_player_height | | Set the player's height in pixels
+
+- ### Custom Tags
+
+    - Handle custom meta tags
+
+        | Key | Value
+        | --- | ---
+        | $custom_meta_tags | Valid stringified JSON dictionary of the tags’ keys and values
+
+    - Valid dictionary example: "{\"twitter:player:stream\": \"https://branch.io\"}". This will result in the following meta tag: `<meta property="twitter:player:stream" content="https://branch.io" />`
+    - If you create the link via the Dashboard, don’t worry about stringifying the dictionary. It will be done automatically.
+    - apple_touch_icon is a special key in the dictionary. If you set it, we will add a `<link rel="apple-touch-icon" href="<url>" />` tag to the scraped HTML page. This will allow you to show a custom icon for previews in iMessage, Safari Bookmarks, Slack, etc.
 
 - ### Universal Object
 
@@ -304,7 +309,7 @@
         - Do
             - Set the `canonicalIdentifier` to a unique, de-duped value across instances of the app
             - Ensure that the `title`, `contentDescription` and `imageUrl` properly represent the object
-            - Initialize the Branch Universal Object and call userCompletedAction with the `BranchEvent.VIEW` on page load
+            - Initialize the Branch Universal Object and call userCompletedAction with the `BranchEvent.VIEW` (`[buo registerView]` for objective-C and `buo.registerView()` for swift) on page load
             - Call showShareSheet and createShortLink later in the life cycle, when the user takes an action that needs a link
             - Call the additional object events (purchase, share completed, etc) when the corresponding user action is taken
         - Do not
@@ -393,9 +398,13 @@
     - Make sure you have [configure your dashboard](/pages/dashboard/integrate/) and [configure your app](#dialog-code)
     - Make sure the `Branch key` [in your app](#dialog-code) matches the `Branch key` [in your deep link](#view-deep-link-data)
     - Make sure you have not [disabled universal linking on iOS](/pages/apps/ios/#re-enable-universal-linking)
-    - Make sure you understand the [expected behavior of deep links](#expected-redirect-behavior)
+    - Make sure you understand the [expected behavior of deep links](#default-link-behavior)
     - Make sure the deep link domain matches your [link domain](https://dashboard.branch.io/link-settings) (e.g. link domain = `example.app.link`, deep link = `https://example.app.link/fzmLEhobLD`)
 
 - ### View deep link data
     - Add `?debug=1` to the end of your deep link
     - For example: https://example.app.link/aQXXDHaxKF?debug=1
+    
+- ### View deep link stats
+    - Add `?stats=1` to the end of your deep link
+    - For example: https://example.app.link/aQXXDHaxKF?stats=1

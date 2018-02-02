@@ -9,7 +9,7 @@ The data export API can be used to pull the data visible via the Liveview & Expo
 
 ## Setup
 
-In order to use this API you must have an App ID and a Branch Public Key. You must also be whitelisted to use the API. If you'd like to be whitelisted for the Export API, please contact [integrations@branch.io](mailto:integrations@branch.io).
+In order to use this API you must have an App ID and a Branch Public Key. You must also be whitelisted to use the API.
 
 You can find your keys at: https://dashboard.branch.io/link-settings
 

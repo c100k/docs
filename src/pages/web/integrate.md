@@ -22,14 +22,14 @@
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title></title>
-    </head>
-    <body>
       <script>
         // load Branch
         (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent".split(" "), 0);
         // init Branch
         branch.init('key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Swt');
       </script>
+    </head>
+    <body>
     </body>
     </html>
     ```
@@ -253,9 +253,9 @@
 - ### Host deep link data
   
     - Make it easier for marketers to create deep links
-    - Used for [Journeys](/pages/web/journeys/), [Deep Linked Emails](/pages/emails/appboy/), [Quick links](/pages/dashboard/analytics/#quick-links), and the [Chrome Extension](https://chrome.google.com/webstore/detail/branch-link-creator/pekdpppibljpmpbcjelehhnldnfbglgf)
+    - Used for [Journeys](/pages/web/journeys/), [Deep Linked Emails](/pages/emails/braze/), [Quick links](/pages/dashboard/analytics/#quick-links), and the [Chrome Extension](https://chrome.google.com/webstore/detail/branch-link-creator/pekdpppibljpmpbcjelehhnldnfbglgf)
     - Branch will scrape the web URL for deep link data on link creation
-    - Validate by creating a [Quick Link](https://branch.dashboard.branch.io/quick-links) and fill in `web URL` to your web page
+    - Validate by creating a [Quick Link](https://dashboard.branch.io/quick-links) and fill in `web URL` to your web page
 
         | Example URL | URL data | Metatags to add to your site
         | --- | --- | --- 
@@ -558,6 +558,18 @@
         });
         ```
 
+- ### Journey not sticking to nav
+
+    - Navigate to [Dashboard Journey Page](https://branch.dashboard.branch.io/web/journeys)
+    - Select Journey -> Edit -> Configure Views -> Banner -> Page Placement
+    - Banner Scroll = `sticky`
+    - Press `Save & Close`
+    - Add the following div to your nav
+
+        ```html
+        <div class="branch-journeys-top"></div>
+        ```
+
 - ### Create smart banner
 
     - (**Deprecated**) Recommend to use [Create Journey banner](#create-journey-banner) instead
@@ -614,8 +626,7 @@
         };
         var linkOptions = {
           make_new_link: false, // don't create a new deep link if one already exists (e.g. _branch_match_id is in the address bar)
-          o
-          e // will attempt to open the app if install (URI Scheme deep linking only - will not work with Safari)
+          open_app: true  // will attempt to open the app if install (URI Scheme deep linking only - will not work with Safari)
         };
         branch.deepview(linkData, linkOptions, function(err, data) {
           console.log(err, data);

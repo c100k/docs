@@ -24,16 +24,16 @@ There are a few products and features unsupported by this new method of tracking
 
 Tracking these events will propagate to Ad Networks, like Criteo. For example, if you track the purchase event through Branch, this will map to Criteo's Purchase event.
 
-These events will also have analytics, so you can understand their performance, using the new Analytics Platform. Read more about the new Analytics Platform [here](https://docs.branch.io/pages/deep-linked-ads/branch-universal-ads/#view-your-data-with-unified-analytics).
+These events will also have analytics, so you can understand their performance, using the new [People-Based Attribution](/pages/dashboard/people-based-attribution/).
 
 ### Limitations
 
-As of now, any calls made through these SDK methods will **not**:
+As of now, any calls made through these SDK methods will **not** yet:
 
-- Appear in your .csv exports or Liveview.
-- Be settable events for Webhooks or sent via Data Integrations.
+- Appear in Liveview.
+- Be settable events for Data Integrations.
 - Be events you can target a Journey with.
-- See Analytics on the old Analytics pipeline. Read more about our new [Analytics](https://docs.branch.io/pages/deep-linked-ads/branch-universal-ads/#view-your-data-with-unified-analytics).
+- See Analytics on the old Analytics pipeline. Read more about our new [People-Based Attribution](/pages/dashboard/people-based-attribution/).
 
 ## Available Events
 
@@ -64,99 +64,105 @@ Commerce events describe events that relate to a customer interacting with your 
 
 From there, add the Branch universal object to the tracked event, and use the right predefined constant. For example, the code snippet below is to track when a user adds to cart, but simply replace that constant with another constant to track a different event.
 
+**A note on currency and exchange rates:**
+If you track commerce events without a currency, we assume they are USD. If you track commerce events with a currency other than USD, we will convert the `revenue` specified to USD, using a recent exchange rate. This allows you to easily visualize revenue on the Dashboard, across many countries and currencies, because all units are USD. The exchange rate is pulled from [openexchangerates.org](https://openexchangerates.org) regularly, and is generally within an hour of the realtime exchange rate. If you view raw Branch events via either Webhooks or Exports, you can see the exchange rate used.
+
 ### iOS
-```objc
-// Create a BranchUniversalObject with your content data:
-BranchUniversalObject *branchUniversalObject = [BranchUniversalObject new];
 
-// ...add data to the branchUniversalObject as needed...
-branchUniversalObject.canonicalIdentifier = @"item/12345";
-branchUniversalObject.canonicalUrl        = @"https://branch.io/item/12345";
-branchUniversalObject.title               = @"My Item Title";
+- *Swift*
 
-// Create an event and add the BranchUniversalObject to it.
-BranchEvent *event     = [BranchEvent standardEvent:BranchStandardEventAddToCart];
+	```swift
+	// Create a BranchUniversalObject with your content data:
+	let branchUniversalObject = BranchUniversalObject.init()
 
-// Add the BranchUniversalObjects with the content:
-event.contentItems     = (id) @[ branchUniversalObject ];
+	// ...add data to the branchUniversalObject as needed...
+	branchUniversalObject.canonicalIdentifier = "item/12345"
+	branchUniversalObject.canonicalUrl        = "https://branch.io/item/12345"
+	branchUniversalObject.title               = "My Item Title"
 
-// Add relevant event data:
-event.transactionID    = @"12344555";
-event.currency         = BNCCurrencyUSD;
-event.revenue          = [NSDecimalNumber decimalNumberWithString:@"1.5"];
-event.shipping         = [NSDecimalNumber decimalNumberWithString:@"10.2"];
-event.tax              = [NSDecimalNumber decimalNumberWithString:@"12.3"];
-event.coupon           = @"test_coupon";
-event.affiliation      = @"test_affiliation";
-event.eventDescription = @"Event_description";
-event.searchQuery      = @"item 123";
-event.customData       = (NSMutableDictionary*) @{
-    @"Custom_Event_Property_Key1": @"Custom_Event_Property_val1",
-    @"Custom_Event_Property_Key2": @"Custom_Event_Property_val2"
-};
-[event logEvent];
-```
+	// Create a BranchEvent:
+	let event = BranchEvent.standardEvent(.purchase)
 
-```swift
-// Create a BranchUniversalObject with your content data:
-let branchUniversalObject = BranchUniversalObject.init()
+	// Add the BranchUniversalObjects with the content:
+	event.contentItems     = [ branchUniversalObject ]
 
-// ...add data to the branchUniversalObject as needed...
-branchUniversalObject.canonicalIdentifier = "item/12345"
-branchUniversalObject.canonicalUrl        = "https://branch.io/item/12345"
-branchUniversalObject.title               = "My Item Title"
+	// Add relevant event data:
+	event.transactionID    = "12344555"
+	event.currency         = .USD;
+	event.revenue          = 1.5
+	event.shipping         = 10.2
+	event.tax              = 12.3
+	event.coupon           = "test_coupon";
+	event.affiliation      = "test_affiliation";
+	event.eventDescription = "Event_description";
+	event.searchQuery      = "item 123"
+	event.customData       = [
+	    "Custom_Event_Property_Key1": "Custom_Event_Property_val1",
+	    "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+	]
+	event.logEvent() // Log the event.
+	```
+	
+- *Objective-C*
 
-// Create a BranchEvent:
-let event = BranchEvent.standardEvent(.purchase)
+	```objc
+	// Create a BranchUniversalObject with your content data:
+	BranchUniversalObject *branchUniversalObject = [BranchUniversalObject new];
 
-// Add the BranchUniversalObjects with the content:
-event.contentItems     = [ branchUniversalObject ]
+	// ...add data to the branchUniversalObject as needed...
+	branchUniversalObject.canonicalIdentifier = @"item/12345";
+	branchUniversalObject.canonicalUrl        = @"https://branch.io/item/12345";
+	branchUniversalObject.title               = @"My Item Title";
 
-// Add relevant event data:
-event.transactionID    = "12344555"
-event.currency         = .USD;
-event.revenue          = 1.5
-event.shipping         = 10.2
-event.tax              = 12.3
-event.coupon           = "test_coupon";
-event.affiliation      = "test_affiliation";
-event.eventDescription = "Event_description";
-event.searchQuery      = "item 123"
-event.customData       = [
-    "Custom_Event_Property_Key1": "Custom_Event_Property_val1",
-    "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
-]
-event.logEvent() // Log the event.
-```
+	// Create an event and add the BranchUniversalObject to it.
+	BranchEvent *event     = [BranchEvent standardEvent:BranchStandardEventAddToCart];
+
+	// Add the BranchUniversalObjects with the content:
+	event.contentItems     = (id) @[ branchUniversalObject ];
+
+	// Add relevant event data:
+	event.transactionID    = @"12344555";
+	event.currency         = BNCCurrencyUSD;
+	event.revenue          = [NSDecimalNumber decimalNumberWithString:@"1.5"];
+	event.shipping         = [NSDecimalNumber decimalNumberWithString:@"10.2"];
+	event.tax              = [NSDecimalNumber decimalNumberWithString:@"12.3"];
+	event.coupon           = @"test_coupon";
+	event.affiliation      = @"test_affiliation";
+	event.eventDescription = @"Event_description";
+	event.searchQuery      = @"item 123";
+	event.customData       = (NSMutableDictionary*) @{
+	    @"Custom_Event_Property_Key1": @"Custom_Event_Property_val1",
+	    @"Custom_Event_Property_Key2": @"Custom_Event_Property_val2"
+	};
+	[event logEvent];
+	```
 
 ### Android
 
 ```java
-BranchUniversalObject buo = new BranchUniversalObject();
-buo.setCanonicalIdentifier("my_canonical_id");
-buo = new BranchUniversalObject()
-.setCanonicalIdentifier("myprod/1234")
-.setCanonicalUrl("https://test_canonical_url")
-.setTitle("test_title")
-.setContentMetadata(
-    new ContentMetadata()
-        .addCustomMetadata("custom_metadata_key1", "custom_metadata_val1")
-        .addCustomMetadata("custom_metadata_key1", "custom_metadata_val1")
-        .addImageCaptions("image_caption_1", "image_caption2", "image_caption3")
-        .setAddress("Street_Name", "test city", "test_state", "test_country", "test_postal_code")
-        .setRating(5.2, 6.0, 5)
-        .setLocation(-151.67, -124.0)
-        .setPrice(10.0, CurrencyType.USD)
-        .setProductBrand("test_prod_brand")
-        .setProductCategory(ProductCategory.APPAREL_AND_ACCESSORIES)
-        .setProductName("test_prod_name")
-        .setProductCondition(ContentMetadata.CONDITION.EXCELLENT)
-        .setProductVariant("test_prod_variant")
-        .setQuantity(1.5)
-        .setSku("test_sku")
-        .setContentSchema(BranchContentSchema.COMMERCE_PRODUCT))
-    .addKeyWord("keyword1")
-    .addKeyWord("keyword2");
+BranchUniversalObject buo = new BranchUniversalObject()
+	.setCanonicalIdentifier("myprod/1234")
+	.setCanonicalUrl("https://test_canonical_url")
+	.setTitle("test_title")
+	.setContentMetadata(
+	    new ContentMetadata()
+		.addCustomMetadata("custom_metadata_key1", "custom_metadata_val1")
+		.addCustomMetadata("custom_metadata_key1", "custom_metadata_val1")
+		.addImageCaptions("image_caption_1", "image_caption2", "image_caption3")
+		.setAddress("Street_Name", "test city", "test_state", "test_country", "test_postal_code")
+		.setRating(5.2, 6.0, 5)
+		.setLocation(-151.67, -124.0)
+		.setPrice(10.0, CurrencyType.USD)
+		.setProductBrand("test_prod_brand")
+		.setProductCategory(ProductCategory.APPAREL_AND_ACCESSORIES)
+		.setProductName("test_prod_name")
+		.setProductCondition(ContentMetadata.CONDITION.EXCELLENT)
+		.setProductVariant("test_prod_variant")
+		.setQuantity(1.5)
+		.setSku("test_sku")
+		.setContentSchema(BranchContentSchema.COMMERCE_PRODUCT))
+	    .addKeyWord("keyword1")
+	    .addKeyWord("keyword2");
 
 new BranchEvent(BRANCH_STANDARD_EVENT.ADD_TO_CART)
         .setAffiliation("test_affiliation")
@@ -185,16 +191,11 @@ curl -vvv -d '{
     "aaid": "abcdabcd-0123-0123-00f0-000000000000",
     "android_id": "a12300000000",
     "limit_ad_tracking": false,
-    "user_agent": null,
-    "browser_fingerprint_id": null,
-    "http_origin": null,
-    "http_referrer": null,
     "developer_identity": "user123",
     "country": "US",
     "language": "en",
     "local_ip": "192.168.1.2",
     "brand": "LGE",
-    "device_fingerprint_id": null,
     "app_version": "1.0.0",
     "model": "Nexus 5X",
     "screen_dpi": 420,
@@ -278,27 +279,33 @@ curl -vvv -d '{
  }' https://api.branch.io/v2/event/standard
 ```
 
+See [full API docs here](https://github.com/BranchMetrics/branch-deep-linking-public-api#logging-commerce-events).
+
 ## Track Content Events
 
 Content events are events that occur when a user engages with your in-app content. For example, if you have in-app articles, you would want to track events related to when users search, view content, rate the content, and share. This can apply to a wide variety of in-app content, such as blog posts, music, video, pictures, and e-commerce catalogue items.
 
 ### iOS
 
-```obj-c
-BranchEvent *event = [BranchEvent standardEvent:BranchStandardEventSearch];
-event.eventDescription = @"Product Search";
-event.searchQuery = @"user search query terms for product xyz";
-event.customData[@"Custom_Event_Property_Key1"] = @"Custom_Event_Property_val1";
-[event logEvent];
-```
+- *Swift*
 
-```swift
-let event = BranchEvent.standardEvent(.search)
-event.eventDescription = "Product Search"
-event.searchQuery = "user search query terms for product xyz"
-event.customData["Custom_Event_Property_Key1"] = "Custom_Event_Property_val1"
-event.logEvent()
-```
+	```swift
+	let event = BranchEvent.standardEvent(.search)
+	event.eventDescription = "Product Search"
+	event.searchQuery = "user search query terms for product xyz"
+	event.customData["Custom_Event_Property_Key1"] = "Custom_Event_Property_val1"
+	event.logEvent()
+	```
+
+- *Objective-C*
+
+	```obj-c
+	BranchEvent *event = [BranchEvent standardEvent:BranchStandardEventSearch];
+	event.eventDescription = @"Product Search";
+	event.searchQuery = @"user search query terms for product xyz";
+	event.customData[@"Custom_Event_Property_Key1"] = @"Custom_Event_Property_val1";
+	[event logEvent];
+	```
 
 ### Android
 
@@ -322,16 +329,11 @@ curl -vvv -d '{
     "aaid": "abcdabcd-0123-0123-00f0-000000000000",
     "android_id": "a12300000000",
     "limit_ad_tracking": false,
-    "user_agent": null,
-    "browser_fingerprint_id": null,
-    "http_origin": null,
-    "http_referrer": null,
     "developer_identity": "user123",
     "country": "US",
     "language": "en",
     "local_ip": "192.168.1.2",
     "brand": "LGE",
-    "device_fingerprint_id": null,
     "app_version": "1.0.0",
     "model": "Nexus 5X",
     "screen_dpi": 420,
@@ -407,27 +409,33 @@ curl -vvv -d '{
 }' https://api.branch.io/v2/event/standard
 ```
 
+See [full API docs here](https://github.com/BranchMetrics/branch-deep-linking-public-api#logging-content-events).
+
 ## Track Lifecycle Events
 
 Lifecycle events can be described as events a user takes in your app to continue progressing. These events can apply to game apps, as well as non game apps, for when a user completes a user profile, registration or tutorial.
 
 ### iOS
 
-```obj-c
-BranchEvent *event = [BranchEvent standardEvent:BranchStandardEventCompleteRegistration];
-event.transactionID = @"tx1234"
-event.eventDescription = @"User completed registration.";
-event.customData[@"registrationID"] = @"12345";
-[event logEvent];
-```
+- *Swift*
 
-```swift
-let event = BranchEvent.standardEvent(.completeRegistration)
-event.transactionID = "tx1234"
-event.eventDescription = "User completed registration."
-event.customData["registrationID"] = "12345"
-event.logEvent()
-```
+	```swift
+	let event = BranchEvent.standardEvent(.completeRegistration)
+	event.transactionID = "tx1234"
+	event.eventDescription = "User completed registration."
+	event.customData["registrationID"] = "12345"
+	event.logEvent()
+	```
+
+- *Objective-C*
+
+	```obj-c
+	BranchEvent *event = [BranchEvent standardEvent:BranchStandardEventCompleteRegistration];
+	event.transactionID = @"tx1234"
+	event.eventDescription = @"User completed registration.";
+	event.customData[@"registrationID"] = @"12345";
+	[event logEvent];
+	```
 
 ### Android
 
@@ -451,16 +459,11 @@ curl -vvv -d '{
     "aaid": "abcdabcd-0123-0123-00f0-000000000000",
     "android_id": "a12300000000",
     "limit_ad_tracking": false,
-    "user_agent": null,
-    "browser_fingerprint_id": null,
-    "http_origin": null,
-    "http_referrer": null,
     "developer_identity": "user123",
     "country": "US",
     "language": "en",
     "local_ip": "192.168.1.2",
     "brand": "LGE",
-    "device_fingerprint_id": null,
     "app_version": "1.0.0",
     "model": "Nexus 5X",
     "screen_dpi": 420,
@@ -478,26 +481,32 @@ curl -vvv -d '{
 }' https://api.branch.io/v2/event/standard
 ```
 
+See [full API docs here](https://github.com/BranchMetrics/branch-deep-linking-public-api#logging-user-lifecycle-events).
+
 ## Track Custom Events
 
 If you want to track an event that isn't a predefined event, simply do the following:
 
 ### iOS
 
-```objc
-[BranchEvent.customEventWithName(@"User_Scanned_Item") logEvent];
-```
+- *Swift*
 
-```swift
- BranchEvent.customEventWithName("User_Scanned_Item").logEvent()
-```
+	```swift
+	BranchEvent.customEventWithName("User_Scanned_Item").logEvent()
+	```
+    
+- *Objective-C*
+
+	```obj-c
+	[BranchEvent.customEventWithName(@"User_Scanned_Item") logEvent];
+	```
 
 ### Android
 
 ```Java
 new BranchEvent("Some Custom Event")
-    .addCustomProperty("Custom_Event_Property_Key11", "Custom_Event_Property_val11")
-    .addCustomProperty("Custom_Event_Property_Key22", "Custom_Event_Property_val22")
+    .addCustomDataProperty("Custom_Event_Property_Key11", "Custom_Event_Property_val11")
+    .addCustomDataProperty("Custom_Event_Property_Key22", "Custom_Event_Property_val22")
     .logEvent(MainActivity.this);
 }
 ```
@@ -514,16 +523,11 @@ curl -vvv -d '{
     "aaid": "abcdabcd-0123-0123-00f0-000000000000",
     "android_id": "a12300000000",
     "limit_ad_tracking": false,
-    "user_agent": null,
-    "browser_fingerprint_id": null,
-    "http_origin": null,
-    "http_referrer": null,
     "developer_identity": "user123",
     "country": "US",
     "language": "en",
     "local_ip": "192.168.1.2",
     "brand": "LGE",
-    "device_fingerprint_id": null,
     "app_version": "1.0.0",
     "model": "Nexus 5X",
     "screen_dpi": 420,
@@ -535,5 +539,7 @@ curl -vvv -d '{
   },
   "metadata": {},
   "branch_key": "key_test_hdcBLUy1xZ1JD0tKg7qrLcgirFmPPVJc"
-}' https://api.branch.io/v2/event/standard
+}' https://api.branch.io/v2/event/custom
 ```
+
+See [full API docs here](https://github.com/BranchMetrics/branch-deep-linking-public-api#logging-custom-events).

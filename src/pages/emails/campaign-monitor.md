@@ -12,9 +12,9 @@ On **Done** click, an AASA file - required for Universal Links - specific to tha
 #### Create a custom click tracking domain
 
 1. Add a custom click tracking domain in the **Account Settings** section of your Campaign Monitor account:
-   <br>
-   ![image](/img/pages/email/campaign-monitor-domain.png)
-   <br>
+
+    ![image](/img/pages/email/campaign-monitor-domain.png)
+
 1. Create a new CNAME record in your DNS zone file point it to Campaign Monitor
 1. Verify the domain in Campaign Monitor
 
@@ -31,5 +31,7 @@ For more information on how to set up your domain, please visit Campaign Monitor
 {! ingredients/email/email-usage.md !}
 
 {! ingredients/email/email-usage-auto-bounce.md !}
+
+{! ingredients/email/email-usage-auto.md !}
 
 {! ingredients/email/email-support.md !}

@@ -141,7 +141,7 @@ This returns the latest set of deep link data from the most recent link that was
 - *Android*
 
 	```java
-	JSONObject sessionParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getLatestReferringParams();
+	JSONObject sessionParams = Branch.getInstance().getLatestReferringParams();
 	```
 
 
@@ -164,7 +164,7 @@ This returns the first set of deep link data that ever referred the user. Once i
 - *Android*
 
 	```java
-	JSONObject installParams = Branch.get{% if page.mparticle_android %}Auto{% endif %}Instance().getFirstReferringParams();
+	JSONObject installParams = Branch.getInstance().getFirstReferringParams();
 	```
 
 ## Option 2: Let Branch use your existing deep link routing

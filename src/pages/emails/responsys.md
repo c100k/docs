@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- You must have an EMD (Email Message Designer) enabled account in order to use the Branch integration. If you do not have one, or if you’re not sure, please talk to your Responsys Account Manager.
+- To use the Branch Link Conversion SDK, you'll need an EMD (Email Message Designer) enabled account. If you're using the Classic dashboard, or if you’re not sure, please talk to your Responsys Account Manager.
 
 {! ingredients/email/email-configure-esp.md !}
 
@@ -33,24 +33,37 @@ There are a few different ways you can create Branch links that are compatible w
 
 #### Use the Branch Responsys SDK
 
-In this step, we'll upload an SDK that makes it very easy to create deep links in your emails.
+In this step, we'll upload an SDK that makes it very easy to create deep links in your emails.  Please remember that this will require an EMD (Email Message Designer) enabled account.
 
 !!! protip "Watch how to do this instead"
     There is also a [tutorial video](https://www.youtube.com/watch?v=u8h8KlqFvo4){:target="\_blank"} that walks through these steps.
 
 1. Work with your Branch account manager to modify the following code snippet, replacing `DOMAIN-HERE` with your Branch base domain:
-   ```
-   <#macro deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
-   ```
+
+    ```
+    <#macro deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign final_link=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")><a href="${final_link}"><#nested></a></#macro> <#macro tracked_deeplink link_to_be_wrapped><#assign branch_base_url="https://DOMAIN-HERE/3p?%243p=e_rs"><#assign deeplink=branch_base_url + "&%24original_url=" + link_to_be_wrapped?url("ISO-8859-1")></#macro>
+    ```
+
 1. Log in to your Responsys account.
-1. In the Responsys Dashboard, open your Content Library. You can also access it via the Shortcuts screen on the main page: ![image](/img/pages/email/responsys/responsys-shortcuts.png)
-1. Once you are in the Content Manager, you’ll see a list of folders where content is stored. Under **All Content**, create a new folder named `Branch_SDK`: ![image](/img/pages/email/responsys/responsys-new-folder.png)
-1. Select the **Branch_SDK** folder and then click **Create Document**: ![image](/img/pages/email/responsys/responsys-create-document.png)
+1. In the Responsys Dashboard, open your Content Library. You can also access it via the Shortcuts screen on the main page: 
+
+    ![image](/img/pages/email/responsys/responsys-shortcuts.png)
+
+1. Once you are in the Content Manager, you’ll see a list of folders where content is stored. Under **All Content**, create a new folder named `Branch_SDK`:
+
+    ![image](/img/pages/email/responsys/responsys-new-folder.png)
+
+1. Select the **Branch_SDK** folder and then click **Create Document**:
+
+    ![image](/img/pages/email/responsys/responsys-create-document.png)
+
 1. In the Create Document window:
-  * Enter `branch-sdk` in the “Document Name” field.
-  * In the **Content Box**, delete all the text.
-  * Paste the snippet you copied in **1**.
-  * Click Save. ![image](/img/pages/email/responsys/responsys-snippet.png)
+    * Enter `branch-sdk` in the “Document Name” field.
+    * In the **Content Box**, delete all the text.
+    * Paste the snippet you copied in **1**.
+    * Click Save. 
+
+      ![image](/img/pages/email/responsys/responsys-snippet.png)
 
 You have now successfully created the deep linking script. Your file structure should look as follows:
 
@@ -93,7 +106,7 @@ With link tracking enabled, you can still use Branch links in emails.
 `<@tracked_deeplink "https://branch.io/product/1234" />
 <a href="${clickthrough('TEST_TRACKED_DEEPLINK' , 'deeplink=' + deeplink)}">Example link</a>`
 
-This latter example pulls from a Link Table. In the link table, set the `IOS Link URL` and `Android link URL` to the value `${deeplink}`.
+This latter example pulls from a Link Table.
 
 ![image](/img/pages/email/responsys/deep-linked-email-template.png)
 
@@ -101,7 +114,7 @@ This latter example pulls from a Link Table. In the link table, set the `IOS Lin
 
 ### Handle links for web-only content
 
-In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: `LINK_URL`, `IOS_LINK_URL`, and `ANDROID_LINK_URL`. If you only enter the link in the `LINK_URL` field, the path of the final click-wrapped url will begin with `/pub/cc`, whereas if you input an `IOS_LINK_URL`, then the path of the final click-wrapped url will begin with `pub/acc`. You should set up your AASA file to whitelist only the path `/pub/acc*` in order to not launch the app from web-only links.
+In some cases you may have content on web that isn’t in the app - for example, a temporary Mother’s Day promotion or an unsubscribe button. You can designate links to only open on web if you use the Responsys Link Table feature. There are three URL fields in the link table when creating a new link: `LINK_URL`, `IOS_LINK_URL`, and `ANDROID_LINK_URL`. If you only enter the link in the `LINK_URL` field, the path of the final click-wrapped url will begin with `/pub/cc`.  However, if you also input the same link in `IOS_LINK_URL`, then the path of the final click-wrapped url will begin with `pub/acc`. You should set up your AASA file to whitelist only the path `/pub/acc*` in order to not launch the app from web-only links.
 
 ![image](/img/pages/email/responsys/branch_responsys_webonly.png)
 

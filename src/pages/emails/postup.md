@@ -17,12 +17,8 @@ You can retrieve your click tracking domains from your PostUp settings. On **Don
 
 {! ingredients/email/email-usage.md !}
 
-{! ingredients/email/email-link-options-menu.md !}
+{! ingredients/email/email-usage-auto-bounce.md !}
 
-**PostUp uses the shortcode `e_pu` for links in emails** - please use this in place of `e_xx` in the guide below.
-
-{! ingredients/email/email-link-options.md !}
-
-{! ingredients/email/email-usage-bounce.md !}
+{! ingredients/email/email-usage-auto.md !}
 
 {! ingredients/email/email-support.md !}

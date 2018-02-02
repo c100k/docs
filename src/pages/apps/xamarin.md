@@ -1,12 +1,15 @@
 
 ## Integrate Branch
 
+!!! warning "Inconsistent Universal links behavior on iOS 11.2"
+    After updating a device to iOS 11.2, we found that the app's AASA file is no longer downloaded reliably onto your user’s device after an app install. As a result, clicking on Universal links will no longer open the app consistenly. You can set [forced uri redirect mode](/pages/links/integrate/#forced-redirections) on your Branch links to open the app with URI schemes. View details of the issue on the [Apple Bug report](http://www.openradar.me/radar?id=4999496467480576).
+
 - ### Configure Branch
 
     - Complete your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](http://i.imgur.com/wazVu3U.png)
-        ![image](http://i.imgur.com/9PEylbS.png)
+        ![image](/img/pages/apps/cordova-configure.png)
+        ![image](/img/pages/apps/cordova-link-domain.png)
 
 - ### Install Branch
 
@@ -382,7 +385,7 @@
                 Categories = new[] { "android.intent.category.DEFAULT", "android.intent.category.BROWSABLE" },
                 DataScheme = "https",
                 DataHost = "testandroidapp.app.link")]
-                
+
                 [IntentFilter(new[] { "android.intent.action.VIEW" },
                 Categories = new[] { "android.intent.category.DEFAULT", "android.intent.category.BROWSABLE" },
                 DataScheme = "https",
@@ -407,10 +410,17 @@
 
                     public void InitSessionComplete(Dictionary<string, object> data)
                     {
-                        var intent = new Intent(this, typeof(BranchActivity));
+                        //Handle custom logic based on deep link data in InitSessionComplete
+                        
+                        //View all the link data in the console
+                        Console.WriteLine("My Link Data: " + JsonConvert.SerializeObject(data));
+                        
+                        //Preferred method: use BranchActivity created previously to handle the link data
+                        //Will need to update BranchActivity with desired custom logic, to open the correct page in the app
+                        (this, typeof(BranchActivity));
                         intent.PutExtra("BranchData", JsonConvert.SerializeObject(data));
-
-                        StartActivity(intent);
+                        
+                        StartActivity(intent);var intent = new Intent
                     }
 
                     public void SessionRequestError(BranchError error)
@@ -782,7 +792,7 @@
 
     - Long press on the deep link *(not 3D Touch)*
 
-    - Click `Open in "APP_NAME"` to open your app *([example](http://i.imgur.com/VJVICXd.png))*
+    - Click `Open in "APP_NAME"` to open your app *([example](/img/pages/apps/ios-notes.png))*
 
 - ### Test deep link Android
 
@@ -1033,8 +1043,8 @@
 
     - **Testbed-Xamarin (Native apps)**
 
-        - [iOS](https://github.com/BranchMetrics/xamarin-branch-deep-linking/tree/master/Examples/droid_example)
-        - [Android](https://github.com/BranchMetrics/xamarin-branch-deep-linking/tree/master/Examples/ios_example)
+        - [iOS](https://github.com/BranchMetrics/xamarin-branch-deep-linking/tree/master/Examples/ios_example)
+        - [Android](https://github.com/BranchMetrics/xamarin-branch-deep-linking/tree/master/Examples/droid_example)
 
     - **Testbed-XamarinForms (Forms apps)**
 

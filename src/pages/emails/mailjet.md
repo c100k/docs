@@ -19,4 +19,6 @@ You can retrieve your click tracking domains from your Mailjet settings. On **Do
 
 {! ingredients/email/email-usage-auto-bounce.md !}
 
+{! ingredients/email/email-usage-auto.md !}
+
 {! ingredients/email/email-support.md !}

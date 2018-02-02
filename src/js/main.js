@@ -11,3 +11,4 @@
   languages.init();
   router.init();
 })();
+

@@ -105,7 +105,7 @@ There are three possible identities you can track via this integration. Please v
 
 Here's a sample snippet showing this. **NOTE** you must set the correct key before calling *initSession*. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.
 
-**iOS**
+**Objective-C**
 
 Inside *didFinishLaunchingWithOptions*
 
@@ -164,4 +164,4 @@ There are common strategies to take while trouble shooting.
 
 With Adobe Analytics' dashboard, it may take up to ~2 hours for data to appear. We'd recommend you simulate 10-15 events in one testing session, and validate that they show up two hours later, so that feedback is transparent and obvious.
 
-Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call *setDebug* and inspect the requests to `v1/open`. The key you want to find in this request payload is `$adobe_visitor_id`.
+Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call *setDebug* and inspect the requests to `v1/open`. The key you want to find in this request payload is either `$adobe_visitor_id`, `$marketing_cloud_visitor_id`, or `$analytics_visitor_id`.

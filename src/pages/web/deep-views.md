@@ -101,7 +101,7 @@ When you create links via a mobile SDK, you simply need to set the OG tag parame
                     .setContentImageUrl("https://example.com/mycontent-12345.png")
 
     // Add any additional custom OG tags here
-                    .addContentMetadata("$og_video", "http://mysite/video.mpg");
+                    .setContentMetadata(new ContentMetadata().addCustomMetadata("$og_video", "http://mysite/video.mpg"));
     ```
 
 
@@ -289,3 +289,8 @@ To disable passive deepviews, simply set the value to `false` in the link data.
 | $android_passive_deepview | The name of the template to use for Android. | `default_template`
 
 If you're creating a link by appending query parameters, you simply need to append the parameters to the URL. Please make sure to URL encode everything, lest the link will break.
+
+**Note:** If you want to customize the default design of the passive deepview follow these steps:
+- Duplicate and edit the default template with the key `branch_passive_default`
+- If you want to change the template **globally for your app**, copy the new template name (key:xxxx) and your [dashboard App ID](https://dashboard.branch.io/account-settings/app), then reach out to our [support team](https://support.branch.io) with the key and App ID
+- You can also change the template **on a link level** by providing the template name in the [control parameters](/pages/links/integrate/#deepview)

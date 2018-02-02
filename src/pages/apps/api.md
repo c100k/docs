@@ -93,7 +93,7 @@
             }
           ]'
         ```
-
+        
     - *Response*
 
         ```js
@@ -113,6 +113,8 @@
         | --- | :-: | --- | :-:
         | branch_key | `string` | From your [Branch Settings Dashboard](https://dashboard.branch.io/settings) | √
         | ... | ... | Parameters from [Configuring Links](/pages/links/integrate/) |
+        
+    - Bulk link creator is limited to `1000` links at a time
 
 - ### Link read
 
@@ -195,7 +197,7 @@
             "channel": "twitter",
             "data":{
               "name":"alex",
-              "user_id":"12346",
+              "user_id":"12346"
             }
           }'
           ```
@@ -247,7 +249,6 @@
 
     - `data` is overridden on [Link update](#link-update), not appended
 
-    - Bulk link creator is limited to `1000` links at a time
 
 ## Event
 
@@ -395,6 +396,12 @@
         - `*` =  `identity` *OR* `identity_id` is required
 
 ## Referral
+
+- ### Referral link
+
+    - [Create a user](#user-create) with an `$identity_id`
+
+    - [Create a link](#link-create) with the `$identity_id` from step 1 in the link data dictionary
 
 - ### Referral reward
 
@@ -624,6 +631,9 @@
         | amount | `string` | Number of credits |  `type` = `credit`
         | bucket | `string` | The category where the credits are save to | `type` = `credit`
         | filter | `json` | This is the set of keys and values that must be contained in the event metadata for this reward to be issued |
+
+    !!! note "Please take note of the `type` parameter"
+        `type` = `credit` will create a reward rule on your dashboard, but `type` = `web_hook` will create a webhook each time the reward rule is triggered. To see the structure of the webhook callback, please test this with [RequestBin](https://requestb.in/) or a similar service.
 
 - ### Referral troubleshooting
 

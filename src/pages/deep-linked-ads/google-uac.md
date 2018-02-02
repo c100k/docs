@@ -8,27 +8,14 @@ source: google-uac.md
 
 ## Overview
 
-If you're running Google's new Universal App Campaign, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.
+If you're running Universal App Campaigns, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.
 
 Branch uses Google Adwords' server to server [App Conversion Confirmation](https://developers.google.com/app-conversion-tracking/api/legacy/confirm) for attribution data which reports on conversion events. Therefore, we only collect **install (conversion) data**. Click data is not supported for this campaign type.
 
-!!! warning "Newer AdWords user interface not supported"
-    If you're using the new AdWords experience, you will need to switch back to the old experience to create Universal App Campaigns. Once the campaign is created, you can switch back to the new AdWords experience. We're currently building support for our new style of AdWords integration.
+!!! warning "Two different Setup Methods"
+    AdWords has rolled out a new user interface and functionality. If you are on the new experience, please go to the Setup steps for the new AdWords UI.
 
-Google Campaign | Campaign Type/Objective | Branch Ad Format
---- | --- | ---
-Universal App Campaign | Mobile App Install | App Only: Install
-
-#### OS Support and Major Differences
-
-Operating System | Supported by Universal App Campaigns? | Key Differences | Documentation
---- | --- | --- | ---
-iOS | Yes | Conversion and Postback setup, no tracking template | [link](/pages/deep-linked-ads/google-uac/#setup)
-Android | Yes | Conversion and Postback setup, no tracking template | [link](/pages/deep-linked-ads/google-uac/#setup)
-
-{! ingredients/deep-linked-ads/link-to-google-ads-overview.md !}
-
-## Setup
+## Setup (Old AdWords UI)
 
 Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your Apple App Store or Google Play Store Applications.
 
@@ -93,7 +80,7 @@ Set up Google as an Ad Partner and conversion tracking from Adwords on the Branc
 ![Analytics Tags](/img/pages/deep-linked-ads/reusable-images/adwords-analytics-tags.png)
 
 
-#### Configure an Add
+#### Configure an Ad
 
 To setup a Universal App Campaign we will place our unique Branch Ad link into a Adwords Conversion Postback setting. Adwords campaign documentation is available **[here](https://support.google.com/adwords/answer/6247380?hl=en){:target="_blank"}**.
 
@@ -118,6 +105,26 @@ To setup a Universal App Campaign we will place our unique Branch Ad link into a
 The setup to measure your Universal App Campaign is complete and Adwords will send Branch information on conversions from ads in your Campaign!
 
 {! ingredients/deep-linked-ads/view-ad-link-data.md !}
+
+## Setup (New AdWords UI)
+
+Follow the instructions list [here](/pages/deep-linked-ads/google-ads-overview/#latest-method-oauth-method). Once this is complete, you can run Universal App Campaigns using the new interface.
+
+
+!!! warning "Deep linking not supported with new integration"
+    Unfortunately, because the new integration with Univeral App Campaigns is truly linkless, Branch cannot support deep linking from this campaign style.
+
+### Data
+
+With the new set up, here's how the data is mapped.
+
+Google Data | Branch Data |
+--- | --- |
+Campaign ID | ~campaign_id |
+Campaign Name | ~campaign  |
+ad_type | ~ad_type |
+network_type | ~channel
+network_subtype | ~secondary_publisher
 
 ## Troubleshooting
 

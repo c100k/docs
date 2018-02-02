@@ -125,6 +125,9 @@
         - `key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Sw`
         - `key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr`
 
+    !!! warning "Single Task launch mode required"
+        If there is no singleTask Activity instance in the system yet, a new one would be created and simply placed on top of the stack in the same Task. If you are using the Single Task mode as is, it should not restart your entire app. The Single Task mode instantiates the Main/Splash Activity only if it does not exist in the Activity Stack. If the Activity exists in the background, every subsequent intent to the Activity just brings it to the foreground. You can read more about Single Task mode [here](https://developer.android.com/guide/components/activities/tasks-and-back-stack.html#TaskLaunchModes).
+
 - ### Initialize Branch
 
     - Add Branch to your `MainActivity.java`
@@ -231,6 +234,12 @@
         }
         ```
 
+    !!! warning "Only initialize Branch in the Launcher activity"
+        The app will open through the Launcher activity, where Branch will initialize and retrieve the deep link data from the link click.
+
+    !!! warning "Always intialize Branch in `onStart()`"
+        Initializing Branch in other Android lifecyle methods, like `onResume()`, will lead to unintended behavior. `onStart()` is what makes the activity visible to the user, as the app prepares for the activity to enter the foreground and become interactive. Learn more [here](https://developer.android.com/guide/components/activities/activity-lifecycle.html).
+
 - ### Load Branch
 
     - Add Branch to your `CustomApplicationClass.java`
@@ -290,6 +299,9 @@
 
     - Click on the deep link to open your app
 
+    !!! tip "Testing deferred deep linking"
+    	Deferred deep linking is simply deep linking into an app that is not yet installed. Once the app is installed, the context is preserved and the user's first app-open will have the deep link data from the original Branch link. To test this, uninstall the app from your device, click the Branch link, and manually launch the app from Android Studio. You should be routed to the correct content within your app.
+
 ## Implement features
 
 - ### Create content reference
@@ -308,7 +320,7 @@
             .setContentImageUrl("https://lorempixel.com/400/400")
             .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
             .setLocalIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
-            .addContentMetadata("custom_data", "123");
+            .setContentMetadata(new ContentMetadata().addCustomMetadata("key1", "value1"));
         ```
 
     - *Kotlin*
@@ -321,7 +333,7 @@
             .setContentImageUrl("https://lorempixel.com/400/400")
             .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
             .setLocalIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
-            .addContentMetadata("custom_data", "123")
+            .setContentMetadata(ContentMetadata().addCustomMetadata("key1", "value1"))
         ```
 
 - ### Create deep link
@@ -342,7 +354,7 @@
             .setFeature("sharing")
             .setCampaign("content 123 launch")
             .setStage("new user")
-            .addControlParameter("\$desktop_url", "http://example.com/home")
+            .addControlParameter("$desktop_url", "http://example.com/home")
             .addControlParameter("custom", "data")
             .addControlParameter("custom_random", Long.toString(Calendar.getInstance().getTimeInMillis()));
 
@@ -391,7 +403,7 @@
             .setFeature("sharing")
             .setCampaign("content 123 launch")
             .setStage("new user")
-            .addControlParameter("\$desktop_url", "http://example.com/home")
+            .addControlParameter("$desktop_url", "http://example.com/home")
             .addControlParameter("custom", "data")
             .addControlParameter("custom_random", Long.toString(Calendar.getInstance().getTimeInMillis()));
 
@@ -910,6 +922,31 @@
         intent.putExtra("branch_force_new_session", true)
         ```
 
+- ### Handle links in your own app
+
+    - Allows you to deep link into your own app from your app itself by launching a Chrome intent
+
+    - *Java*
+
+        ```java
+        Intent intent = new Intent(this, ActivityToLaunch.class);
+        intent.putExtra("branch","http://xxxx.app.link/testlink");
+        intent.putExtra("branch_force_new_session",true);
+        startActivity(intent);
+        ```
+
+    - *Kotlin*
+
+        ```java
+        val intent = Intent(this, ActivityToLaunch::class.java)
+        intent.putExtra("branch", "http://xxxx.app.link/testlink")
+        intent.putExtra("branch_force_new_session", true)
+        startActivity(intent)
+        ```
+
+!!! warning
+    Handling a new deep link in your app will clear the current session data and a new referred "open" will be attributed.
+
 - ### Enable 100% matching
 
     - Uses `Chrome Tabs` to increase attribute matching success
@@ -933,6 +970,7 @@
             ```xml
             <meta-data android:name="io.branch.sdk.TestMode" android:value="true" />
             ```
+        - *[or]* add `Branch.enableTestMode();` before your `Branch.getInstance().initSession()`
 
         - Do not use `TestMode` in production or in the Google Play Store
 
@@ -942,7 +980,7 @@
 
     - Reinstall your app
 
-    - Read deep link data from `Branch.initSession()` for `+is_first_session=true`
+    - Read deep link data from `Branch.getInstance().initSession()` for `+is_first_session=true`
 
 - ### Track content properties
 

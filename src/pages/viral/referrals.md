@@ -2,6 +2,10 @@
 
 Branch allows you to reward users with credits, track those credits, and redeem them when appropriate. It is a unit-less currency available to your users without you having to build a system from scratch.
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=-qyR6y0wtCM"><img class="branch-image-override" src="/img/pages/viral/referral-programs/referral-video.png"/></a>
+</p>
+
 ## Guide
 
 !!! prequisite
@@ -257,3 +261,6 @@ If you want to redeem credits in a custom bucket you've specified, such as `myBu
 			}
 		});
 		```
+
+- ### Sample app - iOS Referral TestBed
+To get a better understanding of the overall referral flow, please check out our iOS Referral TestBed app [Source code](https://github.com/BranchMetrics/iOS-Testbed-Referral).

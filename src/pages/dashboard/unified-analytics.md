@@ -1,4 +1,4 @@
-# Unified analytics
+# People-Based Attribution
 
 ## Overview
 
@@ -11,7 +11,7 @@ The biggest change is that we decoupled deep linking and attribution. Now you ca
 In some cases, a user may click a link and only open the app several hours or days later. With this new analytics platform, we are still able to attribute both the open and any subsequent events, even though we did not deep link the user.
 Also and from now on, anytime you analyze data in the Branch dashboard, or export it out, you will see consistency in naming across all our reports and products, for all events.
 
-This document highlights each of the section where you can expect to see differences between our old and new analytics.
+This document highlights each of the section where you can expect to see differences between our old analytics and new People-Based Attribution.
 
 !!! protip "No changes required"
     We've changed the entire back-end of analytics without requiring any code or implementation changes on your end.
@@ -53,7 +53,7 @@ Note: no code changes are needed, and if you want to change the deep linking win
 
 Now that deep linking and attribution analytics are separate, we have attribution windows for analytics. As a reminder, an attribution window simply defines the window of time for  when an eligible attribution or deep link can occur. In order to make changes, navigate to the [link settings](https://dashboard.branch.io/link-settings) page, and scroll down to "Attribution Window".
 
-![image](/img/pages/dashboard/unified-analytics/attribution-windows.png)
+![image](/img/pages/dashboard/people-based-attribution/attribution-windows.png)
 
 - `Deep Linking Duration` refers to the duration of time someone is eligible to receive deep link data. This includes anyone clicking a Branch link, or being automatically redirected to the app through a Branch Web SDK call. Measured in minutes.
 
@@ -64,7 +64,7 @@ Now that deep linking and attribution analytics are separate, we have attributio
 Using the default value of 2 hours for deep linking and attribution under the old system, and 2 hours for deep linking with 7 days for install attribution, here's what you can expect.
 
 <!--
-Behavior | Old Analytics | New Analytics
+Behavior | Old Analytics | new People-Based Attribution
 | --- | --- | --- |
 | User clicks link in
 -->
@@ -77,7 +77,7 @@ Select visualizations also allow you to see total (i.e. non-unique) numbers as w
 
 ### Cutoff date
 
-As far as the deployment of our new analytics platform, we created our cut off date on October 14th 2017 and we kept the old and new analytical systems running in parallel since then and will continue to do this for a short while. This mean you can query data from any time before October 14th up until October 14th with old analytics. You can query data from October 14th onwards with both analytics. But if you wanted to do reports across this line, say, October 13th to October 15th, you would need two separate queries.
+As far as the deployment of People-Based Attribution, we created our cut off date on October 14th 2017 and we kept the old and new analytical systems running in parallel since then and will continue to do this for a short while. This mean you can query data from any time before October 14th up until October 14th with old analytics. You can query data from October 14th onwards with both analytics. But if you wanted to do reports across this line, say, October 13th to October 15th, you would need two separate queries.
 
 #### Differences From Cutoff Date
 
@@ -91,13 +91,13 @@ This section covers the changes found on the main page of the Branch [dashboard]
 
 #### Install Summary Section
 
-This is the first chart found on the main page. This chart surfaces install counts for your app using the new analytics platform.
+This is the first chart found on the main page. This chart surfaces install counts for your app using the new People-Based Analytics.
 
-![image](/img/pages/dashboard/unified-analytics/installs-summary-old.png)
+![image](/img/pages/dashboard/people-based-attribution/installs-summary-old.png)
 
 *old*
 
-![image](/img/pages/dashboard/unified-analytics/installs-summary-new.png)
+![image](/img/pages/dashboard/people-based-attribution/installs-summary-new.png)
 
 *new*
 
@@ -127,7 +127,7 @@ Journeys data has also changed substantially. Previously, Journeys only included
 
 ### Universal Ads
 
-Universal Ads were introduced using the new Analytics platform, so there is no expected change. The data is unique as well, and can be exported.
+Universal Ads were introduced using the new People-Based Analytics platform, so there is no expected change. The data is unique as well, and can be exported.
 
 ## Changes to exported data
 
@@ -143,12 +143,56 @@ Data Integrations now mirrors the UI of our ads flow. The data we send is also u
 
 Webhooks, like data integratons, is no longer session based. This means we will send more webhooks to you automatically. This update hasn't completed yet.
 
+## Changes to Install, Re-installs, and Opens
+
+Prior to the rollout of People-Based Attribution, Branch classified “re-installs” as opens. With People-Based Attribution, we now split out re-installs from opens. As a result, we can show you installs vs reinstalls vs opens.
+
+Our SDK uses an identifier, which we persist between app opens, to know whether the app was previously installed. This identifier is for internal use only. When an app is first installed, this identifier is not yet stored on the device. Then our SDK makes a request to our install endpoint. On our backend, Branch determines whether this is an install, a reinstall, or in some cases, an open. Then it returns this identifier. The SDK persists this identifier, and all future requests will be made to our servers with it present.
+
+Overall, how does Branch determine whether an app open is an install, reinstall, or open?
+
+When Branch first launched, every partner who integrated the Branch SDK saw Branch measure an artificially high number of installs. As an example, if a user had an app installed on their phone before without the Branch SDK, and then upgraded to a version of the app that had the Branch SDK, Branch would count this upgrade as an install, even though the user had the app previously. Branch attempted to solve for this use case.
+
+Branch introduced a field to the SDK, called “update”, which used complex, OS-specific logic. The SDK indicated, based on either OS-provided methods or traces left by the file system, whether this particular install or open was actually just an update. In other words, the app was already installed, but the user just updated what version of the app they had. If the SDK indicated that for this particular app session, the app was updated, we would not count an install, but rather an open.
+
+Now, how does Branch translate this update, within the context of installs, opens, and reinstalls?
+
+If we see the flag “update” sent by the SDK set to “fresh install” (this is set to an enum value of `0` in our SDK logs), then we know that the user was not updating the app. In this case, it’s either an install or a reinstall. Given this information, our backend must decide between install and reinstall. Our backend performs a lookup to our People Based Attribution database and finds whether this device, using the device identifier, ever had the app installed. If so, we count this as a re-install, instead of an install. If the app was never installed on this device, we track an install.
+
+If we see the flag “update” sent by the SDK set to “just updated” (this is an enum value of `2` in our SDK logs), then we know that the user updated the app, as opposed to freshly installing. This event is not tracked as an install. This event is tracked as an open.
+
+With the introduction and adoption of iOS 11, we uncovered an intermittent issue with install tracking. It appears that on newer versions of the OS, app installs have been inconsistently counted as opens rather than fresh installs. The logic causing this was intended to detect when apps had been installed on a device prior to the Branch SDK being integrated and to register opens instead of installs, as described above. However, as more devices have updated to newer versions of iOS, install discrepancies have increased and we believe this logic is the cause. In response, we have removed this logic.
+
+The resultant impact for apps using Branch for over three months is that installs should increase to reflect correct numbers, starting January 5th. There should be no adverse impact. Partners who have newly integrated the Branch SDK will notice a large spike of installs when first releasing the SDK but no impact beyond that.
+
 ## FAQ
 
-### Data speed
+### Data Speed
 
-This new analytics platform isn't real time like the old dashboard analytics, but does not have a significant delay. We're continually improving the speed, and hope to have a standard SLA for dashboard reporting.
+This new People-Based Analytics platform introduces a slight delay compared to the old dashboard analytics, and it may now take a few minutes for events to appear. We're continually improving the speed and plan to significantly decrease the delay in Q1 2018.
 
-### Unique counts
+### Unique Counts
 
-One thing to be aware of is that unique counts may be within a 4% window of error across the dashboard. For example, if you have 100 total clicks, and 90 were truly unique, it's possible that the dashboard could report within 4% of that 90 number. If you want true uniques, the export functionality will help. 
+One thing to be aware of is that unique counts may be within a 4% window of error across the dashboard. For example, if you have 100 total clicks, and 90 were truly unique, it's possible that the dashboard could report within 4% of that 90 number. If you want true uniques, you can export raw data and de-dupe across events.
+
+One consequence of this is that if you compare by different dimensions and sum the results, the total may not add up. As an example, if you compare all attributed installs by campaign and by channel (careful: be sure to include where the install is attributed and campaign/channel is null), then the totals may not line up. They should be nearly identical, varying *at most* by 4%. 
+
+### Differing Installs
+
+As part of People-Based Attribution, your install numbers will likely not line up one to one. What this means is that if you see 200 Branch driven installs on the old Analytics Platform, it's ok to see 190 Branch driven installs (or even 210) on the same day. This is due to the way we have fundamentally changed the way we count attributions.
+
+Some installs on the old analytics platform were actually "reinstalls", but were not counted as such, which would be one reason why installs are lower. Some campaigns will count higher installs, because they may be clicked on a variety of browsers and platforms, and Branch is able to connect those touch points to accurately count an install.
+
+If the difference in numbers is still concerning, reach out to your Branch account manager, or send us a message at integrations@branch.io
+
+### New Dashboard Accounts
+
+Accounts created on or after December 15th, 2017 (UTC time zone) will run exclusively on the People-Based Attribution platform.
+
+## Support
+
+### Discrepancies
+
+#### SDK Version
+
+While different install numbers are to be expected, there may be some discrepancies not related to the new attribution platform counting methodologies. You may notice numbers are off if you are on version 0.12.4 or below on the iOS SDK. If that is the case, please upgrade to the latest version of the SDK, or at least 0.12.5. There is no cut off for Android.

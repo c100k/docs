@@ -2,11 +2,9 @@
 'use strict';
 var progress = (function() {
   // public
-  function track(event, category, action) {
+  function track(event) {
     utils.waitForPageLoad(function() {
-      var categoryClean = category || 'none';
-      var actionClean = action || 'none';
-      ga('send', event, categoryClean, actionClean);
+      ga('send', 'event', 'Docs', event);
       mixpanel.track(event);
     });
   }

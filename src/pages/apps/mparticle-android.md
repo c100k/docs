@@ -1,11 +1,13 @@
 ## Integrate Branch
 
+This documentation explains how to send **mParticle events to your Branch dashboard**. If you'd like to send Branch installs to your mParticle dashboard, please review the [Branch/mParticle Data Integration](/pages/integrations/mparticle). 
+
 - ### Configure Branch
 
     - Complete your [Branch Dashboard](https://dashboard.branch.io/settings/link)
 
-        ![image](http://i.imgur.com/r057ie0.png)
-        ![image](http://i.imgur.com/SdcICpL.png)
+        ![image](/img/pages/dashboard/android.png)
+        ![image](/img/pages/dashboard/link-domain.png)
 
 - ### Install Branch
 
@@ -177,8 +179,8 @@
        .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
 
         // Here is where you can add custom keys/values to the deep link data
-       .addContentMetadata("property1", "blue")
-       .addContentMetadata("property2", "red");
+       .setContentMetadata(new ContentMetadata().addCustomMetadata("property1", "blue")
+            .addCustomMetadata("property2", "red"));
     ```
 
 - ### Create deep link
@@ -231,37 +233,389 @@
     ```
 
 - ### Read deep link
+
+    - Retrieve Branch data from a deep link
+
+    - Best practice to receive data from the `listener` (to prevent a race condition)
+
+    - Returns [deep link properties](/pages/links/integrate/#read-deep-links)
+
+        ```java
+        @Override
+        public void onStart() {
+          MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
+            @Override
+            public void onResult(DeepLinkResult result) {
+              try {
+                Log.d("BRANCH SDK", result.getParameters.toString());
+              } catch (JSONException e) {
+              }
+            }
+
+            @Override
+            public void onError(DeepLinkError error) {
+              // If an error occurred, it will be surfaced via a DeepLinkError.
+              Log.d("BRANCH SDK", error.toString());
+            }
+          });
+        }
+        ```
+
 - ### Navigate to content
+
+    - Do stuff with the Branch deep link data.
+
+        ```java
+        @Override
+        public void onStart() {
+          MParticle.getInstance().checkForDeepLink(new DeepLinkListener() {
+            @Override
+            public void onResult(DeepLinkResult result) {
+              try {
+                JSONObject referringParams = result.getParameters();
+
+                // Option 1: Log data
+                Log.i("BRANCH SDK", referringParams.toString());
+
+                // Option 2: Save data to be used later
+                SharedPreferences preferences = .getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("branchData", referringParams.toString(2));
+                editor.commit();
+
+                // Option 3: Navigate to page
+                Intent intent = new Intent(MainActivity.this, OtherActivity.class);
+                intent.putExtra("branchData", referringParams.toString(2));
+                startActivity(intent);
+
+                // Option 4: Display data
+                Toast.makeText(this, referringParams.toString(2), Toast.LENGTH_LONG).show();
+              } catch (JSONException e) {
+              }
+            }
+
+            @Override
+            public void onError(DeepLinkError error) {
+              // If an error occurred, it will be surfaced via a DeepLinkError.
+              Log.d("BRANCH SDK", error.toString());
+            }
+          });
+        }
+        ```
+
+
 - ### Display content
+
+    - List content on `Google Search` with `App Indexing`
+
+    - Enable App Indexing on the [Branch Dashboard](#https://dashboard.branch.io/search)
+
+    - Validate with the [App indexing validator](https://branch.io/resources/app-indexing/)
+
+    - Needs a [Branch Universal Object](#create-content-reference)
+
+    - Needs `build.gradle` library
+
+        ```java
+        compile 'com.google.android.gms:play-services-appindexing:9.+'
+        ```
+
+    - Call method on Branch Universal Object
+
+        ```java
+        buo.listOnGoogleSearch(this);
+        ```
+
+
 - ### Track content
+
+    - Track how many times a piece of content is viewed
+
+    - Needs a [Branch Universal Object](#create-content-reference)
+
+    - Uses [Track content properties](#track-content-properties)
+
+    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/content)
+
+        ```java
+        buo.userCompletedAction(BranchEvent.VIEW);
+        ```
+
 - ### Track users
 
     ```java
-    Branch branch = Branch.getInstance(getApplicationContext());
-    branch.setIdentity(your user id); // your user id should not exceed 127 characters
+    // Your user ID should not exceed 127 characters.
+    // The IdentityType CustomerId will automatically propagate to Branch.
+    MParticle.getInstance().setUserIdentity(MParticle.IdentityType.CustomerId, "your_user_id");
     ```
 
     ```java
-    Branch.getInstance(getApplicationContext()).logout();
+    MParticle.getInstance().logout();
     ```
 
 - ### Track events
 
-    ```java
-    Branch branch = Branch.getInstance(getApplicationContext());
-    branch.userCompletedAction("your_custom_event");
-    ```
+    - Registers a custom event
+
+    - Events named `open`, `close`, `install`, and `referred session` are Branch restricted
+
+    - `63` character max for event name
+
+    - Best to [Track users](#track-users) before [Track events](#track-events) to associate a custom event to a user
+
+    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/events)
 
     ```java
-    Branch branch = Branch.getInstance(getApplicationContext());
-    branch.userCompletedAction("your_custom_event", (JSONObject)appState); // same 63 characters max limit
+    // Option 1:
+    MParticle.logEvent("your_custom_event", MParticle.EventType.YourEventType);
+
+    // Option 2: with metadata
+    Map<String, String> metaData = new HashMap<>();
+    metaData.put("key", "value");
+    MParticle.logEvent("your_custom_event", MParticle.EventType.YourEventType, metaData);
     ```
 
 - ### Track commerce
+
+    - Registers a custom commerce event
+
+    - Uses [Commerce properties](https://github.com/BranchMetrics/android-branch-deep-linking/blob/7fb24798d06f02a90acc3c73ec907dbb769caae1/Branch-SDK/src/io/branch/referral/util/CurrencyType.java) for `Currency` 
+    
+    - Uses [Commerce properties](https://github.com/BranchMetrics/android-branch-deep-linking/blob/65f8c34ccc6705331b50348f99a66a13da19cf8c/Branch-SDK/src/io/branch/referral/util/ProductCategory.java) for `Category`
+
+    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/commerce)
+
+    - Ensure to add `revenue` field to track purchase. All other fields are optional
+
+        ```java
+        // Add details about each product associated with the purchase (optional)
+        Product product1 = new Product();
+        product1.setSku("u123");
+        product1.setName("cactus");
+        product1.setPrice(45.00);
+        product1.setQuantity(2);
+        product1.setBrand("brand1");
+        product1.setCategory(ProductCategory.ELECTRONICS);
+        product1.setVariant("variant1");
+
+        Product product2 = new Product();
+        product2.setSku("u456");
+        product2.setName("grass");
+        product2.setPrice(9.00);
+        product2.setQuantity(1);
+        product2.setBrand("brand2");
+        product2.setCategory(ProductCategory.CAMERA_AND_OPTICS);
+        product2.setVariant("variant2");
+
+
+        // Create a list of products associated with the particular purchase (optional)
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product1);
+        productList.add(product2);
+
+        // Create the commerce event (only revenue is required)
+        CommerceEvent commerceEvent = new CommerceEvent();
+        commerceEvent.setRevenue(50.29);
+        commerceEvent.setCurrencyType(CurrencyType.USD);
+        commerceEvent.setTransactionID("TRANS-1111");
+        commerceEvent.setShipping(4.50);
+        commerceEvent.setTax(110.90);
+        commerceEvent.setAffiliation("AFF-ID-101");
+        commerceEvent.setProducts(productList);
+
+
+        // Add metadata (optional)
+        JSONObject metadata = new JSONObject();
+
+        try {
+            metadata.put("custom_dictionary", 123);
+            metadata.put("testVar", "abc");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        // Fire the commerce event by calling Branch directly.
+        Branch.getInstance().sendCommerceEvent(commerceEvent, metadata, null);
+        ```
+
 - ### Handle referrals
 
+    - Referral points are obtained from referral rules on the [Branch Dashboard](https://dashboard.branch.io/referrals/rules)
+
+    - Validate on the [Branch Dashboard](https://dashboard.branch.io/referrals/analytics)
+
+    - Reward credits
+
+        -  [Referral guide](/pages/dashboard/analytics/#referrals)
+
+    - Redeem credits
+
+        ```java
+        Branch.getInstance().redeemRewards(5);
+        ```
+
+    - Load credits
+
+        ```java
+        Branch.getInstance().loadRewards(new BranchReferralStateChangedListener() {
+            @Override
+            public void onStateChanged(boolean changed, Branch.BranchError error) {
+                int credits = branch.getCredits();
+            }
+        });
+        ```
+
+    - Load history
+
+        ```java
+        Branch.getInstance().getCreditHistory(new BranchListResponseListener() {
+            public void onReceivingResponse(JSONArray list, Branch.BranchError error) {
+                if (error != null) {
+                    Log.i("BRANCH SDK", "Branch load rewards failed. Caused by -" + error.message)
+                } else {
+                    Log.i("BRANCH SDK", list);
+                }
+            }
+        });
+        ```
+
 ## Troubleshoot issues
-- ### Recommendations
+
+- ### Sample testing apps
+
+    - [Branchsters](https://github.com/BranchMetrics/Branch-Example-Deep-Linking-Branchster-Android)
+
+    - [Testbed](https://github.com/BranchMetrics/android-branch-deep-linking/tree/master/Branch-SDK-TestBed)
+
 - ### Simulate an install
-- ### Sample app
-- ### Android instant app
+
+    - Need to bypass the device's hardware_id
+
+        - Set `true` in your `AndroidManifest.xml`
+
+            ```xml
+            <meta-data android:name="io.branch.sdk.TestMode" android:value="true" />
+            ```
+
+        - Do not use `TestMode` in production or in the Google Play Store
+
+    - Uninstall your app from the device
+
+    - Click on any Branch deep link (will navigate to the fallback URL since the app is not installed)
+
+    - Reinstall your app
+
+    - Read deep link data from `MParticle.getInstance().checkForDeepLink()` for `+is_first_session=true`
+
+- ### Track content properties
+
+    - Used for [Track content](#track-content)
+
+        | Key | Value
+        | --- | ---
+        | BNCRegisterViewEvent | User viewed the object
+        | BNCAddToWishlistEvent | User added the object to their wishlist
+        | BNCAddToCartEvent | User added object to cart
+        | BNCPurchaseInitiatedEvent | User started to check out
+        | BNCPurchasedEvent | User purchased the item
+        | BNCShareInitiatedEvent | User started to share the object
+        | BNCShareCompletedEvent | User completed a share
+
+- ### Using bnc.lt or a custom link domain
+
+    - *bnc.lt link domain*
+
+        ```xml
+        <activity android:name="com.yourapp.your_activity">
+            <!-- App Link your activity to Branch links-->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                 <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/LVeu" />
+                 <data android:scheme="https" android:host="bnc.lt" android:pathPrefix="/eVeu" />
+            </intent-filter>
+        </activity>
+        ```
+
+    - *custom link domain*
+
+        ```xml
+        <activity android:name="com.yourapp.your_activity">
+            <!-- App Link your activity to Branch links-->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                 <data android:scheme="https" android:host="your.app.com" android:pathPrefix="/LVeu" />
+                 <data android:scheme="https" android:host="your.app.com" android:pathPrefix="/eVeu" />
+            </intent-filter>
+        </activity>
+        ```
+
+    - Change the following values to match your [Branch Dashboard](https://dashboard.branch.io/settings/link)
+
+        - `/LVeu` (live)
+        - `/eVeu` (test)
+        - `your.app.com`
+        
+- ### Generate signing certificate
+
+    - Used for Android `App Link` deep linking
+
+    - Navigate to your keystore file
+
+    - Run `keytool -list -v -keystore my-release-key.keystore`
+
+    - Will generate a value like `AA:C9:D9:A5:E9:76:3E:51:1B:FB:35:00:06:9B:56:AC:FB:A6:28:CE:F3:D6:65:38:18:E3:9C:63:94:FB:D2:C1`
+
+    - Copy this value to your [Branch Dashboard](https://dashboard.branch.io/link-settings)
+
+- ### Enable multidexing
+
+    - Adding additional dependencies may overrun the dex limit and lead to `NoClassDefFoundError` or `ClassNotFoundException`
+
+    - Add to your `build.gradle`
+
+        ```java
+        defaultConfig {
+            multiDexEnabled true
+        }
+        ```
+
+    - Add to your `Application class` and make sure it extends `MultiDexApplication`
+
+    - *Java*
+
+        ```java
+        @Override
+        protected void attachBaseContext(Context base) {
+            super.attachBaseContext(base);
+            MultiDex.install(this);
+        }
+        ```
+
+    - *Kotlin*
+
+        ```java
+        override fun attachBaseContext(base: Context?) {
+            super.attachBaseContext(base)
+            MultiDex.install(this)
+        }
+        ```
+
+- ### InvalidClassException, ClassLoadingError or VerificationError
+
+    - Often caused by a `Proguard` bug. Try the latest Proguard version or disable Proguard optimization by setting `-dontoptimize`
+
+- ### Proguard warning or errors with AppIndexing module
+
+    - The Branch SDK has an optional dependency on Firebase app indexing classes to provide new Firebase content listing
+        features. This may cause a proguard warning depending on your proguard settings. Please add the following to your
+        proguard file to solve this issue `-dontwarn com.google.firebase.appindexing.**`.
+
+- ### Unable to open this link error
+
+    - Happens whenever URI Scheme redirection fails.
+    - Make sure you do not have `$deeplink_path` or you have a `$deeplink_path` which your `AndroidManifest.xml` can accept
