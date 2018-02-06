@@ -3859,6 +3859,10 @@ You can target a user based on the last touch point before they entered your web
 <p class="admonition-title">Web SDK open app setting</p>
 <p>If you use the open_app setting within the web SDK, this setting will still work for old Journeys (older than 10/25). For all new Journeys, the template setting will take precedence.</p>
 </div>
+<div class="admonition caution">
+<p class="admonition-title">Open app behavior in in-app webviews</p>
+<p>Please avoid using the Branch Web SDK on webpages inside of native webviews. The Branch Web SDK's auto-open can cause unexpected user experiences.</p>
+</div>
 <h4 id="auto-open-the-app-on-ios">Auto-open the app on iOS<a class="headerlink" href="#auto-open-the-app-on-ios" title="Permanent link">&para;</a></h4>
 <p>The auto-open setting in the template editor will work on iOS Chrome and Android. Because auto-open is powered by URI schemes and these can lead to error messages on iOS Safari for users without your app, this is not enabled on iOS by default. </p>
 <p>If you would like the app to open automatically on iOS Safari as well, you'll need to use a setting called <code>$uri_redirect_mode</code>. Since Branch has a massive pool of cookies tied to device identifiers, we know if your app is installed when the user clicks a link. We use this intelligence to determine when to use URI schemes. If we have the history that the user installed your app, we’ll use URI schemes to open up the app. </p>
