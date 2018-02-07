@@ -1213,6 +1213,20 @@
 
 
   <li class="md-nav__item">
+    <a href="../../emails/moengage/" title="MoEngage" class="md-nav__link">
+      MoEngage
+    </a>
+  </li>
+
+          
+        
+          
+            
+            
+            
+
+
+  <li class="md-nav__item">
     <a href="../../emails/postup/" title="PostUp" class="md-nav__link">
       PostUp
     </a>
@@ -1521,20 +1535,6 @@
   <li class="md-nav__item">
     <a href="../../viral/referrals/" title="Referral programs" class="md-nav__link">
       Referral programs
-    </a>
-  </li>
-
-          
-        
-          
-            
-            
-            
-
-
-  <li class="md-nav__item">
-    <a href="../../viral/facebook-app-invites/" title="Facebook App Invites" class="md-nav__link">
-      Facebook App Invites
     </a>
   </li>
 
@@ -2485,153 +2485,28 @@
 </pre></div>
 
 <h3 id="what-branch-sends-to-google-analytics">What Branch Sends to Google Analytics<a class="headerlink" href="#what-branch-sends-to-google-analytics" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Property Name</th>
-<th>Value</th>
-<th>Sourced from</th>
-<th>Example</th>
-<th>Req</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>v</td>
-<td>API version</td>
-<td>[fixed]</td>
-<td>1</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>tid</td>
-<td>Tracking ID</td>
-<td>Branch Dashboard</td>
-<td>UA-XXXXXX-Y</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>ds</td>
-<td>Source (mobile SDK)</td>
-<td>[fixed]</td>
-<td>app</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>an</td>
-<td>Application Name</td>
-<td>[fixed]</td>
-<td>BRANCH-APP</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>t</td>
-<td>Type</td>
-<td>[fixed]</td>
-<td>event</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>ec</td>
-<td>Event Category</td>
-<td>[fixed]</td>
-<td>BranchEvent</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>cid</td>
-<td>Client ID</td>
-<td>(discussed above, includes $google_analytics_client_id)</td>
-<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>uid</td>
-<td>User Id</td>
-<td>$google_analytics_user_id</td>
-<td>User A</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>cn</td>
-<td>Campaign Name</td>
-<td>utm_campaign -or- Branch campaign</td>
-<td>"Beaches and breezes"</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>cs</td>
-<td>Campaign Source</td>
-<td>utm_source -or- Branch channel</td>
-<td>"Twitter"</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>cm</td>
-<td>Campaign Medium</td>
-<td>utm_medium -or- Branch feature</td>
-<td>"480banner"</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>ck</td>
-<td>Campaign Keywords</td>
-<td>utm_term -or- Branch $keywords</td>
-<td>["Keyword1", "keyword3"]</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>cc</td>
-<td>Campaign Content</td>
-<td>utm_content -or- Branch tags</td>
-<td>"Some content"</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>ea</td>
-<td>Event Action (Name)</td>
-<td>event name</td>
-<td>install</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>uip</td>
-<td>User’s IP Address</td>
-<td>collected by Branch SDK</td>
-<td>111.111.111.111</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>z</td>
-<td>Cache buster</td>
-<td>[unix time + random number]</td>
-<td>1461878903666</td>
-<td>N</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>| Property Name | Value | Sourced from | Example | Req
+| --- | --- | --- | --- | --- | ---
+| v | API version | [fixed] | 1 | Y
+| tid | Tracking ID | Branch Dashboard | UA-XXXXXX-Y | Y
+| ds | Source (mobile SDK) | [fixed] | app | Y
+| an | Application Name | [fixed] | BRANCH-APP | Y
+| t | Type | [fixed] | event | Y
+| ec | Event Category | [fixed] | BranchEvent | Y
+| cid | Client ID | (discussed above, includes $google_analytics_client_id) | AEBE52E7-03EE-455A-B3C4-E57283966239 | Y
+| uid | User Id | $google_analytics_user_id | User A | N
+| cn | Campaign Name | utm_campaign -or- Branch campaign  | "Beaches and breezes" | N
+| cs | Campaign Source | utm_source -or- Branch channel | "Twitter" | N
+| cm | Campaign Medium | utm_medium -or- Branch feature  | "480banner" | N
+| ck | Campaign Keywords | utm_term -or- Branch $keywords | ["Keyword1", "keyword3"] | N
+| cc | Campaign Content | utm_content -or- Branch tags | "Some content" | N
+| ea | Event Action (Name) | event name | install | Y
+| uip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
+| z | Cache buster | [unix time + random number] | 1461878903666 | N</p>
 <div class="admonition protip">
-<p class="admonition-title">anonymous</p>
+<p class="admonition-title">anonymous" Client ID</p>
+<p>If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a <code>$google_analytics_client_id</code>, then Branch will send <code>anonymous</code> as the Client ID (<code>cid</code>). This is a required field by Google Analytics.</p>
 </div>
-<p>Client ID"
-    If for some reason Branch does not receive an advertising identifier or hardware identifier, and you do not explicitly specify a <code>$google_analytics_client_id</code>, then Branch will send <code>anonymous</code> as the Client ID (<code>cid</code>). This is a required field by Google Analytics.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="very-short-or-nonexistent-session-lengths">Very short or nonexistent session lengths<a class="headerlink" href="#very-short-or-nonexistent-session-lengths" title="Permanent link">&para;</a></h3>
 <p>Google Analytics will automatically start a session when Branch sends over installs and opens. Because of this, you should remove any code that creates a new session when your application starts up. For example, on iOS, you may be firing an event with the following:</p>

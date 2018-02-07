@@ -1190,40 +1190,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#options-for-generating-branch-links-for-email" title="Options for generating Branch links for email" class="md-nav__link">
-    Options for generating Branch links for email
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#making-regular-branch-links-compatible-with-email" title="Making regular Branch links compatible with email" class="md-nav__link">
-    Making regular Branch links compatible with email
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-email-links-via-api-without-changing-your-email-templates" title="Create email links via API without changing your email templates" class="md-nav__link">
-    Create email links via API without changing your email templates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-all-web-links-in-your-email-to-deep-links" title="Convert all web links in your email to deep links" class="md-nav__link">
-    Convert all web links in your email to deep links
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#flag-your-deep-links" title="Flag your deep links" class="md-nav__link">
     Flag your deep links
   </a>
@@ -1365,6 +1331,20 @@
   <li class="md-nav__item">
     <a href="../mandrill/" title="Mandrill" class="md-nav__link">
       Mandrill
+    </a>
+  </li>
+
+          
+        
+          
+            
+            
+            
+
+
+  <li class="md-nav__item">
+    <a href="../moengage/" title="MoEngage" class="md-nav__link">
+      MoEngage
     </a>
   </li>
 
@@ -1685,20 +1665,6 @@
   <li class="md-nav__item">
     <a href="../../viral/referrals/" title="Referral programs" class="md-nav__link">
       Referral programs
-    </a>
-  </li>
-
-          
-        
-          
-            
-            
-            
-
-
-  <li class="md-nav__item">
-    <a href="../../viral/facebook-app-invites/" title="Facebook App Invites" class="md-nav__link">
-      Facebook App Invites
     </a>
   </li>
 
@@ -2347,40 +2313,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#options-for-generating-branch-links-for-email" title="Options for generating Branch links for email" class="md-nav__link">
-    Options for generating Branch links for email
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#making-regular-branch-links-compatible-with-email" title="Making regular Branch links compatible with email" class="md-nav__link">
-    Making regular Branch links compatible with email
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-email-links-via-api-without-changing-your-email-templates" title="Create email links via API without changing your email templates" class="md-nav__link">
-    Create email links via API without changing your email templates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-all-web-links-in-your-email-to-deep-links" title="Convert all web links in your email to deep links" class="md-nav__link">
-    Convert all web links in your email to deep links
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#flag-your-deep-links" title="Flag your deep links" class="md-nav__link">
     Flag your deep links
   </a>
@@ -2471,61 +2403,26 @@
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>Once you’ve completed the <a href="#setup">one time setup steps</a>, it’s time to send your first email.</p>
 <p>This guide will identify which web links you'd like to open the app and deep link, as well as convert them to Branch links.</p>
-<h3 id="options-for-generating-branch-links-for-email">Options for generating Branch links for email<a class="headerlink" href="#options-for-generating-branch-links-for-email" title="Permanent link">&para;</a></h3>
-<p>There are a few different ways you can create Branch links that are compatible with Deep Linked Email and your ESP. You will need to replace the web URLs in your templates with these. To create Branch links, you can either:</p>
-<ol>
-<li><a href="#making-regular-branch-links-compatible-with-email">Making regular Branch links compatible with email</a></li>
-<li><a href="#create-email-links-via-api-without-changing-your-email-templates">Create email links via API without changing your email templates</a></li>
-<li><a href="#convert-all-web-links-in-your-email-to-deep-links">Convert all web links in your email to deep links</a></li>
-</ol>
-<p><strong>Appboy uses the shortcode <code>e_ab</code> for links in emails</strong> - please use this in place of <code>e_xx</code> in the guide below.</p>
-<h4 id="making-regular-branch-links-compatible-with-email">Making regular Branch links compatible with email<a class="headerlink" href="#making-regular-branch-links-compatible-with-email" title="Permanent link">&para;</a></h4>
-<p>Be sure to add <code>"$3p":"e_xx"</code> to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.</p>
-<h4 id="create-email-links-via-api-without-changing-your-email-templates">Create email links via API without changing your email templates<a class="headerlink" href="#create-email-links-via-api-without-changing-your-email-templates" title="Permanent link">&para;</a></h4>
-<p>To create email links via API, please use the instructions on how to <a href="../../../pages/apps/api/#link-create">create links via API</a>, but include the following key value pairs in your call:</p>
-<ol>
-<li><code>"$3p":"e_xx"</code> This is required for Universal Link and click tracking functionality.</li>
-<li><code>"$original_url":"{{your web url URI encoded}}"</code> For each piece of content, include a URI encoded version of your content's web URL. You can also add deep link data as query parameters on that web URL. This ensures accurate Content Analytics reporting. 
-   <strong>Example:</strong> <code>"$original_url":"https%3A%2F%2Fshop.com%2Fshoes%2Fbrown-shoes%3Fmy_key%3Dmy_value%26campaign%3Dshoe_discounts"</code></li>
-</ol>
-<h4 id="convert-all-web-links-in-your-email-to-deep-links">Convert all web links in your email to deep links<a class="headerlink" href="#convert-all-web-links-in-your-email-to-deep-links" title="Permanent link">&para;</a></h4>
-<p>We have provided a way of easily converting web links to Branch links, as well as <a href="https://gist.github.com/derrickstaten/f9b1e72e506f79628ab9127dd114dd83#file-sendgrid-demo-js">an example</a>. The example takes an html email (as a string) and applies the script to it.</p>
-<p>Here is the script:</p>
-<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;crypto&#39;</span><span class="p">);</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">original_url</span><span class="p">,</span> <span class="nx">branch_base_url</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">original_url</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Missing original_url&#39;</span><span class="p">);</span> <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">original_url</span> <span class="o">!=</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid original_url&#39;</span><span class="p">);</span> <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">branch_base_url</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Missing branch_base_url, should be similar to https://bnc.lt/abcd/3p?%243p=e_xx&#39;</span><span class="p">);</span> <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">branch_base_url</span> <span class="o">!=</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid branch_base_url&#39;</span><span class="p">);</span> <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nx">branch_base_url</span> <span class="o">+</span> <span class="s1">&#39;&amp;%24original_url=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">original_url</span><span class="p">);</span>
-<span class="p">};</span>
-</pre></div>
-
-<p>Here is how links look before and after (the latter being a Branch deep link).</p>
-<ol>
-<li><em>Before:</em> <a href="http://example.com/?foo=bar">http://example.com/?foo=bar</a></li>
-<li><em>After:</em> <a href="https://vza3.app.link/3p?%243p=e_xx&amp;%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar">https://vza3.app.link/3p?%243p=e_xx&amp;%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar</a></li>
-</ol>
-<p><strong>Note</strong> that these are simplified examples, not actual demo links.</p>
 <h3 id="flag-your-deep-links">Flag your deep links<a class="headerlink" href="#flag-your-deep-links" title="Permanent link">&para;</a></h3>
-<p>To use Branch links within your Braze campaigns, you’ll need to add an HTML tag to the Branch URLs within your Braze email templates.</p>
-<ol>
-<li>Create your email template same as you normally would.</li>
-<li>Add Branch links to your email for all links you would like to deep link users to specific app content (this works for existing app users as well as those without your app). Be sure to add <code>"$3p":"e_ab"</code> to the deep link data of any links you use in email to ensure Universal Link and click tracking works as expected.</li>
-<li>
-<p>Once you’re done composing your email template, click on the “Source” button in the email creator toolbar.</p>
-<p><img alt="image" src="../../../img/pages/email/appboy/appboy-source.png" /></p>
-</li>
-<li>
-<p>Add universal="true" to the HTML for any link which you want to convert intoa Branch deep link, for example:</p>
-<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;links.example.com&quot;</span> <span class="na">universal</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>Link to your app!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<p>In order for your email service provider to know that the email link should open the app, add <code>universal="true"</code> to the HTML, for example:</p>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://example.com&quot;</span> <span class="na">universal</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>Link to your app!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 
-<p><img alt="image" src="../../../img/pages/email/appboy/appboy-universal.png" /></p>
-</li>
-</ol>
-<p>All done! So long as you’ve taken the above steps, the links in your Braze email campaigns will now dynamically deep link users to app content, even if they have uninstalled your app, giving you the best chance of engaging or re-acquiring them.</p>
+<p>This will also ensure that your links are converted to Branch links that will open the app on Android as well, with full tracking and attribution.</p>
+<div class="admonition protip">
+<p class="admonition-title">What happens to your links behind the scenes?</p>
+<p>This is what a link looks like within your email template:</p>
+<div class="codehilite"><pre><span></span>http://example.com/?foo=bar
+</pre></div>
+
+<p>When a user clicks your link, Branch processes the link and converts it to something like this:</p>
+<div class="codehilite"><pre><span></span>https://vza3.app.link/3p?%243p=e_xx<span class="err">&amp;</span>%24original_url=http%3A%2F%2Fexample.com%2F%3Ffoo%3Dbar
+</pre></div>
+
+<p>Where <code>vza3.app.link</code> is your Branch domain.</p>
+</div>
+<p>The conversion to Branch links will only work when your links are wrapped in your click tracking domain. To test links without wrapping, please generate a test link on step 3 of email onboarding, also accessible by clicking the gear icon for your ESP on the <a href="https://dashboard.branch.io/email" target="_blank">email page</a>.</p>
+<p><img alt="image" src="../../../img/pages/email/test-link.png" /></p>
 <h2 id="more-information">More information<a class="headerlink" href="#more-information" title="Permanent link">&para;</a></h2>
 <p>Curious about how email works and more FAQ? <strong>Visit our general <a href="../../../pages/emails/support">email support</a> page</strong>.</p>
                 
