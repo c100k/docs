@@ -2466,108 +2466,19 @@
 <p>Please ensure you're using the Branch iOS SDK 0.12.2 or greater, and Android SDK v1.12.1 or greater. If you implemented Branch after May 28th 2016, you are likely already on this version or later.</p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="what-branch-sends-to-amplitude">What Branch Sends to Amplitude<a class="headerlink" href="#what-branch-sends-to-amplitude" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Property Name</th>
-<th>Value</th>
-<th>Sourced from</th>
-<th>Example</th>
-<th>Req</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>api_key</td>
-<td>API Key</td>
-<td>Branch Dashboard</td>
-<td>70d1db75922b0b4be56b819c42bxxxxx</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>event_type</td>
-<td>Branch event</td>
-<td>event name</td>
-<td>[Branch] install</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>platform</td>
-<td><code>ios</code> or <code>android</code></td>
-<td>collected by Branch SDK</td>
-<td>ios</td>
-<td>Y</td>
-<td></td>
-</tr>
-<tr>
-<td>idfa</td>
-<td>IDFA</td>
-<td>collected by Branch SDK</td>
-<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
-<td>*</td>
-<td></td>
-</tr>
-<tr>
-<td>idfv</td>
-<td>IDFV</td>
-<td>collected by Branch SDK</td>
-<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
-<td>*</td>
-<td></td>
-</tr>
-<tr>
-<td>android_id</td>
-<td>Android ID</td>
-<td>collected by Branch SDK</td>
-<td>f07a13984f6d116a</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>adid</td>
-<td>GAID</td>
-<td>collected by Branch SDK</td>
-<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
-<td>*</td>
-<td></td>
-</tr>
-<tr>
-<td>device_id</td>
-<td>Unique ID for device</td>
-<td>$amplitude_device_id</td>
-<td>AEBE52E7-03EE-455A-B3C4-E57283966239</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>user_id</td>
-<td>Unique ID for user</td>
-<td>$amplitude_user_id</td>
-<td>User A</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>ip</td>
-<td>User’s IP Address</td>
-<td>collected by Branch SDK</td>
-<td>111.111.111.111</td>
-<td>N</td>
-<td></td>
-</tr>
-<tr>
-<td>event_properties.ANY-KEY (many)</td>
-<td>The value associated with the key</td>
-<td>event metadata or referring link data</td>
-<td>~channel: facebook</td>
-<td>N</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>| Property Name | Value | Sourced from | Example | Req
+| --- | --- | --- | --- | --- | ---
+| api_key | API Key | Branch Dashboard | 70d1db75922b0b4be56b819c42bxxxxx | Y
+| event_type | Branch event | event name | [Branch] install | Y
+| platform | <code>ios</code> or <code>android</code> | collected by Branch SDK | ios | Y
+| idfa | IDFA | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| idfv | IDFV | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| android_id | Android ID | collected by Branch SDK | f07a13984f6d116a | N
+| adid | GAID | collected by Branch SDK | AEBE52E7-03EE-455A-B3C4-E57283966239 | *
+| device_id | Unique ID for device | $amplitude_device_id | AEBE52E7-03EE-455A-B3C4-E57283966239 | N
+| user_id | Unique ID for user | $amplitude_user_id | User A | N
+| ip | User’s IP Address | collected by Branch SDK | 111.111.111.111 | N
+| event_properties.ANY-KEY (many) | The value associated with the key | event metadata or referring link data | ~channel: facebook | N</p>
 <ul>
 <li>On iOS, <code>idfa</code> or <code>idfv</code> is required. On Android, <code>adid</code> is required.</li>
 </ul>

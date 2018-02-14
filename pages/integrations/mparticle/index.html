@@ -2449,92 +2449,17 @@
 <p>You can find additional information about the Branch and mParticle integration in the mParticle documentation.</p>
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h3 id="what-branch-sends-to-mparticle">What Branch Sends to mParticle<a class="headerlink" href="#what-branch-sends-to-mparticle" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Property Name</th>
-<th>Value</th>
-<th>Sourced from</th>
-<th>Example</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>event_name</td>
-<td>"attribution"</td>
-<td><em>hardcoded</em></td>
-<td>"attribution"</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>custom_event_type</td>
-<td>"attribution"</td>
-<td><em>hardcoded</em></td>
-<td>"attribution"</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>event_id</td>
-<td>Unique ID for the event</td>
-<td>Branch install event ID</td>
-<td>469939270182891107</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>custom_attributes</td>
-<td>Branch Link Data Dictionary</td>
-<td>Last Attributed Touch Data for the link to which the install was attributed</td>
-<td>"campaign": "mParticle test", "channel": "Slack"</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>timestamp_unixtime_ms</td>
-<td>timestamp of the event in ms</td>
-<td>event</td>
-<td>1513280479654</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>device_info</td>
-<td>Device Data, like OS Version and country</td>
-<td>Branch User Data for the device</td>
-<td>"os_version": "10.0","device_country": "US"</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>user_identities</td>
-<td>mParticle customer ID (mostly empty)</td>
-<td>mParticle customer ID for the user</td>
-<td><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#121;&#117;&#115;&#101;&#114;&#64;&#117;&#115;&#101;&#114;&#46;&#99;&#111;&#109;">&#109;&#121;&#117;&#115;&#101;&#114;&#64;&#117;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>application_info</td>
-<td>App information like package name</td>
-<td>Branch SDK/App Details</td>
-<td>"application_name": "Branch-3rdParty-SDK-Testbed","application_version": "1.2.0"</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>IP</td>
-<td>IP of the event</td>
-<td>Device</td>
-<td>192.82.115.928</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>| Property Name | Value | Sourced from | Example
+| --- | --- | --- | --- | --- | ---
+| event_name | "attribution" | <em>hardcoded</em> | "attribution"
+| custom_event_type | "attribution" | <em>hardcoded</em> | "attribution"
+| event_id | Unique ID for the event | Branch install event ID | 469939270182891107
+| custom_attributes | Branch Link Data Dictionary | Last Attributed Touch Data for the link to which the install was attributed | "campaign": "mParticle test", "channel": "Slack"
+| timestamp_unixtime_ms | timestamp of the event in ms | event | 1513280479654
+| device_info | Device Data, like OS Version and country | Branch User Data for the device | "os_version": "10.0","device_country": "US"
+| user_identities | mParticle customer ID (mostly empty) | mParticle customer ID for the user | <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#121;&#117;&#115;&#101;&#114;&#64;&#117;&#115;&#101;&#114;&#46;&#99;&#111;&#109;">&#109;&#121;&#117;&#115;&#101;&#114;&#64;&#117;&#115;&#101;&#114;&#46;&#99;&#111;&#109;</a>
+| application_info | App information like package name | Branch SDK/App Details | "application_name": "Branch-3rdParty-SDK-Testbed","application_version": "1.2.0"
+| IP | IP of the event | Device | 192.82.115.928</p>
 <h2 id="testing-your-integration">Testing your integration<a class="headerlink" href="#testing-your-integration" title="Permanent link">&para;</a></h2>
 <p>To see the data being passed to mParticle in more detail, you can set up a webhook to Requestbin. This will allow you to send only a subset of your Branch events to Requestbin and verify the data is coming through as expected. </p>
 <ol>

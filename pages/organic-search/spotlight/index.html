@@ -2489,21 +2489,27 @@
 <li>
 <p>Index single Branch Universal Object</p>
 <ul>
-<li><em>Swift 3</em>
+<li>
+<p><em>Swift 3</em>
     <div class="codehilite"><pre><span></span><span class="n">universalObject</span><span class="p">.</span><span class="n">listOnSpotlight</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">linkProperty</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
         <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Successfully indexed on spotlight&quot;</span><span class="p">)</span>     
      <span class="p">}</span>
 <span class="p">}</span>
-</pre></div></li>
-</ul>
+</pre></div></p>
+</li>
+<li>
+<p><em>Objective-C</em>
+    <div class="codehilite"><pre><span></span><span class="p">[</span><span class="n">universalObject</span> <span class="nl">listOnSpotlightWithLinkProperties</span><span class="p">:</span><span class="n">linkProperties</span> <span class="nl">callback</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">url</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Successfully indexed on spotlight&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+!!! note: "Content would be index using NSUserActivity if contentIndexMode of BranchUniversalObject is Public, else would be index using CSSearchableIndex"</p>
 </li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-</div>
-<p>"Content would be index using NSUserActivity if contentIndexMode of BranchUniversalObject is Public, else would be index using CSSearchableIndex"</p>
-<ul>
+</li>
 <li>
 <p>Index batch of Branch Universal Objects on Spotlight using CSSearchableIndex</p>
 <ul>
