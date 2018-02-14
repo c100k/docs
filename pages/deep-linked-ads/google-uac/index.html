@@ -2106,68 +2106,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-old-adwords-ui" title="Setup (Old AdWords UI)" class="md-nav__link">
-    Setup (Old AdWords UI)
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enable-google-as-an-ad-partner" title="Enable Google as an ad partner" class="md-nav__link">
-    Enable Google as an ad partner
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enable-adwords-conversions" title="Enable Adwords Conversions" class="md-nav__link">
-    Enable Adwords Conversions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-an-ad-link" title="Create an Ad Link" class="md-nav__link">
-    Create an Ad Link
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-an-ad" title="Configure an Ad" class="md-nav__link">
-    Configure an Ad
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-your-campaign" title="Create Your Campaign" class="md-nav__link">
-    Create Your Campaign
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-branch-link" title="Setup the Branch Link" class="md-nav__link">
-    Setup the Branch Link
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#view-your-data" title="View Your Data" class="md-nav__link">
-    View Your Data
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#setup-new-adwords-ui" title="Setup (New AdWords UI)" class="md-nav__link">
     Setup (New AdWords UI)
   </a>
@@ -2178,6 +2116,13 @@
           <li class="md-nav__item">
   <a href="#data" title="Data" class="md-nav__link">
     Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events" title="Events" class="md-nav__link">
+    Events
   </a>
   
 </li>
@@ -2238,109 +2183,14 @@
                 
                 <h1 id="google-universal-app-campaigns">Google Universal App Campaigns<a class="headerlink" href="#google-universal-app-campaigns" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>If you're running Universal App Campaigns, Branch links can be placed inside your ads. This allows you to track ad-driven installs across Android and iOS on the Branch dashboard and deep link those new users directly to content the first time they open your app.</p>
-<p>Branch uses Google Adwords' server to server <a href="https://developers.google.com/app-conversion-tracking/api/legacy/confirm">App Conversion Confirmation</a> for attribution data which reports on conversion events. Therefore, we only collect <strong>install (conversion) data</strong>. Click data is not supported for this campaign type.</p>
+<p>If you're running Universal App Campaigns, Branch can track attributions from Google and send across events.</p>
+<p>Branch uses Google Adwords' server to server <a href="https://developers.google.com/app-conversion-tracking/api/">App Conversion Confirmation</a> for attribution data which reports on conversion events. Therefore, we only collect <strong>install (conversion) data</strong>. Click data is not supported for this campaign type.</p>
 <div class="admonition warning">
-<p class="admonition-title">Two different Setup Methods</p>
-<p>AdWords has rolled out a new user interface and functionality. If you are on the new experience, please go to the Setup steps for the new AdWords UI.</p>
-</div>
-<h2 id="setup-old-adwords-ui">Setup (Old AdWords UI)<a class="headerlink" href="#setup-old-adwords-ui" title="Permanent link">&para;</a></h2>
-<p>Universal App Campaigns don’t use traditional ads and ad groups. Instead different types of ad units are automatically created by Google using information given at the campaign level. There are no destination URLs, you will just use your Apple App Store or Google Play Store Applications.</p>
-<div class="admonition warning">
-<p class="admonition-title">Prerequisites</p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled checked> To track installs from Google Ads you should integrate the Branch SDK into your app.</li>
-<li class="task-list-item"><input type="checkbox" disabled checked> If you want to deep link from your ads directly to content, you should configure deep link routing.</li>
-<li class="task-list-item"><input type="checkbox" disabled checked> Ads is a premium product priced on Monthly Active Users. Sign up for the Ads product to enable this functionality.</li>
-</ul>
-</div>
-<h4 id="enable-google-as-an-ad-partner">Enable Google as an ad partner<a class="headerlink" href="#enable-google-as-an-ad-partner" title="Permanent link">&para;</a></h4>
-<p>Set up Google as an Ad Partner and conversion tracking from Adwords on the Branch dashboard. If you already have Google enabled as an ad partner, follow the conversion tracking steps to ensure the conversion ID and label parameters are setup.</p>
-<ul>
-<li>Navigate to the <a href="https://dashboard.branch.io/ads/partner-management" target="_blank">Partner Management tab</a>.</li>
-</ul>
-<p><img alt="Ads Partner Management" src="../../../img/ingredients/deep-linked-ads/enable-google-ad-partner/ads-partner-management.png" /></p>
-<ul>
-<li>Search for <strong>Google AdWords</strong>.</li>
-</ul>
-<p><img alt="Find Google Adwords in Partner Manager" src="../../../img/ingredients/deep-linked-ads/enable-google-ad-partner/find-google-partner.png" /></p>
-<ul>
-<li>We will now fill in the conversion ID and Label fields.</li>
-</ul>
-<h4 id="enable-adwords-conversions">Enable Adwords Conversions<a class="headerlink" href="#enable-adwords-conversions" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Go to your <a href="https://adwords.google.com/cm/CampaignMgmt" target="_blank">Adwords dashboard</a>.</li>
-<li>In the top nav bar, click into <code>Tools</code> &gt; <code>Conversions</code>.</li>
-<li>Click <code>+ Add a Conversion</code> button.</li>
-<li>Select <code>App</code> from the cards.</li>
-<li>Select <code>First opens and in-app actions</code>.</li>
-<li>Select the appropriate platform (iOS or Android).</li>
-<li>Select <code>App installs (first-open)</code>.
-<img src="/img/pages/deep-linked-ads/google-uac/adwords-app-conversion-card.png" alt="Conversion IDs" class="three-quarters center"></li>
-<li>Now fill out the conversion action page:</li>
-<li>Give it a name like <code>Branch Android/iOS Conversion</code></li>
-<li>Under <code>Value</code> assign a value (or select “Don’t assign a value to this install”)</li>
-<li>Under <code>Mobile app</code> input your application details</li>
-<li>Select <code>Include in "Conversions"</code> to have the conversion events appear in your Adwords columns</li>
-<li>Click <code>Save and continue</code>.</li>
-<li>Select the option to have a server report conversions: <code>Set up a server-to-server conversion feed...</code>.</li>
-<li>Note your <code>Conversion ID</code> &amp; <code>Conversion label</code> as shown in the screenshot below.
-<img alt="Conversion IDs" src="../../../img/pages/deep-linked-ads/google-uac/adwords-conversions.png" /></li>
-<li>Head to the <a href="https://dashboard.branch.io/ads/partner-management/a_google_adwords?tab=settings" target="_blank">Branch Dashboard Adwords Settings</a>.</li>
-<li>Paste in the <code>Conversion ID</code> and <code>Conversion label</code> from your Adwords dashboard into the appropriate fields for either iOS or Android</li>
-<li>Click the <code>Save and Enable</code> button in the lower right hand corner.
-<img alt="Save and Enable Google Adwords in Partner Manager" src="../../../img/ingredients/deep-linked-ads/enable-google-ad-partner/save-and-enable-google.png" /></li>
-<li>Google AdWords is now enabled as an ad partner.</li>
-<li>Click <code>Done</code> in your Adwords dashboard.</li>
-<li>Finally, to create a Google ads link click the <code>Create Google AdWords</code> Link in the top right hand corner.
-<img alt="Create Google Adwords Link" src="../../../img/ingredients/deep-linked-ads/enable-google-ad-partner/create-google-link.png" /></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Universal App Campaigns for both Android &amp; iOS</p>
-<p>If you're running a Universal App Campaign for both iOS and Android, all four fields under your Adwords Partner Settings should be populated, even if you have the same conversion ID and Label for iOS and Android. If you want to stop running Universal App Campaign reporting for a platform, just remove the two fields for that platform.</p>
-</div>
-<h4 id="create-an-ad-link">Create an Ad Link<a class="headerlink" href="#create-an-ad-link" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Create a Branch Ad link from the <a href="https://dashboard.branch.io/ads/partner-management" target="_blank">Partner Management page</a>'s <code>Create Google Adwords Link</code> button under the Google Adwords Partner and select <code>App Install or Engagement</code>
-<img src="/img/pages/deep-linked-ads/reusable-images/create-link-install-engagement.png" alt="Link Creation" class="three-quarters center"></li>
-<li>Under the Define Section, pick a Link Name for later reference</li>
-<li>Configure the link with the Ad Format set to <strong>App Only</strong>, the Ad Partner set to <strong>Google Adwords</strong>, and the Secondary Ad Format set to <strong>Universal App Campaign iOS/Android</strong>.
-<img alt="Create Ad Link" src="../../../img/pages/deep-linked-ads/google-uac/ad-link-setup.png" /></li>
-<li>Under the Analytics Tags sub section additional tags can be set. It is recommended to fill in these fields as they can be used as filters in Branch's Ads Analytics view. To best connect your ad link with your Adwords Campaign, set the channel field to Google Adwords and set the campaign field to the same ad campaign name used in Adwords.
-<img alt="Analytics Tags" src="../../../img/pages/deep-linked-ads/reusable-images/adwords-analytics-tags.png" /></li>
-</ol>
-<h4 id="configure-an-ad">Configure an Ad<a class="headerlink" href="#configure-an-ad" title="Permanent link">&para;</a></h4>
-<p>To setup a Universal App Campaign we will place our unique Branch Ad link into a Adwords Conversion Postback setting. Adwords campaign documentation is available <strong><a href="https://support.google.com/adwords/answer/6247380?hl=en" target="_blank">here</a></strong>.</p>
-<h4 id="create-your-campaign">Create Your Campaign<a class="headerlink" href="#create-your-campaign" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Select <code>Universal app campaign</code> on Adwords
-<img src="/img/pages/deep-linked-ads/reusable-images/adwords-uac-network.png" alt="Adwords Network" class="half center"></li>
-<li>Complete setting up the campaign completely with your desired app to promote</li>
-</ol>
-<h4 id="setup-the-branch-link">Setup the Branch Link<a class="headerlink" href="#setup-the-branch-link" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Copy the generated Branch Ad link from the last section which should be in the general form shown below (there are slight differences between iOS/Android). Ensure that the <code>link-identifier</code> param of the link has a unique id filled in.
-<img alt="Adwords Network" src="../../../img/pages/deep-linked-ads/google-uac/full-branch-link.png" /></li>
-<li>Go to your <a href="https://adwords.google.com/cm/CampaignMgmt" target="_blank">Adwords dashboard</a>.</li>
-<li>In the top nav bar, click into <code>Tools</code> &gt; <code>Conversions</code>.</li>
-<li>Locate the Conversion that was setup in the previous section.</li>
-<li>Click <code>Edit Settings</code> and locate the <strong>Postback URL</strong> field.</li>
-<li>Copy and paste the generated Branch link into the Postback URL field and save the changes to the Conversion.</li>
-</ol>
-<p><img alt="Example Adwords Config" src="../../../img/pages/deep-linked-ads/google-uac/postback-setup.png" /></p>
-<p>The setup to measure your Universal App Campaign is complete and Adwords will send Branch information on conversions from ads in your Campaign!</p>
-<h3 id="view-your-data">View Your Data<a class="headerlink" href="#view-your-data" title="Permanent link">&para;</a></h3>
-<p>The <a href="https://dashboard.branch.io/ads/analytics" target="_blank">Ads Analytics Page</a> on the Branch dashboard provides an interactive time series graph and table to view the performance of your Ad campaigns.</p>
-<p><img alt="Example Ads Analytics Graph" src="../../../img/ingredients/deep-linked-ads/view-ad-link-data/analytics-graph.png" /></p>
-<p>The table shows summary data on the performance of each Ad campaign. On the right top side of the table you can find a <strong>download button</strong> to retrieve the chart's content as a CSV file.</p>
-<p><img alt="Example Ads Table" src="../../../img/ingredients/deep-linked-ads/view-ad-link-data/analytics-table.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Interacting with your data</p>
-<p>Breakdown and compare aspects of your Ad campaigns' performance by using the <code>Compare by +</code> button to add a parameter to split the data displayed data by.</p>
-<p>Then use the <code>and +</code> button to refine the data displayed to gain deeper insight into the performance of your Ad campaigns.</p>
+<p class="admonition-title">New AdWords UI</p>
+<p>AdWords has rolled out a new user interface and functionality. If you are on the old AdWords experience, please switch to the new experience.</p>
 </div>
 <h2 id="setup-new-adwords-ui">Setup (New AdWords UI)<a class="headerlink" href="#setup-new-adwords-ui" title="Permanent link">&para;</a></h2>
-<p>Follow the instructions list <a href="../../../pages/deep-linked-ads/google-ads-overview/#latest-method-oauth-method">here</a>. Once this is complete, you can run Universal App Campaigns using the new interface.</p>
+<p>Follow the instructions list <a href="../../../pages/deep-linked-ads/google-ads-overview/#oauth">here</a>. Once this is complete, you can run Universal App Campaigns using the new interface.</p>
 <div class="admonition warning">
 <p class="admonition-title">Deep linking not supported with new integration</p>
 <p>Unfortunately, because the new integration with Univeral App Campaigns is truly linkless, Branch cannot support deep linking from this campaign style.</p>
@@ -2383,6 +2233,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
+<p>Branch currently supports the ability to send installs, opens, and purchases. In the near future, we will support the ability to send all custom events tracked through the Branch SDK. </p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h4 id="faq-debugging">FAQ / Debugging<a class="headerlink" href="#faq-debugging" title="Permanent link">&para;</a></h4>
 <p><strong>Q: I'm not seeing any click data for my campaign.</strong></p>
@@ -2401,8 +2253,6 @@
 <p><strong>A:</strong> One discrepancy root cause we've seen before is the scenario where Branch will classify an install as an 'open'. We remember the history of a particular user via their IDFA (in addition to using a few other methods) and will detect whether the user is actually a new user or a returning user who had previously uninstalled your app. Facebook doesn't do this.</p>
 <p>We've seen Google classify 're-installs' as fresh installs, where Branch will correctly classify them as 're-opens'. If you're comparing the raw install numbers on Branch, and ignoring the 're-opens', it's possible you'll see a discrepancy. To check sum up the 'installs' and 'reopens' for the given link and compare it to Google's total installs.</p>
 <p>If it's close, you know that this is the root cause.</p>
-<p><strong>Q: Fewer Clicks Recorded in Branch</strong></p>
-<p><strong>A:</strong> The number of clicks on a link used inside of a Branch enabled Facebook Ad will be lower in Branch's dashboard than Google's. This is because Google routes users straight to the App/Play Store without letting Branch know that a link was clicked. If the user decides not to install the app/drops off at the App/Play Store, then Google will have recorded one more click than Branch. Branch does not increment the link's click count until the user enters into the app. This is why you'll see more clicks in Google's dashboard.</p>
                 
                   
                     <h2 id="__source">Source</h2>
