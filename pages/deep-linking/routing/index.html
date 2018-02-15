@@ -2680,7 +2680,7 @@
 <p><a href="../../../pages/deep-linking/universal-links/">Universal Links</a> and <a href="../../../pages/organic-search/spotlight/">Spotlight</a> do not support deep linking via URI paths. If you use <code>$deeplink_path</code> or <code>$ios_deeplink_path</code>, you will need to implement some custom logic. <a href="#how-to-handle-uri-paths-with-universal-links">Click here for more information</a>.</p>
 </div>
 <h3 id="how-to-insert-custom-deep-link-routes-into-a-branch-link">How to insert custom deep link routes into a Branch link<a class="headerlink" href="#how-to-insert-custom-deep-link-routes-into-a-branch-link" title="Permanent link">&para;</a></h3>
-<p>All of the examples below create links that will cause Branch to display <code>myapp://content/1234</code> after launch.</p>
+<p>All of the examples below create links that will cause Branch to display <code>myapp://content/1234</code> after launch. Please don’t include the URI scheme on the <code>$deeplink_path</code> parameters, we automatically append the scheme specified in the Link Settings of dashboard.</p>
 <div class="admonition example">
 <p class="admonition-title">When creating links dynamically</p>
 <p>If you're creating a link by appending query parameters, just append the control parameters to the URL. Please make sure to URL encode everything, lest the link will break.</p>
