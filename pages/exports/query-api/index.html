@@ -2279,6 +2279,11 @@
 <p class="admonition-title">Getting started</p>
 <p>For newcomers to this API, we strongly suggest you check out our <a href="../query-recipe-book/">Query Recipe Book</a>. It has screenshots of Dashboard visualizations, accompanied by what queries you need to make to pull the same data. It's a quick way to get up and running with this API.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Date format recently changed</p>
+<p>The date format recently changed. You are no longer required or allowed to specify a time as part of <code>start_date</code> and <code>end_date</code>. Instead, we use the timezone associated with your app. Visit the <a href="https://dashboard.branch.io/account-settings/app">Account Settings</a> to see your timezone.</p>
+<p>Example change: instead of sending <code>2017-11-29T08:00:00.000Z</code>, send <code>2017-11-29</code>.</p>
+</div>
 <p>An HTTP API usable for programmatically querying pre-aggregated analytics. It can be used to fetch any of the same information displayed on nearly any the Branch dashboard, without accessing the Dashboard itself.</p>
 <p>An individual query is constructed from three types of parameters:</p>
 <ul>
@@ -2292,8 +2297,8 @@
   <span class="s2">&quot;branch_key&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;YOUR_BRANCH_KEY&gt;&quot;</span><span class="p">,</span>
   <span class="s2">&quot;branch_secret&quot;</span><span class="o">:</span><span class="s2">&quot;&lt;YOUR_BRANCH_SECRET&gt;&quot;</span><span class="p">,</span>
   <span class="c1">// Data selection</span>
-  <span class="s2">&quot;start_date&quot;</span><span class="o">:</span> <span class="s2">&quot;2017-12-12T00:00:00&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;end_date&quot;</span><span class="o">:</span> <span class="s2">&quot;2017-12-18T23:59:59&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;start_date&quot;</span><span class="o">:</span> <span class="s2">&quot;2017-12-12&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;end_date&quot;</span><span class="o">:</span> <span class="s2">&quot;2017-12-18&quot;</span><span class="p">,</span>
   <span class="s2">&quot;data_source&quot;</span><span class="o">:</span> <span class="s2">&quot;eo_click&quot;</span><span class="p">,</span>
   <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">&quot;last_attributed_touch_data_tilde_feature&quot;</span><span class="p">,</span>
@@ -2337,7 +2342,7 @@
 <p><em>description</em>: A timestamp representing the oldest date to return data for.</p>
 <p><em>required</em>: true</p>
 <p><em>location</em>: body</p>
-<p><em>restrictions</em>: Cannot be before 2017-10-14T00:00:00.000Z</p>
+<p><em>restrictions</em>: Cannot be before 2017-10-14</p>
 <p><em>format</em>: An ISO-8601 compliant date-time string. Eg: "2017-10-24T16:00:00-08:00"</p>
 <p><strong>end_date</strong></p>
 <p><em>description</em>: The last timestamp (exclusive) to return data for. No events that triggered after the end_date will be counted in the query results.</p>
@@ -2551,8 +2556,8 @@ ordered_by value sort choices:
 <div class="codehilite"><pre><span></span>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{
   &quot;branch_key&quot;:&quot;&lt;YOUR_BRANCH_KEY&gt;&quot;,
   &quot;branch_secret&quot;:&quot;&lt;YOUR_BRANCH_SECRET&gt;&quot;,
-  &quot;start_date&quot;: &quot;2017-12-12T00:00:00&quot;,
-  &quot;end_date&quot;: &quot;2017-12-18T23:59:59&quot;,
+  &quot;start_date&quot;: &quot;2017-12-12&quot;,
+  &quot;end_date&quot;: &quot;2017-12-18&quot;,
   &quot;data_source&quot;: &quot;eo_install&quot;,
   &quot;dimensions&quot;: [
     &quot;user_data_os&quot;
@@ -2614,8 +2619,8 @@ ordered_by value sort choices:
 <div class="codehilite"><pre><span></span>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{
   &quot;branch_key&quot;:&quot;&lt;YOUR_BRANCH_KEY&gt;&quot;,
   &quot;branch_secret&quot;:&quot;&lt;YOUR_BRANCH_SECRET&gt;&quot;,
-  &quot;start_date&quot;: &quot;2017-12-12T00:00:00&quot;,
-  &quot;end_date&quot;: &quot;2017-12-18T23:59:59&quot;,
+  &quot;start_date&quot;: &quot;2017-12-12&quot;,
+  &quot;end_date&quot;: &quot;2017-12-18&quot;,
   &quot;data_source&quot;: &quot;eo_click&quot;,
   &quot;dimensions&quot;: [
     &quot;last_attributed_touch_data_tilde_feature&quot;,
