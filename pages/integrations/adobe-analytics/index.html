@@ -1914,6 +1914,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#what-is-context-data-and-where-does-branch-provide-it-to-adobe" title="What is Context Data and where does Branch provide it to Adobe?" class="md-nav__link">
+    What is Context Data and where does Branch provide it to Adobe?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2484,6 +2491,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#what-is-context-data-and-where-does-branch-provide-it-to-adobe" title="What is Context Data and where does Branch provide it to Adobe?" class="md-nav__link">
+    What is Context Data and where does Branch provide it to Adobe?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2517,7 +2531,7 @@
                 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>With a push of a button you can send your Branch data to your Adobe Analytics dashboard, helping you understand the power of Branch as an acquisition pathway.</p>
 <h3 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work" title="Permanent link">&para;</a></h3>
-<p>Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Adobe Analytics Information will result in Branch automatically forwarding referred events to Adobe Analytics.</p>
+<p>Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your Adobe Analytics Information will result in Branch automatically forwarding referred events to Adobe Analytics through a server to server integration.</p>
 <h3 id="what-events-does-branch-send">What events does Branch send?<a class="headerlink" href="#what-events-does-branch-send" title="Permanent link">&para;</a></h3>
 <p>Branch will send <em>referred</em> <strong>installs</strong> and <strong>opens</strong>, as well as any <strong>custom events</strong> you track with Branch. Non-referred events, clicks, web session starts, and pageviews will be excluded. Branch also sends all the analytics tags that are attached to the link that drove the referred event. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users.</p>
 <h3 id="what-does-it-look-like">What does it look like?<a class="headerlink" href="#what-does-it-look-like" title="Permanent link">&para;</a></h3>
@@ -2617,14 +2631,14 @@
 <li>Enter your Adobe Analytics information and hit <strong>Save</strong>.</li>
 </ol>
 <h3 id="pass-adobe-visitor-id">Pass Adobe Visitor ID<a class="headerlink" href="#pass-adobe-visitor-id" title="Permanent link">&para;</a></h3>
-<p>When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, figure out which ID you use for user tracking in the Adobe SDK, and pass this value through <code>setRequestMetadataKey</code> on the Branch SDKs.</p>
-<p>There are three possible identities you can track via this integration. Please verify which ID you use, and send that. For example, if your Adobe integration uses Marketing Cloud Visitor ID, retrieve it from the Adobe SDK, and pass in a key value pair, with the key being <em>$marketing_cloud_visitor_id</em>. The value would be the value retrieved through the Adobe SDK.</p>
+<p>When you're ready to send data through Branch, you'll need to make sure you pass through the configured Adobe Visitor ID through the Branch SDKs. In order to do so, figure out which ID you use for user tracking in the Adobe SDK by asking your Adobe Consultant, and pass this value through <code>setRequestMetadataKey</code> on the Branch SDKs.</p>
+<p>There are three possible identities you can track via this integration. Please verify which ID you use, and send that. For example, if your Adobe integration uses Marketing Cloud Visitor ID, retrieve it from the Adobe SDK, and pass in a key value pair, with the key being <em>$marketing_cloud_visitor_id</em>. The value would be the value retrieved through the Adobe SDK. </p>
 <ol>
-<li>Marketing Cloud Visitor ID - <em>$marketing_cloud_visitor_id</em></li>
-<li>Analytics Visitor ID - <em>$adobe_visitor_id</em></li>
-<li>Analytics Custom Visitor ID - <em>$analytics_visitor_id</em></li>
+<li>Marketing Cloud Visitor ID - <em>$marketing_cloud_visitor_id</em> <em>sent to Adobe as <code>mid</code></em></li>
+<li>Analytics Visitor ID - <em>$adobe_visitor_id</em> <em>sent to Adobe as <code>aid</code></em></li>
+<li>Analytics Custom Visitor ID - <em>$analytics_visitor_id</em> <em>sent to Adobe as <code>vid</code></em></li>
 </ol>
-<p>Here's a sample snippet showing this. <strong>NOTE</strong> you must set the correct key before calling <em>initSession</em>. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK.</p>
+<p>Here's a sample snippet showing this. <strong>NOTE</strong> you must set the correct key before calling <em>initSession</em>. These examples use <code>$adobe_visitor_id</code> but you should use the appropriate key per the suggestions above. You must also initialize the Adobe SDK before setting the request metadata in the Branch SDK. </p>
 <p><strong>Objective-C</strong></p>
 <p>Inside <em>didFinishLaunchingWithOptions</em></p>
 <div class="codehilite"><pre><span></span><span class="n">Branch</span> <span class="o">*</span><span class="n">branch</span> <span class="o">=</span> <span class="p">[</span><span class="n">Branch</span> <span class="n">getInstance</span><span class="p">];</span>
@@ -2650,7 +2664,7 @@
 
 <h2 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h2>
 <h4 id="what-branch-sends-to-adobe-analytics">What Branch Sends to Adobe Analytics<a class="headerlink" href="#what-branch-sends-to-adobe-analytics" title="Permanent link">&para;</a></h4>
-<p>Branch sends the following values from Branch link data:</p>
+<p>Branch sends the following values from Branch link data in the Adobe Context Data:</p>
 <table>
 <thead>
 <tr>
@@ -2687,6 +2701,8 @@
 <h3 id="data-isnt-appearing-after-simulating-an-event">Data isn't appearing after simulating an event<a class="headerlink" href="#data-isnt-appearing-after-simulating-an-event" title="Permanent link">&para;</a></h3>
 <p>With Adobe Analytics' dashboard, it may take up to ~2 hours for data to appear. We'd recommend you simulate 10-15 events in one testing session, and validate that they show up two hours later, so that feedback is transparent and obvious.</p>
 <p>Another thing to do is make sure a valid adobe_visitor_id is being passed up through the Branch SDK. Call <em>setDebug</em> and inspect the requests to <code>v1/open</code>. The key you want to find in this request payload is either <code>$adobe_visitor_id</code>, <code>$marketing_cloud_visitor_id</code>, or <code>$analytics_visitor_id</code>.</p>
+<h3 id="what-is-context-data-and-where-does-branch-provide-it-to-adobe">What is Context Data and where does Branch provide it to Adobe?<a class="headerlink" href="#what-is-context-data-and-where-does-branch-provide-it-to-adobe" title="Permanent link">&para;</a></h3>
+<p>When sending server to server calls to Adobe, Context Data is the part in between <code>&amp;c.</code> and <code>&amp;.c</code> in the server call. This call cannot be seen via the client (for example, it is not available via Charles Proxy). To see the detailed Branch server calls, please reach out to your Branch Account Manager. In general, values sent in Context Data can be visualized in the Adobe dashboard, and values outside of Context Data cannot. Values like the user identity (e.g.<code>vid</code>, <code>mid</code> or <code>aid</code>) are sent to Adobe, but not in Context Data, so they can’t be visualized in the Adobe Report Suite. However, they are appropriately formatted for Adobe to log events for that user in Adobe.</p>
                 
                   
                 
