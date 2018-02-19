@@ -2190,6 +2190,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#does-branch-provide-view-through-impression-attribution-for-facebook" title="Does Branch provide view-through (impression) attribution for Facebook?" class="md-nav__link">
+    Does Branch provide view-through (impression) attribution for Facebook?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#how-do-i-upgrade-from-the-old-facebook-integration-to-the-new-facebook-integration" title="How do I upgrade from the old Facebook integration to the new Facebook integration?" class="md-nav__link">
     How do I upgrade from the old Facebook integration to the new Facebook integration?
   </a>
@@ -2560,7 +2567,7 @@
 </tr>
 <tr>
 <td>business_management</td>
-<td>(1) We pull in ad accounts for you to choose from. (2) At the end of the login process, we add our System User to your business and ad account with REPORTS_ONLY permissions. Then we deauthorize the access token that has all 3 of these permissions. In the future, we can easily quarantine/decommission the System User if we detect unusual or unauthorized activity.</td>
+<td>(1) We pull in ad accounts for you to choose from. (2) At the end of the login process, we add our System User to your business and ad account with REPORTS_ONLY permissions. Then we will no longer store the access token that has both of these permissions (ads_read and business_management). In the future, we can easily quarantine/decommission the System User if we detect unusual or unauthorized activity.</td>
 </tr>
 </tbody>
 </table>
@@ -2598,8 +2605,10 @@
 <p>Please try logging out and logging back in on Facebook. Note the email address that you use. If you still do not see ad accounts, please visit <a href="https://business.facebook.com">business.facebook.com</a> and ensure that you use the same email address / Facebook account. If you still cannot figure this out, please <a href="https://support.branch.io/support/tickets/new" target="_blank">contact us</a> and include "Facebook MMP + Missing Ad Account(s)" in the subject.</p>
 <h3 id="what-is-the-difference-between-your-previous-facebook-ads-product-and-the-new-facebook-ads-product">What is the difference between your previous Facebook Ads product, and the new Facebook Ads product?<a class="headerlink" href="#what-is-the-difference-between-your-previous-facebook-ads-product-and-the-new-facebook-ads-product" title="Permanent link">&para;</a></h3>
 <p>Branch is now a Facebook Mobile Measurement Partner (MMP). This means we are partnering with Facebook to more accurately attribute your installs, opens and custom events back to Facebook ad campaigns! </p>
-<p>The major differences: we can use this product without a Branch deep link. No need to manually create Branch links and add them to Facebook ads! </p>
+<p>The major differences: we can use this product <em>without</em> a Branch deep link. No need to manually create Branch links and add them to Facebook ads! </p>
 <p>If you use a Branch deep link, we will still return the Branch deep link information in app so that you can deep link your users to content. Attributed events will <em>not</em> have the Branch deep link information, but rather the Facebook ad campaign information. This info cannot be passed along to third parties via our Data Integrations.</p>
+<h3 id="does-branch-provide-view-through-impression-attribution-for-facebook">Does Branch provide view-through (impression) attribution for Facebook?<a class="headerlink" href="#does-branch-provide-view-through-impression-attribution-for-facebook" title="Permanent link">&para;</a></h3>
+<p>Branch is able to provide device-level view-through attribution for installs only, for up to 24 hours from impression to install. This is what is available via the MMP API that Facebook has exposed. It's also possible that if other app events (such as opens) occur shortly after an install, we can attribute those back to the same impression/view.</p>
 <h3 id="how-do-i-upgrade-from-the-old-facebook-integration-to-the-new-facebook-integration">How do I upgrade from the old Facebook integration to the new Facebook integration?<a class="headerlink" href="#how-do-i-upgrade-from-the-old-facebook-integration-to-the-new-facebook-integration" title="Permanent link">&para;</a></h3>
 <p>Easy. Navigate to <a href="https://dashboard.branch.io/ads/partner-management/a_facebook?tab=settings" target="_blank">Facebook within the Ads Management portal</a>. Choose "Connect with Facebook" and follow the guide to <a href="../../../pages/deep-linked-ads/facebook-app-install-ads/#enable-facebook-as-an-ad-partner">set up the integration with Facebook MMP</a>.</p>
 <p>The moment you complete this signup flow, we will upgrade you to getting the full MMP functionality! Now installs and other analytics will include info on campaign, ad set, ad, and creative from Facebook.</p>
@@ -2662,6 +2671,8 @@
 </tbody>
 </table>
 <p>(*) You must have signed you have signed Facebook's <a href="https://www.facebook.com/ads/manage/advanced_mobile_measurement/tos" target="_blank">"Advanced Mobile Measurement" agreement ("Data Use Terms for Advanced Mobile App Measurement")</a> to view this data</p>
+<p>Here is the page where you can see which ad accounts have signed the AMM agreement:</p>
+<p><img alt="AMM" src="../../../img/pages/deep-linked-ads/facebook-ads-faq/amm.png" /></p>
 <h3 id="the-data-on-facebook-and-the-data-on-branch-does-not-line-up">The data on Facebook and the data on Branch does not line up!<a class="headerlink" href="#the-data-on-facebook-and-the-data-on-branch-does-not-line-up" title="Permanent link">&para;</a></h3>
 <p>Please see the section below, <a href="../pages/deep-linked-ads/facebook-ads-faq/#sources-of-discrepancies-between-facebook-and-branch">Sources of Discrepancies between Facebook and Branch</a>.</p>
 <h2 id="facebook-ads-advanced-options">Facebook Ads Advanced Options<a class="headerlink" href="#facebook-ads-advanced-options" title="Permanent link">&para;</a></h2>

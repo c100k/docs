@@ -2364,9 +2364,9 @@
 <li>Wait for the upload to complete successfully. If you'd like to create a "Product set" (a subset of products in your catalog for use in specific ad sets) you can do that now.</li>
 </ol>
 <h4 id="setting-up-app-events-and-the-facebook-pixel">Setting up App Events and the Facebook Pixel<a class="headerlink" href="#setting-up-app-events-and-the-facebook-pixel" title="Permanent link">&para;</a></h4>
-<p>Facebook requires you to report events about your users interacting with your content, for example: viewing, adding to cart, and purchasing. To add the Facebook Pixel to your website, and the Facebook SDK to your app, follow these instructions:</p>
+<p>Facebook requires you to report events about your users interacting with your content, for example: viewing, adding to cart, and purchasing. To add the Facebook Pixel to your website, and event tracking using the Branch SDK (which forwards to Facebook) to your app, follow these instructions:</p>
 <ul>
-<li><a href="https://developers.facebook.com/docs/app-events" target="_blank">Sending App Events with the Facebook SDK</a></li>
+<li><a href="../../../pages/deep-linked-ads/facebook-ads-faq/#tracking-other-conversion-events">Sending App Events with the Branch SDK</a></li>
 <li><a href="https://developers.facebook.com/docs/marketing-api/facebook-pixel/v2.8" target="_blank">Sending Web Events with the Facebook Pixel</a></li>
 </ul>
 <p>Use the "Product events" tab in your Product Catalog view to ensure that Facebook is registering the events against your Product Catalog items correctly.</p>
@@ -2383,9 +2383,6 @@
 <p>By default, Facebook sends customers without the app to your mobile website. To drive installs, you can send customers without your app the app store by adding a <code>web_should_fallback</code> column to your Feed Source and setting each row to <code>false</code>. Then, after you've created your campaign, edit the ad within your ad set. Under "Creative," set your "App link destination" to "Deep link, app store backup."</p>
 </div>
 <h3 id="view-your-data">View Your Data<a class="headerlink" href="#view-your-data" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p>Facebook prevents Branch from measuring the number of clicks on their ads for install campaigns, so Branch's <strong>Clicks</strong> numbers for Facebook Ads are inaccurate when users are being directed to the App Store to download your app.</p>
-</div>
 <p>The <a href="https://dashboard.branch.io/ads/analytics" target="_blank">Ads Analytics Page</a> on the Branch dashboard provides an interactive time series graph and table to view the performance of your Ad campaigns.</p>
 <p><img alt="Example Ads Analytics Graph" src="../../../img/ingredients/deep-linked-ads/view-ad-link-data/analytics-graph.png" /></p>
 <p>The table shows summary data on the performance of each Ad campaign. On the right top side of the table you can find a <strong>download button</strong> to retrieve the chart's content as a CSV file.</p>
