@@ -2463,14 +2463,11 @@
 <p>Please specify <code>$google_analytics_client_id</code>. We will pass that to Google (as <em>cid</em>) so Google can match the events we send them to a specific user.</p>
 <p><strong>iOS:</strong></p>
 <p>Please add the following before initializing the Branch session:</p>
-<div class="codehilite"><pre><span></span><span class="p">[[</span><span class="n">Branch</span> <span class="n">getInstance</span><span class="p">]</span> <span class="nl">setRequestMetadataKey</span><span class="p">:</span><span class="s">@&quot;$google_analytics_client_id&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="s">@&quot;CLIENT-ID-HERE&quot;</span><span class="p">];</span>
-</pre></div>
-
+<p>Swift:
 <div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">branch</span> <span class="p">=</span> <span class="n">Branch</span><span class="p">.</span><span class="n">getInstance</span><span class="p">();</span>
 <span class="kd">let</span> <span class="nv">val</span> <span class="p">=</span> <span class="n">gai</span><span class="p">.</span><span class="n">tracker</span><span class="p">(</span><span class="n">withTrackingId</span><span class="p">:</span> <span class="s">&quot;key&quot;</span><span class="p">)</span>
 <span class="n">branch</span><span class="p">.</span><span class="n">setRequestMetadataKey</span><span class="p">(</span><span class="s">&quot;$google_analytics_client_id&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="n">val</span><span class="p">?.</span><span class="kr">get</span><span class="p">(</span><span class="s">&quot;&amp;cid&quot;</span><span class="p">))</span>
-</pre></div>
-
+</pre></div></p>
 <p><strong>Android:</strong></p>
 <p>Please call the following line right after you initialize Branch in your Application’s #onCreate or Activity’s #onCreate:</p>
 <div class="codehilite"><pre><span></span><span class="n">mTracker</span> <span class="o">=</span> <span class="n">sAnalytics</span><span class="o">.</span><span class="na">newTracker</span><span class="o">(</span><span class="s">&quot;UA-XXXXXXXX-1&quot;</span><span class="o">);</span>
