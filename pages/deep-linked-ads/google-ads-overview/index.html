@@ -1107,6 +1107,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#forward-events-to-adwords" title="Forward Events to AdWords" class="md-nav__link">
+    Forward Events to AdWords
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-campaigns" title="Other Campaigns" class="md-nav__link">
     Other Campaigns
   </a>
@@ -2427,6 +2434,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#forward-events-to-adwords" title="Forward Events to AdWords" class="md-nav__link">
+    Forward Events to AdWords
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-campaigns" title="Other Campaigns" class="md-nav__link">
     Other Campaigns
   </a>
@@ -2612,6 +2626,7 @@
 <h4 id="remove-from-ads-partner-manager">Remove From Ads Partner Manager<a class="headerlink" href="#remove-from-ads-partner-manager" title="Permanent link">&para;</a></h4>
 <p>Go to this <a href="https://dashboard.branch.io/ads/partner-management/a_google_adwords?tab=legacy">section</a> of the Branch dashboard. Remove all fields found here.</p>
 <p>Next, click <em>Postback Config</em>, and uncheck all the checkboxes. Hit save.</p>
+<p>The new integration will automatically forward events without you having to configure postbacks for each. Check <a href="#forward-events-to-adwords">the section</a> to learn how we do this.</p>
 <p>You can safely ignore all links created using the old integration. You're done!</p>
 <h3 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
 <p>If you're wondering why we're asking you to migrate from the legacy system to the new system, there are a handful of benefits you should know.</p>
@@ -2656,6 +2671,55 @@
 </tr>
 </tbody>
 </table>
+<h2 id="forward-events-to-adwords">Forward Events to AdWords<a class="headerlink" href="#forward-events-to-adwords" title="Permanent link">&para;</a></h2>
+<p>Once you begin tracking events through the Branch SDK, you can select which events to import in AdWords. AdWords has pre-defined events that map to pre-defined Branch events, listed below. Reference this <a href="https://developers.google.com/app-conversion-tracking/api/">doc</a> for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Google Event</th>
+<th>Branch Event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>first_open</td>
+<td>install</td>
+</tr>
+<tr>
+<td>session_start</td>
+<td>open</td>
+</tr>
+<tr>
+<td>in_app_purchase</td>
+<td>purchase</td>
+</tr>
+<tr>
+<td>view_item_list</td>
+<td>view_items</td>
+</tr>
+<tr>
+<td>view_item</td>
+<td>view_item</td>
+</tr>
+<tr>
+<td>view_search_results</td>
+<td>search</td>
+</tr>
+<tr>
+<td>add_to_cart</td>
+<td>add_to_cart</td>
+</tr>
+<tr>
+<td>ecommerce_purchase</td>
+<td>purchase</td>
+</tr>
+<tr>
+<td>custom</td>
+<td>any custom event tracked through Branch</td>
+</tr>
+</tbody>
+</table>
+<p>Note: As of 02/21/2018, only Install, Open, and Purchase is available to be forwarded. All events listed will be available starting next week. </p>
 <h2 id="other-campaigns">Other Campaigns<a class="headerlink" href="#other-campaigns" title="Permanent link">&para;</a></h2>
 <p>The above guide covered what was necessary to track Universal App Campaigns. If you are looking to track non app-install campaigns, click through below.</p>
 <table>
