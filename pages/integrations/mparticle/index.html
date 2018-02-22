@@ -1961,8 +1961,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieve-mparticle-token" title="Retrieve mParticle Token" class="md-nav__link">
-    Retrieve mParticle Token
+  <a href="#retrieve-mparticle-key-secret" title="Retrieve mParticle Key &amp; Secret" class="md-nav__link">
+    Retrieve mParticle Key &amp; Secret
   </a>
   
 </li>
@@ -2323,8 +2323,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieve-mparticle-token" title="Retrieve mParticle Token" class="md-nav__link">
-    Retrieve mParticle Token
+  <a href="#retrieve-mparticle-key-secret" title="Retrieve mParticle Key &amp; Secret" class="md-nav__link">
+    Retrieve mParticle Key &amp; Secret
   </a>
   
 </li>
@@ -2436,9 +2436,9 @@
                 
                 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>With a push of a button you can send your Branch data to your mParticle dashboard, helping you to understand the power of Branch as an acquisition pathway, export your data to your entire suite of analytics tools and build custom audiences upon Branch data.</p>
-<p>This documentation explains how to send <strong>Branch install events to mParticle</strong>. mParticle calls this an Inbound Feed Integration. If you'd like to send mParticle events to your Branch dashboard, please review the Branch/mParticle SDK Kit integration documentation for <a href="../../../pages/apps/mparticle-ios/">iOS</a> and <a href="../../../pages/apps/mparticle-android/">Android</a>. </p>
+<p>This documentation explains how to send <strong>Branch install events to mParticle</strong>. mParticle calls this an Inbound Feed Integration. If you'd like to send mParticle events to your Branch dashboard through your app, please review the Branch/mParticle SDK Kit integration documentation for <a href="../../../pages/apps/mparticle-ios/">iOS</a> and <a href="../../../pages/apps/mparticle-android/">Android</a>. At present there is no server to server integration for sending mParticle data to Branch.</p>
 <h3 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work" title="Permanent link">&para;</a></h3>
-<p>Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your mParticle token will result in Branch automatically forwarding attributed installs to mParticle, in the exact format mParticle expects.</p>
+<p>Once the Branch SDK is integrated into an app, Branch can detect which links are leading to installs, re-opens, and users' actions. Enabling this integration and providing your mParticle key/secret will result in Branch automatically forwarding attributed installs to mParticle, in the exact format mParticle expects.</p>
 <h3 id="what-events-does-branch-send">What events does Branch send?<a class="headerlink" href="#what-events-does-branch-send" title="Permanent link">&para;</a></h3>
 <p>Branch will send <strong>attributed installs</strong>. Branch also sends all the data that is attached to the link that drove the attributed installs. This will allow you to analyze which campaigns, channels, etc. are helping you acquire and engage users. You can see the list of fields that we send to mParticle <a href="#what-branch-sends-to-mparticle">here</a>.</p>
 <h3 id="what-does-it-look-like">What does it look like?<a class="headerlink" href="#what-does-it-look-like" title="Permanent link">&para;</a></h3>
@@ -2455,19 +2455,32 @@
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
 <li>This guide requires you to have already integrated the Branch and mParticle mobile SDK(s).</li>
-<li>This guide requires you to have the <a href="https://docs.branch.io/pages/apps/ios-launch/#submitting-to-the-app-store">AdSupportFramework</a> on iOS and [Google Play Services library] (<a href="https://docs.branch.io/pages/apps/android-launch/#submitting-to-the-play-store">https://docs.branch.io/pages/apps/android-launch/#submitting-to-the-play-store</a>) on Android.</li>
+<li>This guide requires you to have the <a href="https://docs.branch.io/pages/apps/ios-launch/#submitting-to-the-app-store">AdSupportFramework</a> on iOS and <a href="https://docs.branch.io/pages/apps/android-launch/#submitting-to-the-play-store">Google Play Services library</a> on Android.</li>
 </ul>
-<h3 id="retrieve-mparticle-token">Retrieve mParticle Token<a class="headerlink" href="#retrieve-mparticle-token" title="Permanent link">&para;</a></h3>
-<p>Find your mParticle Token and enter it into the Branch Dashboard.</p>
+<h3 id="retrieve-mparticle-key-secret">Retrieve mParticle Key &amp; Secret<a class="headerlink" href="#retrieve-mparticle-key-secret" title="Permanent link">&para;</a></h3>
+<p>Find your mParticle key &amp; secret and enter it into the Branch Dashboard.</p>
 <ol>
 <li>Navigate to <a href="https://app.mparticle.com"><a href="https://app.mparticle.com">https://app.mparticle.com</a></a> and log into the Dashboard.</li>
-<li>In the dashboard, navigate to <a href="https://app.mparticle.com/setup/inputs">Setup &gt; Inputs</a>. </li>
+<li>In the dashboard, navigate to the <strong><a href="https://app.mparticle.com/directory">Directory</a></strong> and search for Branch .</li>
+<li>Click the Branch tile, and click <strong>Add Branch Metrics to Setup</strong></li>
 <li>
-<p>Click on <strong>iOS</strong> or <strong>Android</strong>.</p>
-<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-settings-inputs.png" /></p>
+<p>Select the <strong>Input Feed</strong> Integration Type and click <strong>Add to Setup</strong></p>
+<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-add-feed-to-setup.png" /></p>
 </li>
 <li>
-<p>Copy your key and secret - you'll enter it into the Branch dashboard in a minute.</p>
+<p>You should now be looking at a list of Feed Configurations. If you don't see Branch in the list, refresh the page. Hover over Branch and click <em>Configure</em>.</p>
+<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-list-of-feeds.png" /></p>
+</li>
+<li>
+<p>Specify the following configuration parameters:</p>
+<ul>
+<li>Configuration Name</li>
+<li>Act as Application <em>(select the right platform here)</em></li>
+</ul>
+<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-configure-feed.png" /></p>
+</li>
+<li>
+<p>Copy your server to server key and secret - you'll enter them into the Branch dashboard in a moment.</p>
 <p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-keys.png" /></p>
 </li>
 </ol>
@@ -2491,7 +2504,7 @@
 </li>
 <li>Search for mParticle and click on the tile.</li>
 <li>
-<p>Enter your mParticle Token and hit <strong>Enable</strong>.</p>
+<p>Enter your mParticle key &amp; secret and hit <strong>Enable</strong>.</p>
 <p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-branch-settings.png" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Please test integration!</p>
