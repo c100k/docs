@@ -2619,10 +2619,22 @@
 </li>
 <li>
 <h5 id="desktop">Desktop<a class="headerlink" href="#desktop" title="Permanent link">&para;</a></h5>
+<div class="admonition note">
+<p class="admonition-title">We now support deep linking to Desktop apps such Spotify and Slack using URI schemes</p>
+<p>This feature is still in the early stages of development; there is no Desktop SDK yet, so we will not be able to attribute or pass any data through an install.</p>
+</div>
 <ul>
 <li>
 <p>Use these settings to control the default behavior of your deep links on Desktop browsers</p>
 <p><img alt="image" src="../../../img/pages/dashboard/desktop.png" /></p>
+</li>
+<li>
+<p>For Desktop apps</p>
+<ul>
+<li>Enter your Desktop URI Scheme (e.g. spotify://)</li>
+<li>Include $desktop_deeplink_path key-value pair to your link (e.g. "$desktop_deeplink_path": "track/5D8o9tGf3Dfjz7CgMxcoeI")</li>
+<li>If the app is not installed when the link is clicked, we will fall back to the Desktop or Default URL, in that order</li>
+</ul>
 </li>
 </ul>
 </li>
