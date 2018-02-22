@@ -2020,6 +2020,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#faqs" title="FAQs" class="md-nav__link">
+    FAQs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-does-branch-only-send-installs-to-mparticle" title="Why does Branch only send installs to mParticle?" class="md-nav__link">
+    Why does Branch only send installs to mParticle?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-doesnt-branch-require-the-mparticle-customer-id" title="Why doesn't Branch require the mParticle customer ID?" class="md-nav__link">
+    Why doesn't Branch require the mParticle customer ID?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -2355,6 +2382,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#faqs" title="FAQs" class="md-nav__link">
+    FAQs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-does-branch-only-send-installs-to-mparticle" title="Why does Branch only send installs to mParticle?" class="md-nav__link">
+    Why does Branch only send installs to mParticle?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-doesnt-branch-require-the-mparticle-customer-id" title="Why doesn't Branch require the mParticle customer ID?" class="md-nav__link">
+    Why doesn't Branch require the mParticle customer ID?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -2560,6 +2614,11 @@
 <p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-requestbin.png" /></p>
 </li>
 </ol>
+<h2 id="faqs">FAQs<a class="headerlink" href="#faqs" title="Permanent link">&para;</a></h2>
+<h4 id="why-does-branch-only-send-installs-to-mparticle">Why does Branch only send installs to mParticle?<a class="headerlink" href="#why-does-branch-only-send-installs-to-mparticle" title="Permanent link">&para;</a></h4>
+<p>At this time, the mParticle Inbound Feeds product only supports attributed events via their <em>attribution</em> custom event. This is currently limited to installs. However, please reach out to your Branch or mParticle Account Manager if this limitation prevents you from doing the analysis you need.</p>
+<h4 id="why-doesnt-branch-require-the-mparticle-customer-id">Why doesn't Branch require the mParticle customer ID?<a class="headerlink" href="#why-doesnt-branch-require-the-mparticle-customer-id" title="Permanent link">&para;</a></h4>
+<p>Branch doesn't require the mParticle customer ID because it has usually not been set upon installing the app. The usual workflow for a user is to install the app, then have a confirmed login about thirty seconds later. The Branch install event fires immediately upon install and therefore occurs before the login event, so it does not have the logged-in customer ID before it is sent to mParticle. However, you can join install events for a customer using the device ID attached to the install and login events.</p>
                 
                   
                 
