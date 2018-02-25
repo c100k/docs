@@ -2311,8 +2311,8 @@
 </p>
 
 <h2 id="guide">Guide<a class="headerlink" href="#guide" title="Permanent link">&para;</a></h2>
-<div class="admonition prequisite">
-<p class="admonition-title">Prequisite</p>
+<div class="admonition prerequisites">
+<p class="admonition-title">Prerequisites</p>
 <ul>
 <li>You need to <a href="../{#dialog-code">integrate the Branch SDK</a> into your app.</li>
 <li>You should <a href="#dialog-code?ios=track-users&amp;android=track-users&amp;adobe=track-users&amp;cordova=track-users&amp;mparticleAndroid=track-users&amp;mparticleIos=track-users&amp;titanium=track-users&amp;reactNative=track-users&amp;unity=track-users&amp;xamarin=track-users">identify your users</a> on both log in and log out.</li>
@@ -2321,7 +2321,7 @@
 </div>
 <p>With every event that is recorded in Branch, we check automatically if that event is eligible for credits based on the rules that you configured, then deposit the credits if so. Reward rules can be based on both <a href="../../../pages/dashboard/analytics/#user-value-attribution">automatic events and custom events</a>.</p>
 <div class="admonition warning">
-<p class="admonition-title">If you identify your users</p>
+<p class="admonition-title">Identify your users</p>
 <p>Because we do not merge identities, you <em>should set rewards on custom events</em> and <em>not use</em> the events we automatically track (<code>install</code> and <code>open</code>), and do so only <em>after</em> you have identified a user using our <a href="#dialog-code?ios=track-users&amp;android=track-users&amp;adobe=track-users&amp;cordova=track-users&amp;mparticleAndroid=track-users&amp;mparticleIos=track-users&amp;titanium=track-users&amp;reactNative=track-users&amp;unity=track-users&amp;xamarin=track-users">identity methods</a>. This will help avoid duplicate rewards and missing credits.</p>
 </div>
 <h2 id="awarding-credits">Awarding credits<a class="headerlink" href="#awarding-credits" title="Permanent link">&para;</a></h2>
