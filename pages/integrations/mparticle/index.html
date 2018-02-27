@@ -2468,10 +2468,6 @@
 <p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-add-feed-to-setup.png" /></p>
 </li>
 <li>
-<p>You should now be looking at a list of Feed Configurations. If you don't see Branch in the list, refresh the page. Hover over Branch and click <em>Configure</em>.</p>
-<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-list-of-feeds.png" /></p>
-</li>
-<li>
 <p>Specify the following configuration parameters:</p>
 <ul>
 <li>Configuration Name</li>
@@ -2617,14 +2613,13 @@
 <li>
 <p>To refine the data being sent to the webhook, navigate to <strong>Connections &gt; Connect</strong>. </p>
 </li>
-<li>Select your OS as the input, and <strong>Webhooks</strong> as the output.</li>
-<li>
-<p>Set a filter to filter on <em>campaign</em> and put the campaign name of <em>branch_test</em> that you added in your Branch link. </p>
-<p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-webhook-forwarding-rule.png" /></p>
-</li>
+<li>Select the Branch Feed as the input, and <strong>Webhooks</strong> as the output.</li>
 <li>
 <p>Finally, view the Requestbin. You can do this by appending <strong>?inspect</strong> to your requestbin URL. You should be able to copy paste the POST body from the request bin into a JSON formatter like <a href="https://jsonlint.com/"><a href="https://jsonlint.com/">https://jsonlint.com/</a></a> to view the event details. </p>
 <p><img alt="image" src="../../../img/pages/integrations/mparticle/mparticle-requestbin.png" /></p>
+</li>
+<li>
+<p>Once you're done testing, delete the webhook.</p>
 </li>
 </ol>
 <h2 id="faqs">FAQs<a class="headerlink" href="#faqs" title="Permanent link">&para;</a></h2>
