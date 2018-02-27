@@ -1173,6 +1173,19 @@
     Dynamic Journeys layout customization
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-tags-for-dynamic-journeys-layout-customization" title="Custom tags for dynamic Journeys layout customization" class="md-nav__link">
+    Custom tags for dynamic Journeys layout customization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3179,6 +3192,19 @@
     Dynamic Journeys layout customization
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-tags-for-dynamic-journeys-layout-customization" title="Custom tags for dynamic Journeys layout customization" class="md-nav__link">
+    Custom tags for dynamic Journeys layout customization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3962,6 +3988,30 @@ You can target a user based on the last touch point before they entered your web
 </tbody>
 </table>
 <p>Note that not all template support all override keys. For example, the floating button does not support title, description or icon image url. If a template is to be rendered and the key you've specified does not exist, we'll simply ignore it while rendering the template.</p>
+<h4 id="custom-tags-for-dynamic-journeys-layout-customization">Custom tags for dynamic Journeys layout customization<a class="headerlink" href="#custom-tags-for-dynamic-journeys-layout-customization" title="Permanent link">&para;</a></h4>
+<p>In addition to using <a href="https://docs.branch.io/pages/web/journeys/#dynamic-journeys-layout-customization">pre-defined keys</a> (e.g. $journeys_title) to dynamically customize the appearance/content of a Journey, you can use custom liquid tags. Custom tags can be inserted in both the View Editor and the CSS Editor when you’re setting up a Journeys template. Then, you can use <code>setBranchViewData()</code> to dynamically provide values for these tags. </p>
+<p><strong>Note that if you include custom liquid tags in your templates and also set a value for a pre-defined key (e.g. $journeys_title) in <code>setBranchViewData()</code>, the value of the pre-defined key will take precedence.</strong></p>
+<p>The format for a custom liquid tag is as follows. Note that a default value must be specified for every custom tag you include:</p>
+<div class="codehilite"><pre><span></span><span class="cp">{{</span> <span class="nv">key_name</span> <span class="o">|</span> <span class="nf">default_value</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+
+<p>For example, if you were adding a custom liquid tag in CSS to dynamically control the font size of one of your Journeys’ title, you might use a tag like the one below:</p>
+<p><div class="codehilite"><pre><span></span><span class="cp">{{</span> <span class="nv">fontSize</span> <span class="err">|</span> <span class="m">12</span><span class="nv">px</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+<img alt="image" src="../../../img/pages/journeys/custom-tags-1.png" /></p>
+<p>And if you were adding a custom liquid tag in your template text, you might use a tag like the one below:
+<div class="codehilite"><pre><span></span><span class="cp">{{</span> <span class="nv">adjective</span> <span class="o">|</span> <span class="nf">best</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+<img alt="image" src="../../../img/pages/journeys/custom-tags-2.png" /></p>
+<p>Then, to dynamically update values for the “fontSize” and “adjective” variables, you would set values for those variables using <code>setBranchViewData()</code>:</p>
+<div class="codehilite"><pre><span></span>branch.setBranchViewData({
+    data: {
+        &#39;fontSize&#39;: &#39;20px&#39;,
+        &#39;adjective&#39;: &#39;most entertaining&#39;,
+    }
+});
+</pre></div>
+
 <h3 id="clientside-javascript-journeys-controls">Clientside Javascript Journeys controls<a class="headerlink" href="#clientside-javascript-journeys-controls" title="Permanent link">&para;</a></h3>
 <p>There are a number of clientside APIs to help you build quality user experiences. See below:</p>
 <h4 id="use-javascript-to-block-a-journey-from-showing">Use Javascript to block a Journey from showing<a class="headerlink" href="#use-javascript-to-block-a-journey-from-showing" title="Permanent link">&para;</a></h4>
